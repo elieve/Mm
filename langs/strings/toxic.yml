@@ -497,7 +497,7 @@ qur_3: "{} Kaga ada surah '{}' Non-Islam lo ya?"
 # pinterest
 pint_1: "{} **Tidak ada gambar atau video yang ditemukan di URL Pinterest**"
 pint_2: "{} **Downloaded by : {}**"
-pint_3: "{} **Gagal download jink : `{}`**"
+pint_3: "{} **minimal kasih link pinterest nya lah jink!**"
 pint_4: "{} **Yah kaga bisa tot : `{}`**"
 
 # base64
