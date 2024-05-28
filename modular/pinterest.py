@@ -92,12 +92,10 @@ async def _(c: nlx, m):
             await pros.edit(
                 f"{em.gagal} **Silahkan tambahkan link Pinterest yang valid\nContoh : `{m.text} https://id.pinterest.com/pin/293648838218730162/`**"
             )
-            await pros.delete()
     except IndexError:
         await pros.edit(
             f"{em.gagal} **Silahkan tambahkan link Pinterest\nContoh : `{m.text} https://id.pinterest.com/pin/293648838218730162/`**"
         )
-        await pros.delete()
     except Exception as e:
         await pros.edit(cgr("err").format(em.gagal, str(e)))
         await pros.delete()
