@@ -497,7 +497,7 @@ qur_3: "{} There's nothing surah with name '{}' "
 # pinterest
 pint_1: "{} **There's no Image or Video on URL Pinterest**"
 pint_2: "{} **Downloaded by : {}**"
-pint_3: "{} **Failed to catch donwload file from : `{}`**"
+pint_3: "{} **Please give me an URL of Pinterest.**"
 pint_4: "{} **Something error while downloading : `{}`**"
 
 # base64
