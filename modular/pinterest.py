@@ -81,6 +81,8 @@ async def _(c: nlx, m):
     gue = c.me.mention
     try:
         url = m.text.split(maxsplit=1)[1]
+        if not url:
+            return await pros.edit(cgr("pint_3").format(em.gagal))
         if url.startswith("https://id.pinterest.com/pin/"):
             await download_file_from_url(
                 url, m, caption=cgr("pint_2").format(em.sukses, gue)
