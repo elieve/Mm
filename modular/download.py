@@ -11,7 +11,7 @@ import time
 from datetime import timedelta
 from time import time
 from urllib.parse import urlparse
-
+import re
 import requests
 import wget
 from pyrogram.enums import *
@@ -27,23 +27,13 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
-import re
-
-import requests
-
-from Mix import nlx
-
-
 def tiktok_id(url):
     match = re.search(r"/video/(\d+)", url)
     if match:
         return match.group(1)
     return None
 
-
 async def download_tiktok(c, m, url, em):
-    em = Emojik()
-    em.initialize()
     response = requests.get(url)
     video_id = tiktok_id(response.url)
 
@@ -57,24 +47,29 @@ async def download_tiktok(c, m, url, em):
         video_path = f"Mix-Tiktok-Content.mp4"
         with open(video_path, "wb") as file:
             file.write(video_response.content)
-        text = f"{em.sukses} **Downloaded by : {nlx.me.mention}**"
-        await m.reply(video_path, caption=text, reply_to_message_id=ReplyCheck(m))
-        os.remove(video_path)
-        return
-    else:
-        await m.reply(
-            f"Gagal mengunduh video. Kode status: {video_response.status_code}"
+        text = f"{em.sukses} **Downloaded by : {c.me.mention}**"
+        await c.send_video(
+            chat_id=m.chat.id,
+            video=video_path,
+            caption=text,
+            reply_to_message_id=m.id
         )
-        return
-
+        os.remove(video_path)
+    else:
+        await m.reply(f"Gagal mengunduh video. Kode status: {video_response.status_code}")
 
 @ky.ubot("dtik", sudo=False)
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    url = m.text.split(maxsplit=1)[1]
-    pros = await m.edit(cgr("proses").format(em.proses))
-    await download_tiktok(c, m.chat.id, url, em)
+    try:
+        url = m.text.split(maxsplit=1)[1]
+    except IndexError:
+        await m.reply("Mohon berikan link TikTok yang valid setelah perintah.")
+        return
+
+    pros = await m.reply(cgr("proses").format(em.proses))
+    await download_tiktok(c, m, url, em)
     await pros.delete()
 
 
