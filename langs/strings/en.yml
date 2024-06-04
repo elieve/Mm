@@ -536,15 +536,15 @@ konpert_24: "{} <b>Please reply to the message with audio or voice to transcribe
 # adzan
 jan_1: "{} **Please Enter Your City Name!!**"
 jan_2: "{} **Sorry did not find City `{}`**"
-jan_3: "**Regional Prayer Schedule <u>{}</u>**\n\n"
+jan_3: "**Regional Prayer Schedule <u>{}</u>**\n"
 jan_4: "Date `{}`\n"
-jan_5: "City `{} | {}`\n\n"
-jan_6: "|   Published    |  `{}`  |\n"
-jan_7: "|   Fajr         |  `{}`  |\n"
-jan_8: "|   Dhuhr        | `{}`  |\n"
-jan_9: "|   Asr          |  `{}`  |\n"
-jan_10: "|   Maghrib      |  `{}`  |\n"
-jan_11: "|   Isha         |  `{}`  |\n"
+jan_5: "City `{} | {}`\n"
+jan_6: "| Published    : `{}` |\n"
+jan_7: "| Fajr         : `{}` |\n"
+jan_8: "| Dhuhr        : `{}` |\n"
+jan_9: "| Asr          : `{}` |\n"
+jan_10: "| Maghrib      : `{}` |\n"
+jan_11: "| Isha         : `{}` |\n"
 jan_kol1: "===========================\n"
 
 # github
