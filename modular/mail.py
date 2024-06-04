@@ -23,9 +23,13 @@ def generate_temp_gmail():
 
 async def format_temp_gmail(temp_gmail_info):
     if "address" in temp_gmail_info and "token" in temp_gmail_info:
-        return f"Success Generated Temp Gmail :\nEmail : `{temp_gmail_info['address']}`\nToken : `{temp_gmail_info['token']}`"
+        em = Emojik()
+        em.initialize()
+        emel = temp_gmail_info['address']
+        toket = temp_gmail_info['token']
+        return cgr("mail_1").format(em.sukses, emel, toket, em.warn)
     else:
-        raise ValueError("Missing address or token in temporary Gmail account info")
+        raise ValueError(cgr("mail_err"))
 
 
 @ky.ubot("genmail", sudo=True)
@@ -60,16 +64,22 @@ async def format_messages(messages):
     if "totalItems" in messages and "member" in messages:
         total_items = messages["totalItems"]
         member = messages["member"]
-        formatted_messages = f"Inbox {member[0]['to']['address']}:\n\n"
-        formatted_messages += f"Total Pesan Masuk : {total_items}\n"
-        formatted_messages += f"Tipe Pesan : {member[0]['@type']}\n"
-        formatted_messages += f"ID Pesan : {member[0]['msgid']}\n"
-        formatted_messages += f"Pesan Dari : {member[0]['from']['name']}\n"
-        formatted_messages += f"Email Pengirim : {member[0]['from']['address']}\n\n"
-        formatted_messages += f"Refreshed on : {member[0]['updatedAt']}"
+        sms = member[0]['to']['address']
+        tipee = member[0]['@type']
+        idsms = member[0]['msgid']
+        dia = member[0]['from']['name']
+        imeldia = member[0]['from']['address']
+        refres = member[0]['updatedAt'])
+        formatted_messages = cgr("mail_2").format(sms)
+        formatted_messages += cgr("mail_3").format(total_items)
+        formatted_messages += cgr("mail_4").format(tipee)
+        formatted_messages += cgr("mail_5").format(idsms)
+        formatted_messages += cgr("mail_6").format(dia)
+        formatted_messages += cgr("mail_7").format(imeldia)
+        formatted_messages += cgr("mail_8").format(refres)
         return formatted_messages
     else:
-        raise ValueError("Missing 'totalItems' or 'member' key in messages")
+        raise ValueError(cgr("mail_err1"))
 
 
 @ky.ubot("getmail", sudo=True)
@@ -85,9 +95,9 @@ async def _(c: nlx, m):
             formatted_messages = await format_messages(messages)
             await pros.edit(f"{em.sukses} {formatted_messages}")
         else:
-            await pros.edit(f"{em.gagal} Mohon masukkan Gmail dan token yang valid.")
+            await pros.edit(cgr("get_mail").format(em.gagal))
     except Exception as e:
-        await pros.edit(f"{em.gagal} {str(e)}")
+        await pros.edit(cgr("err").format(em.gagal, {str(e)}))
 
 
 # COMING SOON! LIMIT BRE!
@@ -122,9 +132,13 @@ def gen_temp_mail():
 
 async def format_temp_mail(temp_mail):
     if "email" in temp_mail and "token" in temp_mail:
-        return f"Success Generated Temp Mail :\nEmail : `{temp_mail['email']}`\nToken : `{temp_mail['token']}`"
+        em = Emojik()
+        em.initialize()
+        imel = temp_mail['email']
+        toket = temp_mail['token']
+        return cgr("mail_9").format(em.sukses, imel, token, em.warn)
     else:
-        raise ValueError("Missing address or token in temporary Gmail account info")
+        raise ValueError(cgr("mail_err"))
 
 
 @ky.ubot("tempmail", sudo=True)
@@ -136,10 +150,9 @@ async def _(c: nlx, m):
         temp_gmail_info = gen_temp_mail()
         formatted_temp_mail = await format_temp_mail(temp_gmail_info)
         await pros.edit(
-            f"{em.sukses} Berikut Email Temp anda :\n\n{formatted_temp_mail}"
-        )
+            cgr("get_mail1").format(em.sukses, formatted_temp_mail))
     except Exception as e:
-        await pros.edit(f"{em.gagal} {str(e)}")
+        await pros.edit(cgr("err").format(em.gagal, {str(e)}))
 
 
 async def get_temp_messages(email):
@@ -162,19 +175,24 @@ async def format_temp_messages(messages):
         from_address_start = from_email.find("<") + 1
         from_address_end = from_email.find(">", from_address_start)
         from_address = from_email[from_address_start:from_address_end]
+        id_imel = email['id']
+        imeltu = email['to']
+        cc = email.get('cc', 'Unknown')
+        sub = email['subject']
+        isi = email['body_text']
 
-        formatted_messages += f"ID Pesan : `{email['id']}`\n"
-        formatted_messages += f"Pesan Dari : `{from_name}`\n"
-        formatted_messages += f"Email Dari : `{from_address}`\n"
-        formatted_messages += f"Tujuan : `{email['to']}`\n"
-        formatted_messages += f"CC : `{email.get('cc', 'Unknown')}`\n"
-        formatted_messages += f"Subjek : `{email['subject']}`\n"
-        formatted_messages += f"Isi Teks : `{email['body_text']}`\n"
+        formatted_messages += cgr("mail_10").format(id_imel)
+        formatted_messages += cgr("mail_11").format(from_name)
+        formatted_messages += cgr("mail_12").format(from_address)
+        formatted_messages += cgr("mail_13").format(imeltu)
+        formatted_messages += cgr("mail_14").format(cc)
+        formatted_messages += cgr("mail_15").format(sub)
+        formatted_messages += cgr("mail_16").format(isi)
         created_at = email["created_at"]
         formatted_created_at = datetime.strptime(
             created_at, "%Y-%m-%dT%H:%M:%S.%fZ"
         ).strftime("%d, %b %Y")
-        formatted_messages += f"Tanggal Dibuat : `{formatted_created_at}`\n\n"
+        formatted_messages += cgr("mail_17").format(formatted_created_at)
     return formatted_messages
 
 
@@ -189,9 +207,9 @@ async def _(c: nlx, m):
             messages = await get_temp_messages(email)
             formatted_messages = await format_temp_messages(messages)
             await pros.edit(
-                f"{em.sukses} Berikut adalah isi pesan dari `{email}` :\n\n{formatted_messages}"
+                cgr("get_temp").format(em.sukses, email, formatted_messages)
             )
         else:
-            await pros.edit("Mohon berikan alamat email sebagai argumen.")
+            await pros.edit(cgr("mail_err2").format(em.gagal))
     except Exception as e:
-        await pros.edit(f"{em.gagal} Gagal mengambil pesan sementara: {str(e)}")
+        await pros.edit(cgr("err").format(em.gagal, str(e)))
