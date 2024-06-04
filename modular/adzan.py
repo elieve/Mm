@@ -34,47 +34,21 @@ async def adzan_handler(c: nlx, m):
     magrip = result["items"][0]["maghrib"]
     isa = result["items"][0]["isha"]
 
-    def format_time(time_str):
-        hour, minute = map(int, time_str.split(":"))
-        period = "AM" if hour < 12 else "PM"
-        hour = hour if hour <= 12 else hour - 12
-        return f"{hour:02d}:{minute:02d} {period}"
-
-    txt = (
-        "===========================\n"
-        f"Regional Prayer Schedule {lok}\n"
-        "===========================\n"
-        f"Date {tanggal}\n"
-        f"City {kueri} | {negara}\n"
-        "===========================\n"
-        f"| Published    : {format_time(terbit)} |\n"
-        f"| Fajr         : {format_time(pajar)} |\n"
-        f"| Dhuhr        : {format_time(juhur)} |\n"
-        f"| Asr          : {format_time(asar)} |\n"
-        f"| Maghrib      : {format_time(magrip)} |\n"
-        f"| Isha         : {format_time(isa)} |\n"
-        "===========================\n"
-    )
-
-    await m.reply(txt)
-    await pros.delete()
-    """
+    txt = cgr("jan_kol1")
     txt += cgr("jan_3").format(lok)
     txt += cgr("jan_kol1")
-    txt += cgr("jan_4").format(result["items"][0]["date_for"])
-    txt += cgr("jan_5").format(result["query"], result["country"])
+    txt += cgr("jan_4").format(tanggal)
+    txt += cgr("jan_5").format(kueri, negara)
     txt += cgr("jan_kol1")
-    txt += cgr("jan_6").format(result["items"][0]["shurooq"])
-    txt += cgr("jan_7").format(result["items"][0]["fajr"])
-    txt += cgr("jan_8").format(result["items"][0]["dhuhr"])
-    txt += cgr("jan_9").format(result["items"][0]["asr"])
-    txt += cgr("jan_10").format(result["items"][0]["maghrib"])
-    txt += cgr("jan_11").format(result["items"][0]["isha"])
+    txt += cgr("jan_6").format(terbit)
+    txt += cgr("jan_7").format(pajar)
+    txt += cgr("jan_8").format(juhur)
+    txt += cgr("jan_9").format(asar)
+    txt += cgr("jan_10").format(magrip)
+    txt += cgr("jan_11").format(isa)
     txt += cgr("jan_kol1")
 
-    await m.reply(txt).format(
-        lok, tanggal, kueri, negara, terbit, pajar, juhur, asar, magrip, isa
-    )
+    await m.reply(txt)
     await pros.delete()
     return
     """
