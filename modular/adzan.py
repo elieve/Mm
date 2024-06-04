@@ -9,7 +9,7 @@ __help__ = get_cgr("help_ajan")
 
 
 @ky.ubot("adzan", sudo=True)
-async def _(c: nlx, m: Message):
+async def adzan_handler(c: nlx, m):
     em = Emojik()
     em.initialize()
     lok = c.get_text(m)
@@ -34,7 +34,12 @@ async def _(c: nlx, m: Message):
     magrip = result["items"][0]["maghrib"]
     isa = result["items"][0]["isha"]
 
-    txt = cgr("jan_tes")
+    txt = cgr("jan_tes").format(
+        lok, tanggal, kueri, negara, terbit, pajar, juhur, asar, magrip, isa
+    )
+
+    await m.reply(txt)
+    await pros.delete()
     """
     txt += cgr("jan_3").format(lok)
     txt += cgr("jan_kol1")
@@ -48,10 +53,10 @@ async def _(c: nlx, m: Message):
     txt += cgr("jan_10").format(result["items"][0]["maghrib"])
     txt += cgr("jan_11").format(result["items"][0]["isha"])
     txt += cgr("jan_kol1")
-    """
 
     await m.reply(txt).format(
         lok, tanggal, kueri, negara, terbit, pajar, juhur, asar, magrip, isa
     )
     await pros.delete()
     return
+    """
