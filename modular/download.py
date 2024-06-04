@@ -28,36 +28,44 @@ __help__ = get_cgr("help_download")
 
 
 import re
+
 import requests
+
 from Mix import nlx
 
+
 def tiktok_id(url):
-    match = re.search(r'/video/(\d+)', url)
+    match = re.search(r"/video/(\d+)", url)
     if match:
         return match.group(1)
     return None
+
 
 async def download_tiktok(c, m, url):
     em = Emojik()
     em.initialize()
     response = requests.get(url)
     video_id = tiktok_id(response.url)
-    
+
     if not video_id:
         await m.reply(f"{em.gagal} **Gagal mengunduh media dari link :**\n `{url}`")
         return
 
-    video_response = requests.get(f'https://tikcdn.io/ssstik/{video_id}')
+    video_response = requests.get(f"https://tikcdn.io/ssstik/{video_id}")
 
     if video_response.status_code == 200:
         video_path = f"Mix-Tiktok-Content.mp4"
         with open(video_path, "wb") as file:
             file.write(video_response.content)
         text = f"{em.sukses} **Downloaded by : {nlx.me.mention}**"
-        await c.send_video(m.chat.id, video_path, caption=text, reply_to_message_id=ReplyCheck(m))
+        await c.send_video(
+            m.chat.id, video_path, caption=text, reply_to_message_id=ReplyCheck(m)
+        )
         os.remove(video_path)
     else:
-        await m.reply(f"Gagal mengunduh video. Kode status: {video_response.status_code}")
+        await m.reply(
+            f"Gagal mengunduh video. Kode status: {video_response.status_code}"
+        )
 
 
 @ky.ubot("dtik", sudo=False)
