@@ -35,7 +35,7 @@ async def download_tiktok(c, m, url, em):
     video_id = tiktok_id(response.url)
 
     if not video_id:
-        await m.reply(f"{em.gagal} **Gagal mengunduh media dari link :**\n `{url}`")
+        await m.reply(cgr("down_2").format(em.gagal, url))
         return
 
     video_response = requests.get(f"https://tikcdn.io/ssstik/{video_id}")
@@ -44,15 +44,14 @@ async def download_tiktok(c, m, url, em):
         video_path = f"Mix-Tiktok-Content.mp4"
         with open(video_path, "wb") as file:
             file.write(video_response.content)
-        text = f"{em.sukses} **Downloaded by : {c.me.mention}**"
+        text = cgr("down_3").format(em.sukses, nlx.me.mention)
         await c.send_video(
             chat_id=m.chat.id, video=video_path, caption=text, reply_to_message_id=m.id
         )
         os.remove(video_path)
     else:
         await m.reply(
-            f"Gagal mengunduh video. Kode status: {video_response.status_code}"
-        )
+            cgr("down_4").format(em.gagal, video_response.status_code))
 
 
 @ky.ubot("dtik", sudo=False)
@@ -62,10 +61,10 @@ async def _(c: nlx, m):
     try:
         url = m.text.split(maxsplit=1)[1]
     except IndexError:
-        await m.reply("Mohon berikan link TikTok yang valid setelah perintah.")
+        await m.reply(cgr("down_5").format(em.gagal, m.command))
         return
 
-    pros = await m.reply(cgr("proses").format(em.proses))
+    pros = await m.edit(cgr("proses").format(em.proses))
     await download_tiktok(c, m, url, em)
     await pros.delete()
 
@@ -213,20 +212,32 @@ def download_media_from_twitter(tweet_url):
 
 
 async def download_and_send_file(nlx, chat_id, url, content_type):
+    em = Emojik()
+    em.initialize()
     try:
         response = requests.get(url)
         response.raise_for_status()
         if response.status_code == 200:
-            file_name = f"downloaded_{content_type}.{url.split('.')[-1]}"
+            text = cgr("down_3").format(em.sukses, nlx.me.mention)
+            file_name = f"Mix-Twitter-Contet{content_type}.{url.split('.')[-1]}"
             with open(file_name, "wb") as f:
                 f.write(response.content)
             if content_type == "photo":
-                await nlx.reply_photo(chat_id, file_name)
+                await nlx.send_photo(chat_id, photo=file_name, caption=text, reply_to_message_id=m.id)
+                return
             elif content_type == "video":
-                await nlx.reply_video(chat_id, file_name)
-            os.remove(file_name)
+                await nlx.send_video(chat_id, video=file_name, caption=text, reply_to_message_id=m.id)
+                return
+        else:
+            err = cgr("menten").format(em.gagal)
+            await nlx.send_mesaage(
+                chat_id,
+                text=err,
+                reply_to_message_id=m.id)
+            return
     except Exception as e:
-        await nlx.reply("Terjadi kesalahan saat mengunduh atau mengirim file.")
+        await nlx.reply(cgr("err").format(em.gagal, e))
+        return
 
 
 @ky.ubot("twit|twitt", sudo=True)
@@ -235,14 +246,13 @@ async def twit(c: nlx, m):
     em.initialize()
     pros = await m.edit(cgr("proses").format(em.proses))
     if len(m.command) < 2:
-        await pros.edit(f"{em.gagal} <b>Silakan berikan tautan Twitter.</b>")
+        await pros.edit(cgr("down_6").format(em.gagal, m.command))
         return
 
     tweet_url = m.command[1]
     if not is_valid_twitter_url(tweet_url):
         await pros.edit(
-            f"{em.gagal} <b>Tautan yang diberikan bukan tautan Twitter yang valid.</b>"
-        )
+            cgr("down_7").format(em.gagal, m.command), disable_web_page_preview=True,)
         return
     media_info = download_media_from_twitter(tweet_url)
 
@@ -263,7 +273,7 @@ async def twit(c: nlx, m):
                 .get("media_url_https")
             )
             if media_url:
-                caption = f"{em.sukses} <b>Successfully Download Photo by : {c.me.mention}</b>"
+                caption = cgr("down_8").format(em.sukses, nlx.me.me tion)
                 await c.send_photo(chat_id=m.chat.id, photo=media_url, caption=caption)
                 await pros.delete()
         elif media_type == "video":
@@ -283,19 +293,18 @@ async def twit(c: nlx, m):
                         video_url = variant.get("url", "")
                         break
                 if video_url:
-                    caption = f"{em.sukses} <b>Successfully Download Video by : {c.me.mention}</b>"
+                    caption = cgr("down_9").format(em.sukses, nlx.me.mention)
                     await c.send_video(
                         chat_id=m.chat.id, video=video_url, caption=caption
                     )
                     await pros.delete()
             else:
                 await pros.edit(
-                    f"{em.gagal} <b>Gagal mendapatkan URL video dari tautan Twitter.</b>"
+                    cgr("down_10").format(em.gagal))
                 )
     else:
         await pros.edit(
-            f"{em.gagal} <b>Gagal mendapatkan informasi media dari Twitter.</b>"
-        )
+            cgr("down_11").formar(em.gagal))
 
 
 @ky.ubot("insta", sudo=True)
@@ -327,28 +336,31 @@ async def insta_handler(c: nlx, m):
                     await c.send_photo(
                         m.chat.id,
                         photo=media_url,
-                        caption=f"{em.sukses} <b>Successfully Download Photo by : {c.me.mention}</b>",
-                    )
+                        caption=cgr("down_12").format(em.sukses, nlx.me.mention),
+                        reply_to_message_id=m.id,)
                     await pros.delete()
+                    return
                 elif result["type"] == "video/mp4":
                     await c.send_video(
                         m.chat.id,
                         video=media_url,
                         thumb=thumb_url,
-                        caption=f"{em.sukses} <b>Successfully Download Video by : {c.me.mention}</b>",
-                    )
+                        caption=cgr("down_13").format(em.sukses, nlx.me.mention),
+                        reply_to_message_id=m.id)
                     await pros.delete()
+                    return
                 else:
-                    await pros.edit(f"{em.gagal} <b>Tipe media tidak didukung.</b>")
+                    await pros.edit(cgr("down_14").format(em.gagal))
+                    return
             else:
                 await pros.edit(
-                    f"{em.gagal} <b>Gagal mengunduh media dari tautan yang diberikan.</b>"
-                )
+                    cgr("down_15").format(em.gagal, url), disable_web_page_preview=True)
+                return
         else:
             await pros.edit(
-                f"{em.gagal} <b>Tautan yang diberikan bukan tautan Instagram yang valid.</b>"
-            )
+                cgr("down_16").format(em.gagal))
+            return
     except IndexError:
         await pros.edit(
-            f"{em.gagal} <b>Format perintah salah.\nGunakan perintah `{m.text} [tautan_instagram]`</b>."
-        )
+            cgr("down_17").format(em.gagal, m.command))
+        return
