@@ -58,6 +58,7 @@ def get_messages_temp_email(gmail, token):
         "X-RapidAPI-Host": "temporary-gmail-account.p.rapidapi.com",
     }
     response = requests.post(url, json=payload, headers=headers)
+    print(response)
     return response.json()
 
 
