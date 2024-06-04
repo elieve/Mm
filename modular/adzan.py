@@ -34,20 +34,26 @@ async def adzan_handler(c: nlx, m):
     magrip = result["items"][0]["maghrib"]
     isa = result["items"][0]["isha"]
 
+    def format_time(time_str):
+        hour, minute = map(int, time_str.split(':'))
+        period = "AM" if hour < 12 else "PM"
+        hour = hour if hour <= 12 else hour - 12
+        return f"{hour:02d}:{minute:02d} {period}"
+
     txt = (
-        f"===========================\n"
+        "===========================\n"
         f"Regional Prayer Schedule {lok}\n"
-        f"===========================\n"
+        "===========================\n"
         f"Date {tanggal}\n"
         f"City {kueri} | {negara}\n"
-        f"===========================\n"
-        f"| Published    : {terbit} |\n"
-        f"| Fajr         : {pajar} |\n"
-        f"| Dhuhr        : {juhur} |\n"
-        f"| Asr          : {asar} |\n"
-        f"| Maghrib      : {magrip} |\n"
-        f"| Isha         : {isa} |\n"
-        f"===========================\n"
+        "===========================\n"
+        f"| Published    : {format_time(terbit)} |\n"
+        f"| Fajr         : {format_time(pajar)} |\n"
+        f"| Dhuhr        : {format_time(juhur)} |\n"
+        f"| Asr          : {format_time(asar)} |\n"
+        f"| Maghrib      : {format_time(magrip)} |\n"
+        f"| Isha         : {format_time(isa)} |\n"
+        "===========================\n"
     )
 
     await m.reply(txt)
