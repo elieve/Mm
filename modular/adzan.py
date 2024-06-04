@@ -51,4 +51,3 @@ async def adzan_handler(c: nlx, m):
     await m.reply(txt)
     await pros.delete()
     return
-    """
