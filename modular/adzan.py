@@ -25,7 +25,8 @@ async def _(c: nlx, m: Message):
 
     result = json.loads(req.text)
     tanggal = result["items"][0]["date_for"]
-    negara = result["query"], result["country"]
+    kueri = result["query"]
+    negara = result["country"]
     terbit = result["items"][0]["shurooq"]
     pajar = result["items"][0]["fajr"]
     juhur = result["items"][0]["dhuhr"]
@@ -34,7 +35,7 @@ async def _(c: nlx, m: Message):
     isa = result["items"][0]["isha"]
 
     txt = cgr("jan_tes").format(
-        lok, tanggal, negara, terbit, pajar, juhur, asar, magrip, isa
+        lok, tanggal, kueri, negara, terbit, pajar, juhur, asar, magrip, isa
     )
     """
     txt += cgr("jan_3").format(lok)
