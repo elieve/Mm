@@ -7,18 +7,14 @@
 ################################################################
 
 import os
+import re
 import time
 from datetime import timedelta
 from time import time
 from urllib.parse import urlparse
-import re
+
 import requests
 import wget
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.file_id import *
-from pyrogram.raw.functions.messages import *
-from pyrogram.types import *
 from youtubesearchpython import VideosSearch
 
 from Mix import Emojik, YoutubeDownload, cgr, get_cgr, ky, nlx, progress
@@ -32,6 +28,7 @@ def tiktok_id(url):
     if match:
         return match.group(1)
     return None
+
 
 async def download_tiktok(c, m, url, em):
     response = requests.get(url)
@@ -49,14 +46,14 @@ async def download_tiktok(c, m, url, em):
             file.write(video_response.content)
         text = f"{em.sukses} **Downloaded by : {c.me.mention}**"
         await c.send_video(
-            chat_id=m.chat.id,
-            video=video_path,
-            caption=text,
-            reply_to_message_id=m.id
+            chat_id=m.chat.id, video=video_path, caption=text, reply_to_message_id=m.id
         )
         os.remove(video_path)
     else:
-        await m.reply(f"Gagal mengunduh video. Kode status: {video_response.status_code}")
+        await m.reply(
+            f"Gagal mengunduh video. Kode status: {video_response.status_code}"
+        )
+
 
 @ky.ubot("dtik", sudo=False)
 async def _(c: nlx, m):
