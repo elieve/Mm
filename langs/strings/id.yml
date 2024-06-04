@@ -534,17 +534,19 @@ konpert_23: "{} <b>Silahkan balas pesan audio atau suara.</b>"
 konpert_24: "{} <b>Mohon balas pesan dengan audio atau suara untuk mentranskripsinya.</b>"
 
 # adzan
-jan_1: "{} **Silahkan Masukkan Nama Kota Anda!!**"
+jan_1: "{} **Harap Masukkan Nama Kota Anda!!**"
 jan_2: "{} **Maaf tidak menemukan Kota `{}`**"
-jan_3: "**Jadwal Shalat Wilayah <u>{}</u>**\n\n"
+jan_3: "**Jadwal Sholat Daerah <u>{}</u>**\n\n"
 jan_4: "Tanggal `{}`\n"
 jan_5: "Kota `{} | {}`\n\n"
-jan_6: "Terbit : `{}`\n"
-jan_7: "Subuh : `{}`\n"
-jan_8: "Zuhur :`{}`\n"
-jan_9: "Ashar : `{}`\n"
-jan_10: "Maghrib : `{}`\n"
-jan_11: "Isya : `{}`\n"
+jan_6: "| Diterbitkan | `{}` |\n"
+jan_7: "| Subuh | `{}` |\n"
+jan_8: "| Dhuhur | `{}` |\n"
+jan_9: "| Asar | `{}` |\n"
+jan_10: "| Maghrib | `{}` |\n"
+jan_11: "| Isya | `{}` |\n"
+jan_kol1: "===========================\n"
+
 
 # github
 gitup: "{} **Masukkan username github!!**"
