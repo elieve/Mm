@@ -582,6 +582,7 @@ katnim_6: "This is a total of anime words and lists along with characters."
 katnim_7: "{} Incorrect format!! Please see help."
 
 # help_for
+help_mail: " **Mail**\n\n• Command: `{0}genmail`\n• Description: To get Google Temporary Email.\n\n• Command: `{0}getmail [token]` \n • Description: To get incoming messages in Gmail Temp.\n\n•Command: `{0}tempmail`\n• Description: To get Temporary Random Email.\n\n• Command: `{0}gettemp` [ token]\n• Description: To get messages contained in Temporary Random Email."
 help_katnim: " **Kata Anime**\n\n• Command: `{0}katanimelist`\n• Description: View the list and total of anime words.\n\n• Command: `{0}katanime ` \n• Description: Choose random anime words and characters\n\n•Command: `{0}word` [anime]\n• Description: Take words from anime.\n\n• Command: `{0}katanime` [word]\n• Description: Searches for anime words based on the given arguments."
 help_joko: " **Joke**\n\n• Command: `{0}joke` or `{0}jokes`\n• Description: To provide random jokes.\n"
 help_img: " **Image**\n\n• Command: `{0}img` [query]\n• Description: To search for images.\n"
