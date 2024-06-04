@@ -34,8 +34,20 @@ async def adzan_handler(c: nlx, m):
     magrip = result["items"][0]["maghrib"]
     isa = result["items"][0]["isha"]
 
-    txt = cgr("jan_tes").format(
-        lok, tanggal, kueri, negara, terbit, pajar, juhur, asar, magrip, isa
+    txt = (
+        f"===========================\n"
+        f"Regional Prayer Schedule {lok}\n"
+        f"===========================\n"
+        f"Date {tanggal}\n"
+        f"City {kueri} | {negara}\n"
+        f"===========================\n"
+        f"| Published    : {terbit} |\n"
+        f"| Fajr         : {pajar} |\n"
+        f"| Dhuhr        : {juhur} |\n"
+        f"| Asr          : {asar} |\n"
+        f"| Maghrib      : {magrip} |\n"
+        f"| Isha         : {isa} |\n"
+        f"===========================\n"
     )
 
     await m.reply(txt)
