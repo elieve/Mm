@@ -1,8 +1,8 @@
-from datetime import datetime
 
 import requests
 from pyrogram import *
 from pyrogram.types import *
+from datetime import datetime
 
 from Mix import *
 
@@ -26,8 +26,8 @@ async def format_temp_gmail(temp_gmail_info):
     if "address" in temp_gmail_info and "token" in temp_gmail_info:
         em = Emojik()
         em.initialize()
-        emel = temp_gmail_info["address"]
-        toket = temp_gmail_info["token"]
+        emel = temp_gmail_info['address']
+        toket = temp_gmail_info['token']
         return cgr("mail_1").format(em.sukses, emel, toket, em.warn)
     else:
         raise ValueError(cgr("mail_err"))
@@ -65,12 +65,12 @@ async def format_messages(messages):
     if "totalItems" in messages and "member" in messages:
         total_items = messages["totalItems"]
         member = messages["member"]
-        sms = member[0]["to"]["address"]
-        tipee = member[0]["@type"]
-        idsms = member[0]["msgid"]
-        dia = member[0]["from"]["name"]
-        imeldia = member[0]["from"]["address"]
-        refres = member[0]["updatedAt"]
+        sms = member[0]['to']['address']
+        tipee = member[0]['@type']
+        idsms = member[0]['msgid']
+        dia = member[0]['from']['name']
+        imeldia = member[0]['from']['address']
+        refres = member[0]['updatedAt']
         formatted_messages = cgr("mail_2").format(sms)
         formatted_messages += cgr("mail_3").format(total_items)
         formatted_messages += cgr("mail_4").format(tipee)
@@ -135,8 +135,8 @@ async def format_temp_mail(temp_mail):
     if "email" in temp_mail and "token" in temp_mail:
         em = Emojik()
         em.initialize()
-        imel = temp_mail["email"]
-        temp_mail["token"]
+        imel = temp_mail['email']
+        toket = temp_mail['token']
         return cgr("mail_9").format(em.sukses, imel, token, em.warn)
     else:
         raise ValueError(cgr("mail_err"))
@@ -150,7 +150,8 @@ async def _(c: nlx, m):
     try:
         temp_gmail_info = gen_temp_mail()
         formatted_temp_mail = await format_temp_mail(temp_gmail_info)
-        await pros.edit(cgr("get_mail1").format(em.sukses, formatted_temp_mail))
+        await pros.edit(
+            cgr("get_mail1").format(em.sukses, formatted_temp_mail))
     except Exception as e:
         await pros.edit(cgr("err").format(em.gagal, {str(e)}))
 
@@ -175,11 +176,11 @@ async def format_temp_messages(messages):
         from_address_start = from_email.find("<") + 1
         from_address_end = from_email.find(">", from_address_start)
         from_address = from_email[from_address_start:from_address_end]
-        id_imel = email["id"]
-        imeltu = email["to"]
-        cc = email.get("cc", "Unknown")
-        sub = email["subject"]
-        isi = email["body_text"]
+        id_imel = email['id']
+        imeltu = email['to']
+        cc = email.get('cc', 'Unknown')
+        sub = email['subject']
+        isi = email['body_text']
 
         formatted_messages += cgr("mail_10").format(id_imel)
         formatted_messages += cgr("mail_11").format(from_name)
