@@ -19,6 +19,7 @@ ttup: "Tutup"
 reboot: "{} **Reboot udah kelar jing\nTungguin 1 - 2 menit, kalo ga idup ya matot bot lo.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 supot: "**Eh Goblok Kalo Lo Buta MAP, Lo dateng bae ke Grup Support Dibawah!!\n\nAtau Lo bisa ke Channel buat liat Apa yg Update..**"
+menten: "{} **Yah! ini fitur lagi maintenance cil. Ntar coba lagi aja.\n\nKalo kaga, ya lo laporan ke [sini](https://t.me/kontenfilm) kalo kaga ya ke [sini](https://t.me/GokilSupport)**."
 
 # proxy
 prox_1: "**➣ `{}`**"
@@ -45,7 +46,23 @@ lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - J
 lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
 
 # download
-down_1: "{} **Salah Goblok!! Format `{}` [query].**"
+down_1: "{} **Format perintah salah goblok!\n\Pake Format :** `{}` [query].**"
+down_2: "{} **Gagal donlod medianya jink :**\n `{}`"
+down_3: "{} **Yosh! berhasil di donlod: {}**"
+down_4: "{} **Gagal donlod pidio jink!\nError tuh:** `{}`"
+down_5: "{} **Pake perintah :\n `{}` [tautan/link TikTok]**"
+down_6: "{} **Pake perintah :\n `{}` [tautan/link Twitter]**"
+down_7: "{} **Tautan kaga palid!\n\nNih Contoh tautan twitter jink : `{} https://x.com/King_SpeakUp/status/1787092407773016452`</b>"
+down_8: "{} **Yosh! sukses donlod poto : {}**"
+down_9: "{} **Yosh! sukses donlod pidio : {}**"
+down_10: "{} **Gagal dapetin media dari tautan yang lo kirim jink.**"
+down_11: "{} **Gagal dapetin info media dari tautan yang lo kirim jink.**"
+down_12: "{} **Yosh! sukses donlod poto oleh : {}**"
+down_13: "{} **Yosh! sukses donlod pidio oleh : {}**"
+down_14: "{} **Tipe media kaga didukung tuh jink.**"
+down_15: "{} **Gagal donlod media dari tautan : `{}`.**"
+down_16: "{} **Tautan Instagram kaga palid atau konten pribadi.**"
+down_17: "{} **Format perintah salah.\Pake perintah `{} [tautan_instagram]`**."
 
 # filter
 fil_1: "{} Daftar Filter Di Grup {}:\n"
