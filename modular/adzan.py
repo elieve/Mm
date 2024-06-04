@@ -35,7 +35,7 @@ async def adzan_handler(c: nlx, m):
     isa = result["items"][0]["isha"]
 
     def format_time(time_str):
-        hour, minute = map(int, time_str.split(':'))
+        hour, minute = map(int, time_str.split(":"))
         period = "AM" if hour < 12 else "PM"
         hour = hour if hour <= 12 else hour - 12
         return f"{hour:02d}:{minute:02d} {period}"
