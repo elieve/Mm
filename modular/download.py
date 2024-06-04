@@ -27,43 +27,46 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
-async def download_tiktok_video(c, chat_id, tiktok_link, em):
-    try:
-        url = "https://tiktok-video-downloader-download-without-watermark.p.rapidapi.com/tiktok/v1/download-without-watermark"
-        headers = {
-            "content-type": "application/x-www-form-urlencoded",
-            "X-RapidAPI-Key": "24d6a3913bmsh3561d6af783658fp1a8240jsneef57a49ff14",
-            "X-RapidAPI-Host": "tiktok-video-downloader-download-without-watermark.p.rapidapi.com",
-        }
-        payload = {"url": tiktok_link}
-        response = requests.post(url, data=payload, headers=headers)
-        data = response.json()
+import re
+import requests
+from Mix import nlx
 
-        if "success" in data and data["success"]:
-            caption = f"{em.sukses} **Successfully Download Tiktok Content by: {c.me.mention}**"
-            video_url = data["data"]["url"]
-            await c.send_video(chat_id=chat_id, video=video_url, caption=caption)
-        else:
-            await c.send_message(
-                chat_id=chat_id, text=f"{em.gagal} **Failed to download TikTok video.**"
-            )
-    except Exception as e:
-        print(f"Error occurred: {e}")
-        await c.send_message(
-            chat_id=chat_id,
-            text=f"{em.gagal} **Failed to download TikTok video. Reason: {str(e)}**",
-        )
+def tiktok_id(url):
+    match = re.search(r'/video/(\d+)', url)
+    if match:
+        return match.group(1)
+    return None
+
+async def download_tiktok(c, m, url):
+    em = Emojik()
+    em.initialize()
+    response = requests.get(url)
+    video_id = tiktok_id(response.url)
+    
+    if not video_id:
+        await m.reply(f"{em.gagal} **Gagal mengunduh media dari link :**\n `{url}`")
+        return
+
+    video_response = requests.get(f'https://tikcdn.io/ssstik/{video_id}')
+
+    if video_response.status_code == 200:
+        video_path = f"Mix-Tiktok-Content.mp4"
+        with open(video_path, "wb") as file:
+            file.write(video_response.content)
+        text = f"{em.sukses} **Downloaded by : {nlx.me.mention}**"
+        await c.send_video(m.chat.id, video_path, caption=text, reply_to_message_id=ReplyCheck(m))
+        os.remove(video_path)
+    else:
+        await m.reply(f"Gagal mengunduh video. Kode status: {video_response.status_code}")
 
 
 @ky.ubot("dtik", sudo=False)
-async def download_tiktok_command(c: nlx, m: Message):
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
-    tiktok_link = m.text.split(maxsplit=1)[1]
+    url = m.text.split(maxsplit=1)[1]
     pros = await m.edit(cgr("proses").format(em.proses))
-
-    await download_tiktok_video(c, m.chat.id, tiktok_link, em)
-
+    await download_tiktok(c, m.chat.id, url, em)
     await pros.delete()
 
 
