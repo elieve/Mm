@@ -23,6 +23,126 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
+@ky.ubot("vtube", sudo=True)
+async def _(c, m):
+    em = Emojik()
+    em.initialize()
+    if len(m.command) < 2:
+        return await m.reply(cgr("down_1").format(em.gagal, m.command))
+    pros = await m.reply(cgr("proses").format(em.proses))
+    try:
+        link = m.command[1]
+        if "youtu" not in link:
+            search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
+            link = f"https://youtu.be/{search['id']}"
+    except Exception as error:
+        return await pros.reply_text(cgr("err").format(em.gagal, error))
+    try:
+        (
+            file_name,
+            title,
+            url,
+            duration,
+            views,
+            channel,
+            thumb,
+            data_ytp,
+        ) = await YoutubeDownload(link, as_video=True)
+    except Exception as error:
+        return await pros.reply_text(cgr("err").format(em.gagal, error))
+    thumbnail = wget.download(thumb)
+    await c.send_video(
+        m.chat.id,
+        video=file_name,
+        thumb=thumbnail,
+        file_name=title,
+        duration=duration,
+        supports_streaming=True,
+        caption=data_ytp.format(
+            "VIDEO",
+            title,
+            timedelta(seconds=duration),
+            views,
+            channel,
+            url,
+            c.me.mention,
+        ),
+        progress=progress,
+        progress_args=(
+            pros,
+            time(),
+            cgr("proses").format(em.proses),
+            f"{file_name}.mp4",
+        ),
+        reply_to_message_id=m.id,
+    )
+    await pros.delete()
+    await m.delete()
+    for files in (thumbnail, file_name):
+        if files and os.path.exists(files):
+            os.remove(files)
+
+
+@ky.ubot("stube", sudo=True)
+async def _(c, m):
+    em = Emojik()
+    em.initialize()
+    if len(m.command) < 2:
+        return await m.reply(cgr("down_1").format(em.gagal, m.command))
+    pros = await m.reply(cgr("proses").format(em.proses))
+    try:
+        link = m.command[1]
+        if "youtu" not in link:
+            search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
+            link = f"https://youtu.be/{search['id']}"
+    except Exception as error:
+        return await pros.edit(cgr("err").format(em.gagal, error))
+    try:
+        (
+            file_name,
+            title,
+            url,
+            duration,
+            views,
+            channel,
+            thumb,
+            data_ytp,
+        ) = await YoutubeDownload(link, as_video=False)
+    except Exception as error:
+        return await pros.edit(cgr("err").format(em.gagal, error))
+    thumbnail = wget.download(thumb)
+    await c.send_audio(
+        m.chat.id,
+        audio=file_name,
+        thumb=thumbnail,
+        file_name=title,
+        performer=channel,
+        duration=duration,
+        caption=data_ytp.format(
+            "AUDIO",
+            title,
+            timedelta(seconds=duration),
+            views,
+            channel,
+            url,
+            c.me.mention,
+        ),
+        progress=progress,
+        progress_args=(
+            pros,
+            time(),
+            cgr("proses").format(em.proses),
+            f"{file_name}.mp3",
+        ),
+        reply_to_message_id=m.id,
+    )
+    await pros.delete()
+    await m.delete()
+    for files in (thumbnail, file_name):
+        if files and os.path.exists(files):
+            os.remove(files)
+            
+
 def tiktok_id(url):
     match = re.search(r"/video/(\d+)", url)
     if match:
@@ -69,6 +189,7 @@ async def _(c: nlx, m):
     await pros.delete()
 
 
+'''
 @ky.ubot("vtube", sudo=True)
 async def _(c, m):
     em = Emojik()
@@ -183,6 +304,7 @@ async def _(c, m):
     for files in (thumbnail, file_name):
         if files and os.path.exists(files):
             os.remove(files)
+'''
 
 
 def is_valid_twitter_url(url):
