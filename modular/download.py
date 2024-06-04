@@ -273,7 +273,7 @@ async def twit(c: nlx, m):
                 .get("media_url_https")
             )
             if media_url:
-                caption = cgr("down_8").format(em.sukses, nlx.me.me tion)
+                caption = cgr("down_8").format(em.sukses, nlx.me.mention)
                 await c.send_photo(chat_id=m.chat.id, photo=media_url, caption=caption)
                 await pros.delete()
         elif media_type == "video":
