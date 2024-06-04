@@ -19,6 +19,7 @@ ttup: "Tutup"
 reboot: "{} **Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang.**"
 reboot_1: "Reboot telah berhasil dimulai! Tunggu 1 - 2 menit hingga bot dimulai ulang."
 supot: "**Jika anda butuhkan bantuan silahkan datang ke Grup Support Dibawah!!**\n\n**Atau kamu bisa melihat update di Channel Kami..**"
+menten: "{} **Mohon maaf, fitur ini sedang dalam masa perbaikan. Silahkan coba beberapa saat lagi.\n\natau anda bisa menanyakannya ke [sini](https://t.me/kontenfilm) atau ke [sini](https://t.me/GokilSupport)**."
 
 # proxy
 prox_1: "**➣ `{}`**"
@@ -45,7 +46,23 @@ lirk_1: "{} <b>Salah Goblok!!\n{} Pake format: <code>{}</code> Nama Penyanyi - J
 lirk_2: "{} <b>Aduh anj, lirik lagu kaga nemu.</b>"
 
 # download
-down_1: "{} **Salah Goblok!! Format `{}` [query].**"
+down_1: "{} **Format perintah salah!\n\nGunakan Format :** `{}` [query].**"
+down_2: "{} **Gagal mengunduh media dari link :**\n `{}`"
+down_3: "{} **Berhasil diunduh oleh : {}**"
+down_4: "{} **Gagal mengunduh video.\nError status:** `{}`"
+down_5: "{} **Gunakan perintah :\n `{}` [tautan/link TikTok]**"
+down_6: "{} **Gunakan perintah :\n `{}` [tautan/link Twitter]**"
+down_7: "{} **Tautan tidak valid!\n\nContoh tautan twitter: `{} https://x.com/King_SpeakUp/status/1787092407773016452`</b>"
+down_8: "{} **Successfully Download Photo by : {}**"
+down_9: "{} **Successfully Download Video by : {}**"
+down_10: "{} **Gagal mendapatkan media dari tautan yang anda kirim.**"
+down_11: "{} **Gagal mendapatkan informasi media dari tautan yang anda kirim.**"
+down_12: "{} **Berhasil unduh foto oleh : {}**"
+down_13: "{} **Berhasil unduh video oleh : {}**"
+down_14: "{} **Tipe media tidak didukung.**"
+down_15: "{} **Gagal mengunduh media dari tautan : `{}`.**"
+down_16: "{} **Tautan Instagram tidak valid atau konten pribadi.**"
+down_17: "{} **Format perintah salah.\nGunakan perintah `{} [tautan_instagram]`**."
 
 # filter
 fil_1: "{} Daftar Filter Di Grup {}:\n"
