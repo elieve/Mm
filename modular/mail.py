@@ -66,9 +66,9 @@ async def format_messages(messages):
     if "totalItems" in messages and "member" in messages:
         total_items = messages["totalItems"]
         member = messages["member"]
-        
+
         formatted_messages = ""
-        
+
         for msg in member:
             sms = msg["to"]["address"]
             tipee = msg["@type"]
@@ -84,7 +84,7 @@ async def format_messages(messages):
             formatted_messages += cgr("mail_7").format(imeldia)
             formatted_messages += cgr("mail_8").format(refres)
             formatted_messages += cgr("mail_separator")
-        
+
         return formatted_messages
     else:
         raise ValueError(cgr("mail_err1"))
