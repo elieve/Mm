@@ -546,7 +546,6 @@ jan_9: "| Asr          : `{}` |\n"
 jan_10: "| Maghrib      : `{}` |\n"
 jan_11: "| Isha         : `{}` |\n"
 jan_kol1: "===========================\n"
-jan_tes: "===========================\nRegional Prayer Schedule `{}`\n===========================\nDate `{}`\nCity `{} | {}`\n===========================\n| Published    : `{}` |\n| Fajr         : `{}` |\n| Dhuhr        : `{}` |\n| Asr          : `{}` |\n| Maghrib      : `{}` |\n| Isha         : `{}` |\n===========================\n"
 
 # github
 gitup: "{} **Enter github username!!**"
