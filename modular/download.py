@@ -58,12 +58,14 @@ async def download_tiktok(c, m, url, em):
         with open(video_path, "wb") as file:
             file.write(video_response.content)
         text = f"{em.sukses} **Downloaded by : {nlx.me.mention}**"
-        await m.repy(video_path, caption=text, reply_to_message_id=ReplyCheck(m))
+        await m.reply(video_path, caption=text, reply_to_message_id=ReplyCheck(m))
         os.remove(video_path)
+        return
     else:
         await m.reply(
             f"Gagal mengunduh video. Kode status: {video_response.status_code}"
         )
+        return
 
 
 @ky.ubot("dtik", sudo=False)
