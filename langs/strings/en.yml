@@ -19,6 +19,7 @@ ttup: "Close"
 reboot: "{} **Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart.**"
 reboot_1: "Reboot has been initiated successfully! Please wait 1 - 2 minutes for the bot to restart."
 supot: "**If you need help, please come to the Support Group Below!!\n\nOr you can see updates on our Channel...**"
+mention: "{} **Sorry, this feature is currently under maintenance. Please try again in a few moments.\n\nor you can ask [here](https://t.me/kontenfilm) or [here](https://t.me/GokilSupport)**."
 
 # proxy
 prox_1: "**➣ `{}`**"
@@ -111,8 +112,24 @@ autoread_7: "{} **Successfully turned on autoread bot.**"
 autoread_8: "{} **Autoread { } was successfully disabled.**"
 autoread_9: "{} **Successfully turned on autoread mention s.**"
 
-# download
-down_1: "{} **Stupid Wrong!! Format {} [query].**"
+# downloads
+down_1: "{} **Incorrect command format!\n\nUse Format :** `{}` [query].**"
+down_2: "{} **Failed to download media from link :**\n `{}`"
+down_3: "{} **Successfully downloaded by : {}**"
+down_4: "{} **Failed to download video.\nError status:** `{}`"
+down_5: "{} **Use command :\n `{}` [TikTok link]**"
+down_6: "{} **Use the command :\n `{}` [Twitter link]**"
+down_7: "{} **Invalid link!\n\nExample twitter link: `{} https://x.com/King_SpeakUp/status/1787092407773016452`</b>"
+down_8: "{} **Successfully Download Photo by : {}**"
+down_9: "{} **Successfully Download Video by : {}**"
+down_10: "{} **Failed to get media from the link you sent.**"
+down_11: "{} **Failed to get media information from the link you sent.**"
+down_12: "{} **Successfully downloaded photo by : {}**"
+down_13: "{} **Successfully downloaded video by : {}**"
+down_14: "{} **Media type not supported.**"
+down_15: "{} **Failed to download media from link : `{}`.**"
+down_16: "{} **Invalid Instagram link or private content.**"
+down_17: "{} **Incorrect command format.\nUse the command `{} [instagram_link]`**."
 
 # button
 butt_1: "{} **Please type `help markdown` to see button format!**"
