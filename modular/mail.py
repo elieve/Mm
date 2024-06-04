@@ -70,7 +70,7 @@ async def format_messages(messages):
         idsms = member[0]['msgid']
         dia = member[0]['from']['name']
         imeldia = member[0]['from']['address']
-        refres = member[0]['updatedAt'])
+        refres = member[0]['updatedAt']
         formatted_messages = cgr("mail_2").format(sms)
         formatted_messages += cgr("mail_3").format(total_items)
         formatted_messages += cgr("mail_4").format(tipee)
