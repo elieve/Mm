@@ -32,9 +32,11 @@ async def _(c: nlx, m: Message):
     asar = result["items"][0]["asr"]
     magrip = result["items"][0]["maghrib"]
     isa = result["items"][0]["isha"]
-    
-    txt = cgr("jan_tes").format(lok, tanggal, negara, terbit, pajar, juhur, asar, magrip, isa)
-    '''
+
+    txt = cgr("jan_tes").format(
+        lok, tanggal, negara, terbit, pajar, juhur, asar, magrip, isa
+    )
+    """
     txt += cgr("jan_3").format(lok)
     txt += cgr("jan_kol1")
     txt += cgr("jan_4").format(result["items"][0]["date_for"])
@@ -47,7 +49,7 @@ async def _(c: nlx, m: Message):
     txt += cgr("jan_10").format(result["items"][0]["maghrib"])
     txt += cgr("jan_11").format(result["items"][0]["isha"])
     txt += cgr("jan_kol1")
-    '''
+    """
 
     await m.reply(txt)
     await pros.delete()
