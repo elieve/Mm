@@ -301,7 +301,6 @@ async def twit(c: nlx, m):
             else:
                 await pros.edit(
                     cgr("down_10").format(em.gagal))
-                )
     else:
         await pros.edit(
             cgr("down_11").formar(em.gagal))
