@@ -608,7 +608,7 @@ mail_err2: "berikan alamat Email untuk menerima surat atau pesan."
 mail_separator: "===========================\n"
 
 # help_for
-help_mail: " **Mail**\n\n• Perintah: `{0}genmail`\n• Penjelasan: Untuk mendapatkan Google Email Sementara.\n\n• Perintah: `{0}getmail [email] [token]` \n• Penjelasan: Untuk mendapatkan pesan yang masuk di Temp Gmail.\n\n•Perintah: `{0}tempmail`\n• Penjelasan: Untuk mendapatkan Email Random Sementara.\n\n• Perintah: `{0}gettemp` [email] [token]\n• Penjelasan: Untuk mendapatkan pesan yang ada di dalam Email Random Sementara."
+help_mail: " **Mail**\n\n• Perintah: `{0}genmail`\n• Penjelasan: Untuk mendapatkan Google Email Sementara.\n\n• Perintah: `{0}getmail [email] [token]` \n• Penjelasan: Untuk mendapatkan pesan yang masuk di Temp Gmail.\n\n•Perintah: `{0}tempmail`\n• Penjelasan: Untuk mendapatkan Email Random Sementara.\n\n• Perintah: `{0}gettemp` [email]\n• Penjelasan: Untuk mendapatkan pesan yang ada di dalam Email Random Sementara."
 help_katnim: " **Kata Anime**\n\n• Perintah: `{0}katanimelist`\n• Penjelasan: Melihat daftar dan total kata-kata anime.\n\n• Perintah: `{0}katanime ` \n• Penjelasan: Memilih kata dan karakter anime secara acak\n\n•Perintah: `{0}kata` [anime]\n• Penjelasan: Mengambil kata dari anime.\n\n• Perintah: `{0}katanime` [kata]\n• Penjelasan: Menelusuri kata anime berdasarkan argumen yang diberikan."
 help_joko: " **Joke**\n\n• Perintah: `{0}joke` atau `{0}jokes`\n• Penjelasan: Untuk memberikan jokes secara random.\n"
 help_img: " **Image**\n\n• Perintah: `{0}img` [query]\n• Penjelasan: Untuk mencari gambar.\n"
