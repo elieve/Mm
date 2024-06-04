@@ -1,11 +1,9 @@
-from asyncio import sleep
 
 import requests
 from pyrogram import *
 from pyrogram.types import *
 
 from Mix import *
-
 
 __modles__ = "Mail"
 __help__ = get_cgr("help_mail")
