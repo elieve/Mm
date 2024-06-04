@@ -41,7 +41,7 @@ def tiktok_id(url):
     return None
 
 
-async def download_tiktok(c, m, url):
+async def download_tiktok(c, m, url, em):
     em = Emojik()
     em.initialize()
     response = requests.get(url)
