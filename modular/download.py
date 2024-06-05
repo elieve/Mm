@@ -12,7 +12,7 @@ import time
 from datetime import timedelta
 from time import time
 from urllib.parse import urlparse
-
+from yt_dlp import YoutubeDL
 import requests
 import wget
 from youtubesearchpython import VideosSearch
@@ -23,6 +23,34 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
+def download_youtube(link, as_video=True):
+    ydl_opts = {
+        'format': 'bestvideo+bestaudio/best' if as_video else 'bestaudio/best',
+        'outtmpl': '%(title)s.%(ext)s',
+        'noplaylist': True,
+        'quiet': True
+    }
+
+    with YoutubeDL(ydl_opts) as ydl:
+        info_dict = ydl.extract_info(link, download=True)
+        file_name = ydl.prepare_filename(info_dict)
+        title = info_dict.get('title', None)
+        url = info_dict.get('webpage_url', None)
+        duration = info_dict.get('duration', 0)
+        views = info_dict.get('view_count', 0)
+        channel = info_dict.get('uploader', None)
+        thumb = info_dict.get('thumbnail', None)
+        data_ytp = (
+            "Type: {}\n"
+            "Title: {}\n"
+            "Duration: {}\n"
+            "Views: {}\n"
+            "Channel: {}\n"
+            "URL: {}\n"
+            "Downloaded by: {}"
+        )
+    return file_name, title, url, duration, views, channel, thumb, data_ytp
+
 @ky.ubot("vtube", sudo=True)
 async def _(c, m):
     em = Emojik()
@@ -30,13 +58,15 @@ async def _(c, m):
     if len(m.command) < 2:
         return await m.reply(cgr("down_1").format(em.gagal, m.command))
     pros = await m.reply(cgr("proses").format(em.proses))
-    try:
-        link = m.command[1]
-        if "youtu" not in link:
-            search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
+    query = m.text.split(None, 1)[1]
+    if re.match(r'^https?://', query):
+        link = query
+    else:
+        try:
+            search = VideosSearch(query, limit=1).result()["result"][0]
             link = f"https://youtu.be/{search['id']}"
-    except Exception as error:
-        return await pros.reply_text(cgr("err").format(em.gagal, error))
+        except Exception as error:
+            return await pros.reply_text(cgr("err").format(em.gagal, error))
     try:
         (
             file_name,
@@ -47,14 +77,13 @@ async def _(c, m):
             channel,
             thumb,
             data_ytp,
-        ) = await YoutubeDownload(link, as_video=True)
+        ) = download_youtube(link, as_video=True)
     except Exception as error:
         return await pros.reply_text(cgr("err").format(em.gagal, error))
-    thumbnail = wget.download(thumb)
     await c.send_video(
         m.chat.id,
         video=file_name,
-        thumb=thumbnail,
+        thumb=thumb,
         file_name=title,
         duration=duration,
         supports_streaming=True,
@@ -78,10 +107,8 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in (thumbnail, file_name):
-        if files and os.path.exists(files):
-            os.remove(files)
-
+    if file_name and os.path.exists(file_name):
+        os.remove(file_name)
 
 @ky.ubot("stube", sudo=True)
 async def _(c, m):
@@ -90,13 +117,15 @@ async def _(c, m):
     if len(m.command) < 2:
         return await m.reply(cgr("down_1").format(em.gagal, m.command))
     pros = await m.reply(cgr("proses").format(em.proses))
-    try:
-        link = m.command[1]
-        if "youtu" not in link:
-            search = VideosSearch(m.text.split(None, 1)[1], limit=1).result()["result"][0]
+    query = m.text.split(None, 1)[1]
+    if re.match(r'^https?://', query):
+        link = query
+    else:
+        try:
+            search = VideosSearch(query, limit=1).result()["result"][0]
             link = f"https://youtu.be/{search['id']}"
-    except Exception as error:
-        return await pros.edit(cgr("err").format(em.gagal, error))
+        except Exception as error:
+            return await pros.edit(cgr("err").format(em.gagal, error))
     try:
         (
             file_name,
@@ -107,14 +136,13 @@ async def _(c, m):
             channel,
             thumb,
             data_ytp,
-        ) = await YoutubeDownload(link, as_video=False)
+        ) = download_youtube(link, as_video=False)
     except Exception as error:
         return await pros.edit(cgr("err").format(em.gagal, error))
-    thumbnail = wget.download(thumb)
     await c.send_audio(
         m.chat.id,
         audio=file_name,
-        thumb=thumbnail,
+        thumb=thumb,
         file_name=title,
         performer=channel,
         duration=duration,
@@ -138,9 +166,9 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in (thumbnail, file_name):
-        if files and os.path.exists(files):
-            os.remove(files)
+    if file_name and os.path.exists(file_name):
+        os.remove(file_name)
+
             
 
 def tiktok_id(url):
