@@ -488,7 +488,7 @@ async def _(c, iq):
 
 @ky.inline("^calc")
 async def inline(bot, update):
-    
+
     CALCULATE_TEXT = "Mix-Userbot Calculator"
     if len(update.data) == 0:
         try:
