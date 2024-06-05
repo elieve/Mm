@@ -130,5 +130,3 @@ async def inline_query(bot, iq):
             ]
     
     await iq.answer(answers)
-
-app.run()
