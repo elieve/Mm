@@ -72,7 +72,7 @@ async def format_messages(messages):
         for msg in member:
             sms = msg["to"]["address"]
             tipee = msg["@type"]
-            idsms = msg["id"]
+            idsms = msg["@id"]
             dia = msg["from"]["name"]
             imeldia = msg["from"]["address"]
             refres = msg["updatedAt"]
