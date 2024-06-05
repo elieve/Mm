@@ -1,3 +1,4 @@
+"""
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
@@ -84,3 +85,4 @@ async def evaluate(c, m):
         disable_web_page_preview=True,
         quote=True,
     )
+"""
