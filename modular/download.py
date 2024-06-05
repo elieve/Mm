@@ -12,36 +12,35 @@ import time
 from datetime import timedelta
 from time import time
 from urllib.parse import urlparse
-from yt_dlp import YoutubeDL
-import requests
-import wget
-from youtubesearchpython import VideosSearch
 
-from Mix import Emojik, YoutubeDownload, cgr, get_cgr, ky, nlx, progress
+import requests
+from youtubesearchpython import VideosSearch
+from yt_dlp import YoutubeDL
+
+from Mix import Emojik, cgr, get_cgr, ky, nlx, progress
 
 __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
-
 def download_youtube(link, as_video=True):
     ydl_opts = {
-        'format': 'bestvideo+bestaudio/best' if as_video else 'bestaudio/best',
-        'outtmpl': '%(title)s.%(ext)s',
-        'noplaylist': True,
-        'quiet': True,
-        'merge_output_format': 'mp4' if as_video else 'mp3',
+        "format": "bestvideo+bestaudio/best" if as_video else "bestaudio/best",
+        "outtmpl": "%(title)s.%(ext)s",
+        "noplaylist": True,
+        "quiet": True,
+        "merge_output_format": "mp4" if as_video else "mp3",
     }
 
     with YoutubeDL(ydl_opts) as ydl:
         info_dict = ydl.extract_info(link, download=True)
         file_name = ydl.prepare_filename(info_dict)
-        title = info_dict.get('title', None)
-        url = info_dict.get('webpage_url', None)
-        duration = info_dict.get('duration', 0)
-        views = info_dict.get('view_count', 0)
-        channel = info_dict.get('uploader', None)
-        thumb = info_dict.get('thumbnail', None)
+        title = info_dict.get("title", None)
+        url = info_dict.get("webpage_url", None)
+        duration = info_dict.get("duration", 0)
+        views = info_dict.get("view_count", 0)
+        channel = info_dict.get("uploader", None)
+        thumb = info_dict.get("thumbnail", None)
         data_ytp = (
             "Type: {}\n"
             "Title: {}\n"
@@ -73,7 +72,7 @@ async def _(c, m):
         return await m.reply(cgr("down_1").format(em.gagal, m.command))
     pros = await m.reply(cgr("proses").format(em.proses))
     query = m.text.split(None, 1)[1]
-    if re.match(r'^https?://', query):
+    if re.match(r"^https?://", query):
         link = query
     else:
         try:
@@ -135,7 +134,7 @@ async def _(c, m):
         return await m.reply(cgr("down_1").format(em.gagal, m.command))
     pros = await m.reply(cgr("proses").format(em.proses))
     query = m.text.split(None, 1)[1]
-    if re.match(r'^https?://', query):
+    if re.match(r"^https?://", query):
         link = query
     else:
         try:
@@ -189,7 +188,6 @@ async def _(c, m):
             os.remove(files)
 
 
-
 def tiktok_id(url):
     match = re.search(r"/video/(\d+)", url)
     if match:
@@ -217,8 +215,7 @@ async def download_tiktok(c, m, url, em):
         )
         os.remove(video_path)
     else:
-        await m.reply(
-            cgr("down_4").format(em.gagal, video_response.status_code))
+        await m.reply(cgr("down_4").format(em.gagal, video_response.status_code))
 
 
 @ky.ubot("dtik", sudo=False)
@@ -236,7 +233,7 @@ async def _(c: nlx, m):
     await pros.delete()
 
 
-'''
+"""
 @ky.ubot("vtube", sudo=True)
 async def _(c, m):
     em = Emojik()
@@ -351,7 +348,7 @@ async def _(c, m):
     for files in (thumbnail, file_name):
         if files and os.path.exists(files):
             os.remove(files)
-'''
+"""
 
 
 def is_valid_twitter_url(url):
@@ -399,9 +396,7 @@ async def download_and_send_file(nlx, chat_id, url, content_type):
                 return
         else:
             err = cgr("menten").format(em.gagal)
-            await nlx.send_mesaage(
-                chat_id,
-                text=err)
+            await nlx.send_mesaage(chat_id, text=err)
             return
     except Exception as e:
         await nlx.reply(cgr("err").format(em.gagal, e))
@@ -420,7 +415,9 @@ async def twit(c: nlx, m):
     tweet_url = m.command[1]
     if not is_valid_twitter_url(tweet_url):
         await pros.edit(
-            cgr("down_7").format(em.gagal, m.command), disable_web_page_preview=True,)
+            cgr("down_7").format(em.gagal, m.command),
+            disable_web_page_preview=True,
+        )
         return
     media_info = download_media_from_twitter(tweet_url)
 
@@ -467,11 +464,9 @@ async def twit(c: nlx, m):
                     )
                     await pros.delete()
             else:
-                await pros.edit(
-                    cgr("down_10").format(em.gagal))
+                await pros.edit(cgr("down_10").format(em.gagal))
     else:
-        await pros.edit(
-            cgr("down_11").formar(em.gagal))
+        await pros.edit(cgr("down_11").formar(em.gagal))
 
 
 @ky.ubot("insta", sudo=True)
@@ -504,7 +499,8 @@ async def insta_handler(c: nlx, m):
                         m.chat.id,
                         photo=media_url,
                         caption=cgr("down_12").format(em.sukses, nlx.me.mention),
-                        reply_to_message_id=m.id,)
+                        reply_to_message_id=m.id,
+                    )
                     await pros.delete()
                     return
                 elif result["type"] == "video/mp4":
@@ -513,7 +509,8 @@ async def insta_handler(c: nlx, m):
                         video=media_url,
                         thumb=thumb_url,
                         caption=cgr("down_13").format(em.sukses, nlx.me.mention),
-                        reply_to_message_id=m.id)
+                        reply_to_message_id=m.id,
+                    )
                     await pros.delete()
                     return
                 else:
@@ -521,13 +518,12 @@ async def insta_handler(c: nlx, m):
                     return
             else:
                 await pros.edit(
-                    cgr("down_15").format(em.gagal, url), disable_web_page_preview=True)
+                    cgr("down_15").format(em.gagal, url), disable_web_page_preview=True
+                )
                 return
         else:
-            await pros.edit(
-                cgr("down_16").format(em.gagal))
+            await pros.edit(cgr("down_16").format(em.gagal))
             return
     except IndexError:
-        await pros.edit(
-            cgr("down_17").format(em.gagal, m.command))
+        await pros.edit(cgr("down_17").format(em.gagal, m.command))
         return
