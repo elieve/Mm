@@ -1,6 +1,6 @@
 from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineKeyboardMarkup, InlineQuery,
-                            InlineQueryResultArticle, InputTextMessageContent)
+                            InlineKeyboardMarkup, InlineQueryResultArticle,
+                            InputTextMessageContent)
 
 from Mix import bot, ky, nlx
 
