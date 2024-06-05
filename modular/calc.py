@@ -1,5 +1,7 @@
-from pyrogram import Client, filters
-from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultArticle, InputTextMessageContent, CallbackQuery, InlineQuery
+from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
+                            InlineKeyboardMarkup, InlineQuery,
+                            InlineQueryResultArticle, InputTextMessageContent)
+
 from Mix import bot, ky
 
 __modules__ = "Calculator"
@@ -47,6 +49,7 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
+
 @ky.ubot("calc|kalku", sudo=True)
 async def calculator(c, m):
     try:
@@ -55,6 +58,7 @@ async def calculator(c, m):
     except Exception as error:
         await m.reply_text(str(error))
 
+
 @ky.callback(".*")
 async def cb_data(c, cq: CallbackQuery):
     data = cq.data
@@ -62,8 +66,10 @@ async def cb_data(c, cq: CallbackQuery):
     text = "" if CALCULATE_TEXT in message_text else message_text
     if data == "=":
         try:
-            text = str(eval(text.replace("×", "*").replace("÷", "/").replace("^", "**")))
-        except Exception as e:
+            text = str(
+                eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
+            )
+        except Exception:
             text = "Error"
     elif data == "DEL":
         text = message_text[:-1]
@@ -77,6 +83,7 @@ async def cb_data(c, cq: CallbackQuery):
         disable_web_page_preview=True,
         reply_markup=CALCULATE_BUTTONS,
     )
+
 
 @ky.inline("calc")
 async def inline_query(bot, iq: InlineQuery):
@@ -104,7 +111,7 @@ async def inline_query(bot, iq: InlineQuery):
                     ),
                 )
             ]
-        except Exception as e:
+        except Exception:
             answers = [
                 InlineQueryResultArticle(
                     title="Error",
