@@ -10,10 +10,10 @@
 
 
 from pyrogram import *
-from pyrogram.types import *
 from pyrogram.enums import *
+from pyrogram.types import *
 
-from Mix import bot, get_cgr, ky, nlx
+from Mix import ky
 
 __modles__ = "Calculator"
 __help__ = "Calculator"
@@ -60,6 +60,7 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
+
 @ky.ubot("calc|kalku", sudo=True)
 async def calculator(c, m):
     await m.reply_text(
@@ -68,6 +69,7 @@ async def calculator(c, m):
         disable_web_page_preview=True,
         quote=True,
     )
+
 
 @ky.callback(".*")
 async def cb_data(c, cq):
@@ -85,12 +87,13 @@ async def cb_data(c, cq):
         text = ""
     else:
         text = message_text + data
-    
+
     await cq.message.edit_text(
         text=f"{text}\n\n\n{CALCULATE_TEXT}",
         disable_web_page_preview=True,
         reply_markup=CALCULATE_BUTTONS,
     )
+
 
 @ky.inline("calc")
 async def inline_query(bot, iq):
@@ -128,5 +131,5 @@ async def inline_query(bot, iq):
                     ),
                 )
             ]
-    
+
     await iq.answer(answers)

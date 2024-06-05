@@ -485,6 +485,7 @@ async def _(c, iq):
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=meki)
 
+
 """
 @ky.inline("^calc")
 async def inline(c, iq):
