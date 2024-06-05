@@ -1,7 +1,5 @@
 ################################################################
-
 """
-
  Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
  
  @ CREDIT : NAN-DEV || EH KONTOL KALO PUNYA AKAL DIPAKE YA ANJING GAUSAH APUS² CREDIT MODAL NYOPAS LO BAJINGAN!!
@@ -63,12 +61,20 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
 
 @ky.ubot("calc|kalku", sudo=True)
 async def calculator(c, m):
+    try:
+        x = await c.get_inline_bot_results(bot.me.username, "calc")
+        await m.reply_inline_bot_result(x.query_id, x.results[0].id)
+    except Exception as error:
+        await m.reply(error)
+        
+'''
     await m.reply_text(
         text=CALCULATE_TEXT,
         reply_markup=CALCULATE_BUTTONS,
         disable_web_page_preview=True,
         quote=True,
     )
+'''
 
 
 @ky.callback(".*")
@@ -132,4 +138,4 @@ async def inline_query(bot, iq):
                 )
             ]
 
-    await iq.answer(answers)
+    await c.answer_inline_query(iq.id, cache_time=300, results=answers)
