@@ -61,7 +61,7 @@ async def _(c: nlx, m):
 
 
 @ky.bots(filters.private & filters.text)
-async def evaluate(_, message):
+async def evaluate(c, message):
     try:
         data = message.text.replace("×", "*").replace("÷", "/")
         result = str(eval(data))
@@ -76,7 +76,7 @@ async def evaluate(_, message):
 
 
 @ky.callback()
-async def cb_data(_, message):
+async def cb_data(c, message):
         data = message.data
         try:
             message_text = message.message.text.split("\n")[0].strip().split("=")[0].strip()
