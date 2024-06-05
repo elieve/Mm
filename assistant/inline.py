@@ -488,6 +488,7 @@ async def _(c, iq):
 
 @ky.inline("^calc")
 async def inline(bot, update):
+    
     CALCULATE_TEXT = "Mix-Userbot Calculator"
     if len(update.data) == 0:
         try:
@@ -519,3 +520,4 @@ async def inline(bot, update):
         except:
             pass
     await update.answer(answers)
+    await c.answer_inline_query(update.id, cache_time=0, results=answers)
