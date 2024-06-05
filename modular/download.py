@@ -23,6 +23,20 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
+import os
+import re
+import time
+from datetime import timedelta
+from time import time
+from urllib.parse import urlparse
+
+import requests
+import wget
+from yt_dlp import YoutubeDL
+from youtubesearchpython import VideosSearch
+
+from Mix import Emojik, cgr, ky, nlx, progress
+
 def download_youtube(link, as_video=True):
     ydl_opts = {
         'format': 'bestvideo+bestaudio/best' if as_video else 'bestaudio/best',
@@ -51,6 +65,16 @@ def download_youtube(link, as_video=True):
         )
     return file_name, title, url, duration, views, channel, thumb, data_ytp
 
+def download_thumbnail(url):
+    thumb_path = "thumbnail.jpg"
+    response = requests.get(url, stream=True)
+    if response.status_code == 200:
+        with open(thumb_path, "wb") as f:
+            f.write(response.content)
+    else:
+        thumb_path = None
+    return thumb_path
+
 @ky.ubot("vtube", sudo=True)
 async def _(c, m):
     em = Emojik()
@@ -75,15 +99,16 @@ async def _(c, m):
             duration,
             views,
             channel,
-            thumb,
+            thumb_url,
             data_ytp,
         ) = download_youtube(link, as_video=True)
+        thumb_path = download_thumbnail(thumb_url)
     except Exception as error:
         return await pros.reply_text(cgr("err").format(em.gagal, error))
     await c.send_video(
         m.chat.id,
         video=file_name,
-        thumb=thumb,
+        thumb=thumb_path,
         file_name=title,
         duration=duration,
         supports_streaming=True,
@@ -107,8 +132,9 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    if file_name and os.path.exists(file_name):
-        os.remove(file_name)
+    for files in (thumb_path, file_name):
+        if files and os.path.exists(files):
+            os.remove(files)
 
 @ky.ubot("stube", sudo=True)
 async def _(c, m):
@@ -134,15 +160,16 @@ async def _(c, m):
             duration,
             views,
             channel,
-            thumb,
+            thumb_url,
             data_ytp,
         ) = download_youtube(link, as_video=False)
+        thumb_path = download_thumbnail(thumb_url)
     except Exception as error:
         return await pros.edit(cgr("err").format(em.gagal, error))
     await c.send_audio(
         m.chat.id,
         audio=file_name,
-        thumb=thumb,
+        thumb=thumb_path,
         file_name=title,
         performer=channel,
         duration=duration,
@@ -166,9 +193,9 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    if file_name and os.path.exists(file_name):
-        os.remove(file_name)
-
+    for files in (thumb_path, file_name):
+        if files and os.path.exists(files):
+            os.remove(files)
             
 
 def tiktok_id(url):
