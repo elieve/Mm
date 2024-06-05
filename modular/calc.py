@@ -53,7 +53,7 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
 @ky.ubot("calc|kalku", sudo=True)
 async def calculator(c, m):
     try:
-        x = await c.get_inline_bot_results(bot.me.username, "calc")
+        x = await c.get_inline_bot_results(bot.me.username, "calc_")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
         await m.reply_text(str(error))
@@ -85,7 +85,7 @@ async def cb_data(c, cq: CallbackQuery):
     )
 
 
-@ky.inline("calc")
+@ky.inline("^calc_")
 async def inline_query(bot, iq: InlineQuery):
     if len(iq.query) == 0:
         answers = [
