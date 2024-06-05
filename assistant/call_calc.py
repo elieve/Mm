@@ -1,5 +1,3 @@
-import asyncio
-from gc import get_objects
 
 from pyrogram import *
 from pyrogram.enums import *
@@ -7,8 +5,6 @@ from pyrogram.types import *
 
 from Mix import *
 from modular.calc import *
-
-
 
 CALCULATE_BUTTONS = InlineKeyboardMarkup(
     [
