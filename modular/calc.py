@@ -60,7 +60,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot(filter=False)
+@ky.filter()
 async def evaluate(c, m):
     try:
         data = m.text.replace("×", "*").replace("÷", "/")
