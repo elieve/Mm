@@ -2,7 +2,7 @@ from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
                             InlineKeyboardMarkup, InlineQuery,
                             InlineQueryResultArticle, InputTextMessageContent)
 
-from Mix import bot, ky
+from Mix import bot, ky, nlx
 
 __modules__ = "Calculator"
 __help__ = "Calculator"
