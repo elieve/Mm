@@ -49,11 +49,10 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
-
 @ky.ubot("calc|kalku", sudo=True)
 async def _(c: nlx, m):
     try:
-        x = await c.get_inline_bot_results(bot.me.username, "calc")
+        x = await c.get_inline_bot_results(bot.me.username, "calcs")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
         await m.reply_text(str(error))
@@ -66,10 +65,8 @@ async def _(c, cq):
     text = "" if CALCULATE_TEXT in message_text else message_text
     if data == "=":
         try:
-            text = str(
-                eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
-        except Exception:
+            text = str(eval(text.replace("×", "*").replace("÷", "/").replace("^", "**")))
+        except Exception as e:
             text = "Error"
     elif data == "DEL":
         text = message_text[:-1]
@@ -85,7 +82,7 @@ async def _(c, cq):
     )
 
 
-@ky.inline("calc")
+@ky.inline("^calcs")
 async def _(c, iq):
     if len(iq.query) == 0:
         answers = [
@@ -109,7 +106,7 @@ async def _(c, iq):
                     ),
                 )
             ]
-        except Exception:
+        except Exception as e:
             answers = [
                 InlineQueryResultArticle(
                     title="Error",
