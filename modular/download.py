@@ -23,26 +23,14 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
-import os
-import re
-import time
-from datetime import timedelta
-from time import time
-from urllib.parse import urlparse
-
-import requests
-import wget
-from yt_dlp import YoutubeDL
-from youtubesearchpython import VideosSearch
-
-from Mix import Emojik, cgr, ky, nlx, progress
 
 def download_youtube(link, as_video=True):
     ydl_opts = {
         'format': 'bestvideo+bestaudio/best' if as_video else 'bestaudio/best',
         'outtmpl': '%(title)s.%(ext)s',
         'noplaylist': True,
-        'quiet': True
+        'quiet': True,
+        'merge_output_format': 'mp4' if as_video else 'mp3',
     }
 
     with YoutubeDL(ydl_opts) as ydl:
@@ -65,6 +53,7 @@ def download_youtube(link, as_video=True):
         )
     return file_name, title, url, duration, views, channel, thumb, data_ytp
 
+
 def download_thumbnail(url):
     thumb_path = "thumbnail.jpg"
     response = requests.get(url, stream=True)
@@ -74,6 +63,7 @@ def download_thumbnail(url):
     else:
         thumb_path = None
     return thumb_path
+
 
 @ky.ubot("vtube", sudo=True)
 async def _(c, m):
@@ -126,7 +116,7 @@ async def _(c, m):
             pros,
             time(),
             cgr("proses").format(em.proses),
-            f"{file_name}.mp4",
+            f"{file_name}",
         ),
         reply_to_message_id=m.id,
     )
@@ -135,6 +125,7 @@ async def _(c, m):
     for files in (thumb_path, file_name):
         if files and os.path.exists(files):
             os.remove(files)
+
 
 @ky.ubot("stube", sudo=True)
 async def _(c, m):
@@ -187,7 +178,7 @@ async def _(c, m):
             pros,
             time(),
             cgr("proses").format(em.proses),
-            f"{file_name}.mp3",
+            f"{file_name}",
         ),
         reply_to_message_id=m.id,
     )
@@ -196,7 +187,8 @@ async def _(c, m):
     for files in (thumb_path, file_name):
         if files and os.path.exists(files):
             os.remove(files)
-            
+
+
 
 def tiktok_id(url):
     match = re.search(r"/video/(\d+)", url)
