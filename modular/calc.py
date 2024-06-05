@@ -52,7 +52,7 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
 
 @ky.ubot("calc|kalku", sudo=True)
 async def _(c: nlx, m):
-    await message.reply_text(
+    await m.reply_text(
         text=CALCULATE_TEXT,
         reply_markup=CALCULATE_BUTTONS,
         disable_web_page_preview=True,
@@ -61,13 +61,13 @@ async def _(c: nlx, m):
 
 
 @ky.bots(filters.private & filters.text)
-async def evaluate(c, message):
+async def evaluate(c, m):
     try:
-        data = message.text.replace("×", "*").replace("÷", "/")
+        data = m.text.replace("×", "*").replace("÷", "/")
         result = str(eval(data))
     except:
         return
-    await message.reply_text(
+    await m.reply_text(
         text=result,
         reply_markup=CALCULATE_BUTTONS,
         disable_web_page_preview=True,
@@ -76,10 +76,10 @@ async def evaluate(c, message):
 
 
 @ky.callback()
-async def cb_data(c, message):
-        data = message.data
+async def cb_data(c, m):
+        data = m.data
         try:
-            message_text = message.message.text.split("\n")[0].strip().split("=")[0].strip()
+            message_text = m.message.text.split("\n")[0].strip().split("=")[0].strip()
             text = '' if CALCULATE_TEXT in message_text else message_text
             if data == "=":
                 text = str(eval(text))
@@ -89,7 +89,7 @@ async def cb_data(c, message):
                 text = ""
             else:
                 text = message_text + data
-            await message.message.edit_text(
+            await m.message.edit_text(
                 text=f"{text}\n\n\n{CALCULATE_TEXT}",
                 disable_web_page_preview=True,
                 reply_markup=CALCULATE_BUTTONS
