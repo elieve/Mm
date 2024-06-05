@@ -1,19 +1,8 @@
-################################################################
-"""
- Mix-Userbot Open Source . Maintained ? Yes Oh No Oh Yes Ngentot
- 
- @ CREDIT : NAN-DEV || EH KONTOL KALO PUNYA AKAL DIPAKE YA ANJING GAUSAH APUS² CREDIT MODAL NYOPAS LO BAJINGAN!!
-"""
-################################################################
-
-
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.types import *
-
+from pyrogram import Client, filters
+from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton, InlineQueryResultArticle, InputTextMessageContent, CallbackQuery, InlineQuery
 from Mix import bot, ky
 
-__modles__ = "Calculator"
+__modules__ = "Calculator"
 __help__ = "Calculator"
 
 CALCULATE_TEXT = "Mix-Userbot Calculator"
@@ -58,34 +47,22 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
-
 @ky.ubot("calc|kalku", sudo=True)
 async def calculator(c, m):
     try:
         x = await c.get_inline_bot_results(bot.me.username, "calc")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
-        await m.reply(error)
-
-
-"""
-    await m.reply_text(
-        text=CALCULATE_TEXT,
-        reply_markup=CALCULATE_BUTTONS,
-        disable_web_page_preview=True,
-        quote=True,
-    )
-"""
-
+        await m.reply_text(str(error))
 
 @ky.callback(".*")
-async def cb_data(c, cq):
+async def cb_data(c, cq: CallbackQuery):
     data = cq.data
     message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     text = "" if CALCULATE_TEXT in message_text else message_text
     if data == "=":
         try:
-            text = str(eval(text.replace("×", "*").replace("÷", "/")))
+            text = str(eval(text.replace("×", "*").replace("÷", "/").replace("^", "**")))
         except:
             text = "Error"
     elif data == "DEL":
@@ -101,30 +78,29 @@ async def cb_data(c, cq):
         reply_markup=CALCULATE_BUTTONS,
     )
 
-
 @ky.inline("calc")
-async def inline_query(bot, iq):
+async def inline_query(bot, iq: InlineQuery):
     if len(iq.query) == 0:
         answers = [
             InlineQueryResultArticle(
                 title="Calculator",
                 description="New calculator",
                 input_message_content=InputTextMessageContent(
-                    text=CALCULATE_TEXT, disable_web_page_preview=True
+                    message_text=CALCULATE_TEXT, disable_web_page_preview=True
                 ),
                 reply_markup=CALCULATE_BUTTONS,
             )
         ]
     else:
         try:
-            data = iq.query.replace("×", "*").replace("÷", "/")
+            data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
             result = str(eval(data))
             answers = [
                 InlineQueryResultArticle(
                     title="Answer",
                     description=f"Result: {result}",
                     input_message_content=InputTextMessageContent(
-                        text=f"{data} = {result}", disable_web_page_preview=True
+                        message_text=f"{data} = {result}", disable_web_page_preview=True
                     ),
                 )
             ]
@@ -134,9 +110,9 @@ async def inline_query(bot, iq):
                     title="Error",
                     description="Invalid Expression",
                     input_message_content=InputTextMessageContent(
-                        text="Invalid Expression", disable_web_page_preview=True
+                        message_text="Invalid Expression", disable_web_page_preview=True
                     ),
                 )
             ]
 
-    await c.answer_inline_query(iq.id, cache_time=300, results=answers)
+    await bot.answer_inline_query(iq.id, cache_time=300, results=answers)
