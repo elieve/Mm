@@ -392,17 +392,16 @@ async def download_and_send_file(nlx, chat_id, url, content_type):
             with open(file_name, "wb") as f:
                 f.write(response.content)
             if content_type == "photo":
-                await nlx.send_photo(chat_id, photo=file_name, caption=text, reply_to_message_id=m.id)
+                await nlx.send_photo(chat_id, photo=file_name, caption=text)
                 return
             elif content_type == "video":
-                await nlx.send_video(chat_id, video=file_name, caption=text, reply_to_message_id=m.id)
+                await nlx.send_video(chat_id, video=file_name, caption=text)
                 return
         else:
             err = cgr("menten").format(em.gagal)
             await nlx.send_mesaage(
                 chat_id,
-                text=err,
-                reply_to_message_id=m.id)
+                text=err)
             return
     except Exception as e:
         await nlx.reply(cgr("err").format(em.gagal, e))
