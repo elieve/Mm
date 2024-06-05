@@ -1,6 +1,6 @@
-from pyrogram.types import (CallbackQuery, InlineKeyboardButton,
-                            InlineKeyboardMarkup, InlineQueryResultArticle,
-                            InputTextMessageContent)
+from pyrogram import *
+from pyrogram.enums import *
+from pyrogram.types import *
 
 from Mix import bot, ky, nlx
 
@@ -49,27 +49,23 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
-
 @ky.ubot("calc|kalku", sudo=True)
 async def _(c: nlx, m):
     try:
-        x = await c.get_inline_bot_results(bot.me.username, "calc_")
+        x = await c.get_inline_bot_results(bot.me.username, "calc")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
         await m.reply_text(str(error))
 
-
-@ky.callback(".*")
-async def cb_data(c, cq: CallbackQuery):
+@ky.callback("^.*")
+async def _(c, cq):
     data = cq.data
     message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     text = "" if CALCULATE_TEXT in message_text else message_text
     if data == "=":
         try:
-            text = str(
-                eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
-        except Exception:
+            text = str(eval(text.replace("×", "*").replace("÷", "/").replace("^", "**")))
+        except Exception as e:
             text = "Error"
     elif data == "DEL":
         text = message_text[:-1]
@@ -84,8 +80,7 @@ async def cb_data(c, cq: CallbackQuery):
         reply_markup=CALCULATE_BUTTONS,
     )
 
-
-@ky.inline("^calc_")
+@ky.inline("calc")
 async def _(c, iq):
     if len(iq.query) == 0:
         answers = [
@@ -109,7 +104,7 @@ async def _(c, iq):
                     ),
                 )
             ]
-        except Exception:
+        except Exception as e:
             answers = [
                 InlineQueryResultArticle(
                     title="Error",
@@ -120,4 +115,4 @@ async def _(c, iq):
                 )
             ]
 
-    await bot.answer_inline_query(iq.id, cache_time=300, results=answers)
+    await c.answer_inline_query(iq.id, cache_time=300, results=answers)
