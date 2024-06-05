@@ -51,7 +51,7 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
 
 
 @ky.ubot("calc|kalku", sudo=True)
-async def calculator(c, m):
+async def _(c: nlx, m):
     try:
         x = await c.get_inline_bot_results(bot.me.username, "calc_")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
@@ -86,15 +86,13 @@ async def cb_data(c, cq: CallbackQuery):
 
 
 @ky.inline("^calc_")
-async def inline_query(bot, iq: InlineQuery):
+async def _(c, iq):
     if len(iq.query) == 0:
         answers = [
             InlineQueryResultArticle(
                 title="Calculator",
                 description="New calculator",
-                input_message_content=InputTextMessageContent(
-                    message_text=CALCULATE_TEXT, disable_web_page_preview=True
-                ),
+                input_message_content=InputTextMessageContent(CALCULATE_TEXT),
                 reply_markup=CALCULATE_BUTTONS,
             )
         ]
