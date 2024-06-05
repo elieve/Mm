@@ -485,9 +485,9 @@ async def _(c, iq):
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=meki)
 
-
+"""
 @ky.inline("^calc")
-async def inline(bot, update):
+async def inline(c, iq):
     CALCULATE_BUTTONS = InlineKeyboardMarkup(
         [
             [
@@ -528,7 +528,7 @@ async def inline(bot, update):
         ]
     )
     CALCULATE_TEXT = "Mix-Userbot Calculator"
-    if len(update.data) == 0:
+    if len(iq.query) == 0:
         try:
             answers = [
                 InlineQueryResultArticle(
@@ -559,3 +559,4 @@ async def inline(bot, update):
             pass
     await update.answer(answers)
     await c.answer_inline_query(update.id, cache_time=0, results=answers)
+"""
