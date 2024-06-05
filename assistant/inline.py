@@ -484,3 +484,38 @@ async def _(c, iq):
         )
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=meki)
+
+
+@ky.inline("^calc")
+async def inline(bot, update):
+    CALCULATE_TEXT = "Mix-Userbot Calculator"
+    if len(update.data) == 0:
+        try:
+            answers = [
+                InlineQueryResultArticle(
+                    title="Calculator",
+                    description="New calculator",
+                    input_message_content=InputTextMessageContent(
+                        text=CALCULATE_TEXT, disable_web_page_preview=True
+                    ),
+                    reply_markup=CALCULATE_BUTTONS,
+                )
+            ]
+        except Exception as error:
+            print(error)
+    else:
+        try:
+            data = update.query.replace("×", "*").replace("÷", "/")
+            result = str(eval(text))
+            answers = [
+                InlineQueryResultArticle(
+                    title="Answer",
+                    description=f"Result: {result}",
+                    input_message_content=InputTextMessageContent(
+                        text=f"{data} = {result}", disable_web_page_preview=True
+                    ),
+                )
+            ]
+        except:
+            pass
+    await update.answer(answers)
