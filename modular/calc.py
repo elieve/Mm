@@ -60,7 +60,7 @@ async def _(c: nlx, m):
     )
 
 
-@Bot.on_message(filters.private & filters.text)
+@ky.bots(filters.private & filters.text)
 async def evaluate(_, message):
     try:
         data = message.text.replace("×", "*").replace("÷", "/")
