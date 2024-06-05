@@ -11,7 +11,7 @@ from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
 
-from Mix import bot, ky
+from Mix import ky, bot
 
 __modles__ = "Calculator"
 __help__ = "Calculator"
