@@ -1,3 +1,4 @@
+
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
@@ -45,6 +46,7 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
+CALCULATE_TEXT = "Mix-Userbot Calculator"
 
 @ky.callback("calc_")
 async def cb_data(c, cq):
