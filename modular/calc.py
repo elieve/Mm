@@ -66,15 +66,16 @@ async def calculator(c, m):
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
     except Exception as error:
         await m.reply(error)
-        
-'''
+
+
+"""
     await m.reply_text(
         text=CALCULATE_TEXT,
         reply_markup=CALCULATE_BUTTONS,
         disable_web_page_preview=True,
         quote=True,
     )
-'''
+"""
 
 
 @ky.callback(".*")
