@@ -107,7 +107,7 @@ async def _(c, cq):
         return
     else:
         if cq.from_user.id != nlx.me.id:
-        return await cq.answer(
+            return await cq.answer(
             f"BELI LAH Mix-Userbot WAHAI {fullname}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
             show_alert=True,
         )
