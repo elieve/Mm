@@ -20,7 +20,6 @@ def get_calculator_buttons(teks):
             [
                 InlineKeyboardButton("(", callback_data=f"{teks}("),
                 InlineKeyboardButton(")", callback_data=f"{teks})"),
-                InlineKeyboardButton("^", callback_data=f"{teks}^"),
                 InlineKeyboardButton("CLOSE", callback_data="KLOS"),
             ],
             [
@@ -112,6 +111,7 @@ async def _(c, cq):
             reply_markup=get_calculator_buttons(text),
         )
     except Exception as e:
+        await cq.answer(f"{teks}")
         await cq.answer(f"Error: {str(e)}", show_alert=True)
 
 
