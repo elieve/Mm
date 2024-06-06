@@ -127,6 +127,7 @@ async def _(c, iq):
 @ky.inline("^kalku_in")
 async def _(c, iq):
     txt = "<b>Mix-Userbot Calculator</b>"
+    berak = calc_help()
     await c.answer_inline_query(
         iq.id,
         cache_time=0,
@@ -134,7 +135,7 @@ async def _(c, iq):
             (
                 InlineQueryResultArticle(
                     title="Kalkulator!",
-                    reply_markup=calc_help(),
+                    reply_markup=berak,
                     input_message_content=InputTextMessageContent(txt),
                 )
             )
