@@ -28,6 +28,7 @@ from modular.copy_con import *
 from modular.pmpermit import *
 
 from .call_markdown import markdown_help
+from .call_calc import get_calculator_buttons
 
 
 async def diinline(q):
@@ -489,6 +490,7 @@ async def _(c, iq):
 @ky.inline("^calcs")
 async def _(c, iq):
     CALCULATE_TEXT = "Mix-Userbot Calculator"
+"""
     bo_ol = InlineKeyboardMarkup(
         [
             [
@@ -531,14 +533,14 @@ async def _(c, iq):
             ],
         ]
     )
-
+"""
     if len(iq.query) == 0 or iq.query.lower() == "calcs":
         answers = [
             InlineQueryResultArticle(
                 title="Calculator",
                 description="New calculator",
                 input_message_content=InputTextMessageContent(CALCULATE_TEXT),
-                reply_markup=bo_ol,
+                reply_markup=get_calculator_buttons(),
             )
         ]
     else:
