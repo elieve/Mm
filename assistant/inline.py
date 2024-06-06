@@ -490,50 +490,6 @@ async def _(c, iq):
 @ky.inline("^calcs")
 async def _(c, iq):
     CALCULATE_TEXT = "Mix-Userbot Calculator"
-    """
-    bo_ol = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("(", callback_data="("),
-                InlineKeyboardButton(")", callback_data=")"),
-                InlineKeyboardButton("🇮🇩", url="tg://resolve?domain=diemgausahbawel"),
-            ],
-            [
-                InlineKeyboardButton("%", callback_data="%"),
-                InlineKeyboardButton("🆑", callback_data="AC"),
-                InlineKeyboardButton("⌫", callback_data="DEL"),
-                InlineKeyboardButton("➗", callback_data="/"),
-            ],
-            [
-                InlineKeyboardButton("7️⃣", callback_data="7"),
-                InlineKeyboardButton("8️⃣", callback_data="8"),
-                InlineKeyboardButton("9️⃣", callback_data="9"),
-                InlineKeyboardButton("✖️", callback_data="*"),
-            ],
-            [
-                InlineKeyboardButton("4️⃣", callback_data="4"),
-                InlineKeyboardButton("5️⃣", callback_data="5"),
-                InlineKeyboardButton("6️⃣", callback_data="6"),
-                InlineKeyboardButton("➖", callback_data="-"),
-            ],
-            [
-                InlineKeyboardButton("1️⃣", callback_data="1"),
-                InlineKeyboardButton("2️⃣", callback_data="2"),
-                InlineKeyboardButton("3️⃣", callback_data="3"),
-                InlineKeyboardButton("➕", callback_data="+"),
-            ],
-            [
-                InlineKeyboardButton("0️⃣0️⃣", callback_data="00"),
-                InlineKeyboardButton("0️⃣", callback_data="0"),
-                InlineKeyboardButton("🟰", callback_data="="),
-                InlineKeyboardButton("◾", callback_data="."),
-            ],
-            [
-                InlineKeyboardButton("❌", callback_data="KLOS"),
-            ],
-        ]
-    )
-    """
     if len(iq.query) == 0 or iq.query.lower() == "calcs":
         answers = [
             InlineQueryResultArticle(
