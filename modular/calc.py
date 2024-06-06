@@ -70,11 +70,13 @@ async def _(c: nlx, m):
 async def _(c, cq):
     global hitung
     data = cq.data
+    user = cq.from_user
+    fullname = {user.first_name} + {user.last_name} if user.last_name else " "
     if cq.from_user.id != nlx.me.id:
-        return await cq.answer(
-            f"BELI LAH Mix-Userbot WAHAI {cq.from_user.first_name} {cq.from_user.last_name or ""}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
-            show_alert=True,
-        )
+            return await cq.answer(
+                f"BELI LAH Mix-Userbot WAHAI {fullname}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
+                show_alert=True,
+            )
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
@@ -94,7 +96,7 @@ async def _(c, cq):
     elif data == "KLOS":
         if cq.from_user.id != nlx.me.id:
             return await cq.answer(
-                f"{cq.from_user.first_name} {cq.from_user.last_name or ""} KAYA KONTOL! SIRIK AJA LO!\nGAUSAH DIPENCET! ANJING! MEMEK! NGENTOT! BELI SENDIRI SANA!!",
+                f"{fullname} KAYA KONTOL! SIRIK AJA LO!\nGAUSAH DIPENCET! ANJING! MEMEK! NGENTOT! BELI SENDIRI SANA!!",
                 show_alert=True,
             )
         if cq.message:
