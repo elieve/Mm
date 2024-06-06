@@ -70,24 +70,27 @@ async def _(c, cq):
     data = cq.data
     print(f"Callback data diterima: {data}")
 
+    if cq.message and cq.message.text:
+        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+    else:
+        message_text = ""
+
     if data.startswith("AC"):
         text = ""
         print("Teks setelah AC: Kosong")
     elif data.startswith("DEL"):
-        text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()[:-1]
+        text = message_text[:-1]
         print(f"Teks setelah DEL: {text}")
     elif data.startswith("="):
         try:
-            expression = data[1:]
-            text = str(
-                eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
+            expression = message_text
+            text = str(eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**")))
             print(f"Hasil evaluasi: {text}")
         except Exception as e:
             print(f"Error evaluasi: {e}")
             text = "Error"
     else:
-        text = data[1:] + data[0]
+        text = message_text + data[1:]
         print(f"Teks setelah menambahkan data: {text}")
 
     await cq.message.edit_text(
