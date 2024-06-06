@@ -103,8 +103,8 @@ async def _(c, cq):
     elif data == "AC":
         hitung = []
         nan = (f"{teks}".join(hitung))
-            kb = calc_help()
-            await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
+        kb = calc_help()
+        await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
     elif data == "=":
         try:
             expression = (
