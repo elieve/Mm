@@ -70,8 +70,11 @@ import ast
 
 @ky.callback("^.*")
 async def _(c, cq):
+    if cq.message and cq.message.text:
+        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+    else:
+        message_text = ""
     data = cq.data
-    message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     text = "" if CALCULATE_TEXT in message_text else message_text
     if data == "=":
         try:
