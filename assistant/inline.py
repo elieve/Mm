@@ -490,7 +490,7 @@ async def _(c, iq):
 @ky.inline("^calcs")
 async def _(c, iq):
     CALCULATE_TEXT = "Mix-Userbot Calculator"
-"""
+    """
     bo_ol = InlineKeyboardMarkup(
         [
             [
@@ -533,7 +533,7 @@ async def _(c, iq):
             ],
         ]
     )
-"""
+    """
     if len(iq.query) == 0 or iq.query.lower() == "calcs":
         answers = [
             InlineQueryResultArticle(
