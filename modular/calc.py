@@ -104,7 +104,7 @@ async def _(c, cq):
 
 @ky.inline("^calcs")
 async def _(c, iq):
-    if len(iq.query) == 0:
+    if len(iq.query) == 0 or iq.query.lower() == "calcs":
         answers = [
             InlineQueryResultArticle(
                 title="Calculator",
