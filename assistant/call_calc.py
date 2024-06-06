@@ -167,3 +167,21 @@ def unpacked2(inline_message_id: str):
         "inline_message_id": inline_message_id,
     }
     return Atr(temp)
+
+
+@ky.callback("^KLOS")
+async def _(_, cq):
+    if cq.from_user.id != nlx.me.id:
+        return await cq.answer(
+            "Hanya pembuat Mix-Userbot yang dapat menutup kalkulator.",
+            show_alert=True,
+        )
+
+    if cq.message:
+        await cq.message.delete()
+    elif cq.inline_message_id:
+        unPacked = unpacked2(cq.inline_message_id)
+        await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+    global hitung
+    hitung = []
+    return
