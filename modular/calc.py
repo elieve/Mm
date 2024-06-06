@@ -10,43 +10,43 @@ __help__ = "Calculator"
 CALCULATE_TEXT = "Mix-Userbot Calculator"
 
 
-def get_calculator_buttons(current_text):
+def get_calculator_buttons(teks):
     return InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("(", callback_data=f"({current_text}"),
-                InlineKeyboardButton(")", callback_data=f"){current_text}"),
-                InlineKeyboardButton("^", callback_data=f"^{current_text}"),
+                InlineKeyboardButton("(", callback_data=f"({teks}"),
+                InlineKeyboardButton(")", callback_data=f"){teks}"),
+                InlineKeyboardButton("^", callback_data=f"^{teks}"),
             ],
             [
-                InlineKeyboardButton("%", callback_data=f"%{current_text}"),
+                InlineKeyboardButton("%", callback_data=f"%{teks}"),
                 InlineKeyboardButton("AC", callback_data="AC"),
                 InlineKeyboardButton("DEL", callback_data="DEL"),
-                InlineKeyboardButton("÷", callback_data=f"/{current_text}"),
+                InlineKeyboardButton("÷", callback_data=f"/{teks}"),
             ],
             [
-                InlineKeyboardButton("7", callback_data=f"7{current_text}"),
-                InlineKeyboardButton("8", callback_data=f"8{current_text}"),
-                InlineKeyboardButton("9", callback_data=f"9{current_text}"),
-                InlineKeyboardButton("×", callback_data=f"*{current_text}"),
+                InlineKeyboardButton("7", callback_data=f"7{teks}"),
+                InlineKeyboardButton("8", callback_data=f"8{teks}"),
+                InlineKeyboardButton("9", callback_data=f"9{teks}"),
+                InlineKeyboardButton("×", callback_data=f"*{teks}"),
             ],
             [
-                InlineKeyboardButton("4", callback_data=f"4{current_text}"),
-                InlineKeyboardButton("5", callback_data=f"5{current_text}"),
-                InlineKeyboardButton("6", callback_data=f"6{current_text}"),
-                InlineKeyboardButton("-", callback_data=f"-{current_text}"),
+                InlineKeyboardButton("4", callback_data=f"4{teks}"),
+                InlineKeyboardButton("5", callback_data=f"5{teks}"),
+                InlineKeyboardButton("6", callback_data=f"6{teks}"),
+                InlineKeyboardButton("-", callback_data=f"-{teks}"),
             ],
             [
-                InlineKeyboardButton("1", callback_data=f"1{current_text}"),
-                InlineKeyboardButton("2", callback_data=f"2{current_text}"),
-                InlineKeyboardButton("3", callback_data=f"3{current_text}"),
-                InlineKeyboardButton("+", callback_data=f"+{current_text}"),
+                InlineKeyboardButton("1", callback_data=f"1{teks}"),
+                InlineKeyboardButton("2", callback_data=f"2{teks}"),
+                InlineKeyboardButton("3", callback_data=f"3{teks}"),
+                InlineKeyboardButton("+", callback_data=f"+{teks}"),
             ],
             [
-                InlineKeyboardButton("00", callback_data=f"00{current_text}"),
-                InlineKeyboardButton("0", callback_data=f"0{current_text}"),
-                InlineKeyboardButton("=", callback_data=f"={current_text}"),
-                InlineKeyboardButton(".", callback_data=f".{current_text}"),
+                InlineKeyboardButton("00", callback_data=f"00{teks}"),
+                InlineKeyboardButton("0", callback_data=f"0{teks}"),
+                InlineKeyboardButton("=", callback_data=f"={teks}"),
+                InlineKeyboardButton(".", callback_data=f".{teks}"),
             ],
         ]
     )
@@ -70,31 +70,33 @@ import ast
 
 @ky.callback("^.*")
 async def _(c, cq):
-    if cq.message and cq.message.text:
-        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
-    else:
-        message_text = ""
     data = cq.data
-    text = "" if CALCULATE_TEXT in message_text else message_text
-    if data == "=":
-        try:
-            # Evaluasi ekspresi matematika menggunakan modul ast
-            result = ast.literal_eval(text)
-            text = str(result)
-        except Exception as e:
-            text = f"Error: {str(e)}"
-    elif data == "DEL":
-        text = message_text[:-1]
-    elif data == "AC":
+    print(f"Callback data diterima: {data}")
+
+    if data.startswith("AC"):
         text = ""
+        print("Teks setelah AC: Kosong")
+    elif data.startswith("DEL"):
+        text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()[:-1]
+        print(f"Teks setelah DEL: {text}")
+    elif data.startswith("="):
+        try:
+            expression = ast.leteral_eval(data[1:])
+            text = str(expression)
+            print(f"Hasil evaluasi: {text}")
+        except Exception as e:
+            print(f"Error evaluasi: {e}")
+            text = "Error"
     else:
-        text = message_text + data
+        text = data[1:] + data[0]
+        print(f"Teks setelah menambahkan data: {text}")
 
     await cq.message.edit_text(
         text=f"{text}\n\n\n{CALCULATE_TEXT}",
         disable_web_page_preview=True,
-        reply_markup=CALCULATE_BUTTONS,
+        reply_markup=get_calculator_buttons(text),
     )
+    print("Pesan hasil kalkulasi diubah")
 
 
 @ky.inline("^calcs")
