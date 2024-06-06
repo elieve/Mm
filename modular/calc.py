@@ -77,14 +77,16 @@ async def _(c, cq):
     else:
         message_text = ""
         text = ""
-    
+
     if data == "DEL":
         text = text[:-1]
     elif data == "AC":
         text = ""
     elif data == "=":
         try:
-            text = str(eval(text.replace("×", "*").replace("÷", "/").replace("^", "**")))
+            text = str(
+                eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
+            )
         except Exception:
             text = "Error"
     else:
@@ -162,7 +164,7 @@ async def _(_, cq):
             "Hanya pembuat Mix-Userbot yang dapat menutup kalkulator.",
             show_alert=True,
         )
-    
+
     if cq.message:
         await cq.message.delete()
     elif cq.inline_message_id:
