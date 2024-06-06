@@ -77,7 +77,7 @@ async def _(c, cq):
         teks = message_text[:-1]
     elif data.startswith("="):
         try:
-            expression = message_text
+            expression = data[1:]
             teks = str(
                 eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
             )
