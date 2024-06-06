@@ -1,4 +1,5 @@
 from struct import unpack
+from base64 import urlsafe_b64decode
 
 from attrify import Attrify as Atr
 from pyrogram import *
@@ -89,6 +90,18 @@ async def _(c, cq):
             )
         except Exception:
             text = "Error"
+    elif data == "KLOS":
+        if cq.from_user.id != nlx.me.id:
+            return await cq.answer(
+                "Hanya pembuat Mix-Userbot yang dapat menutup kalkulator.",
+                show_alert=True,
+            )
+        if cq.message:
+            await cq.message.delete()
+        elif cq.inline_message_id:
+            unPacked = unpacked2(cq.inline_message_id)
+            await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+        return
     else:
         text = text + data
 
@@ -104,7 +117,7 @@ async def _(c, cq):
 
 @ky.inline("^calcs")
 async def _(c, iq):
-    if len(iq.query) == 0:
+    if len(iq.query) == 0 or iq.query.lower() == "calcs":
         answers = [
             InlineQueryResultArticle(
                 title="Calculator",
@@ -155,20 +168,3 @@ def unpacked2(inline_message_id: str):
         "inline_message_id": inline_message_id,
     }
     return Atr(temp)
-
-
-@ky.callback("^KLOS")
-async def _(_, cq):
-    if cq.from_user.id != nlx.me.id:
-        return await cq.answer(
-            "Hanya pembuat Mix-Userbot yang dapat menutup kalkulator.",
-            show_alert=True,
-        )
-
-    if cq.message:
-        await cq.message.delete()
-    elif cq.inline_message_id:
-        unPacked = unpacked2(cq.inline_message_id)
-        await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
-
-    return
