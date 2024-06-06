@@ -12,7 +12,10 @@ __models__ = "Calculator"
 __help__ = "Calculator"
 
 
-CALCULATE_TEXT = "Mix-Userbot Calculator"
+CALCULATE_TEXT = """
+Mix-Userbot Calculator
+© [DEV](tg://resolve?domain=diemgausahbawel)
+"""
 hitung = []
 
 
