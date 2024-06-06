@@ -96,14 +96,14 @@ async def _(c, cq):
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
-            nan = f"{teks}".join(hitung)
+            nan = f"{hitung}\n\n".join(teks)
             kb = calc_help()
             await cq.edit_message_text(
                 text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
             )
     elif data == "AC":
         hitung = []
-        nan = f"{teks}".join(hitung)
+        nan = f"{hitung}\n\n".join(teks)
         kb = calc_help()
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
     elif data == "=":
@@ -136,9 +136,9 @@ async def _(c, cq):
                 f"BELI LAH Mix-Userbot WAHAI {fullname}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
                 show_alert=True,
             )
-        tambah = datanya[1:] + data
+        tambah = datanya[1:] + data[0]
         hitung.append(tambah)
-        nan = f"{teks}".join(hitung)
+        nan = f"{hitung}\n\n".join(teks)
         kb = calc_help()
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
 
