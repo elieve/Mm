@@ -6,15 +6,20 @@ from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
 
-from Mix import *
+from Mix import bot, ky, nlx
+
 
 __modules__ = "Calculator"
 __help__ = "Calculator"
 
-CALCULATE_TEXT = (
-    "Mix-Userbot Calculator\n\n©️ [DEVELOPER](tg://resolve?domain=diemgausahbawel)"
-)
+
+CALCULATE_TEXT = "Mix-Userbot Calculator"
 hitung = []
+
+
+mmk = {
+    "(", ")", "KLOS", "AC", "DEL", "%", "/", "*", "-", "+", "00", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "="
+}
 
 
 def get_calculator_buttons():
@@ -72,10 +77,15 @@ async def _(c: nlx, m):
 async def _(c, cq):
     global hitung
     data = cq.data
+
+    if data not in mkk:
+        return
+
     user = cq.from_user
     fullname = user.first_name
     if user.last_name:
         fullname += f" {user.last_name}"
+
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
@@ -181,21 +191,4 @@ def unpacked2(inline_message_id: str):
         "inline_message_id": inline_message_id,
     }
     return Atr(temp)
-
-
-@ky.callback("^KLOS")
-async def _(_, cq):
-    if cq.from_user.id != nlx.me.id:
-        return await cq.answer(
-            "Hanya pembuat Mix-Userbot yang dapat menutup kalkulator.",
-            show_alert=True,
-        )
-
-    if cq.message:
-        await cq.message.delete()
-    elif cq.inline_message_id:
-        unPacked = unpacked2(cq.inline_message_id)
-        await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
-    global hitung
-    hitung = []
-    return
+    
