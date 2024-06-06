@@ -69,9 +69,16 @@ async def _(c, cq):
     print(f"Callback data diterima: {data}")
 
     if cq.message.reply_to_message and cq.message.reply_to_message.text:
-        message_text = cq.message.reply_to_message.text.split("\n")[0].strip().split("=")[0].strip()
+        message_text = (
+            cq.message.reply_to_message.text.split("\n")[0]
+            .strip()
+            .split("=")[0]
+            .strip()
+        )
     else:
-        print("Error: cq.message.reply_to_message atau cq.message.reply_to_message.text adalah None")
+        print(
+            "Error: cq.message.reply_to_message atau cq.message.reply_to_message.text adalah None"
+        )
         return
 
     text = "" if CALCULATE_TEXT in message_text else message_text
@@ -146,4 +153,3 @@ async def _(c, iq):
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     print("Inline query dijawab")
-    
