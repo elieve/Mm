@@ -156,7 +156,7 @@ async def _(c, cq):
     await cq.edit_message_text(stats, reply_markup=clbk_stasm())
 
 
-@ky.callback("^[0-9/*\-+().=ACDEL%]{1}$")
+@ky.callback("help_(.*?)")
 async def _(c, cq):
     mod_match = re.match(r"help_module\((.+?)\)", cq.data)
     prev_match = re.match(r"help_prev\((.+?)\)", cq.data)
