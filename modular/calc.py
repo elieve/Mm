@@ -49,6 +49,7 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
+
 @ky.ubot("calc|kalku", sudo=True)
 async def _(c: nlx, m):
     try:
@@ -137,8 +138,8 @@ async def _(c, iq):
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     print("Inline query dijawab")
-    
-    
+
+
 """
 from pyrogram import *
 from pyrogram.enums import *
