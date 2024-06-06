@@ -68,11 +68,12 @@ async def _(c, cq):
     data = cq.data
     print(f"Callback data diterima: {data}")
 
-    if not cq.message or not cq.message.text:
-        print("Error: cq.message atau cq.message.text adalah None")
+    if cq.message.reply_to_message and cq.message.reply_to_message.text:
+        message_text = cq.message.reply_to_message.text.split("\n")[0].strip().split("=")[0].strip()
+    else:
+        print("Error: cq.message.reply_to_message atau cq.message.reply_to_message.text adalah None")
         return
 
-    message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     text = "" if CALCULATE_TEXT in message_text else message_text
     if data == "=":
         try:
@@ -145,3 +146,4 @@ async def _(c, iq):
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     print("Inline query dijawab")
+    
