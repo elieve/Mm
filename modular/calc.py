@@ -84,7 +84,9 @@ async def _(c, cq):
     elif data.startswith("="):
         try:
             expression = message_text
-            text = str(eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**")))
+            text = str(
+                eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
+            )
             print(f"Hasil evaluasi: {text}")
         except Exception as e:
             print(f"Error evaluasi: {e}")
