@@ -530,8 +530,14 @@ Mix-Userbot Calculator
                 InlineKeyboardButton("🟰", callback_data="="),
                 InlineKeyboardButton("🆑", callback_data="AC"),
             ],
-            [InlineKeyboardButton("❌", callback_data="KLOS"),],
-            [InlineKeyboardButton("DEVELOPER", url="tg://resolve?domain=diemgausahbawel"),],
+            [
+                InlineKeyboardButton("❌", callback_data="KLOS"),
+            ],
+            [
+                InlineKeyboardButton(
+                    "DEVELOPER", url="tg://resolve?domain=diemgausahbawel"
+                ),
+            ],
         ]
     )
 
