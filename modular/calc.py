@@ -72,7 +72,7 @@ async def _(c, cq):
     elif data.startswith("="):
         try:
             expression = data[1:]
-            text = str(
+            teks = str(
                 eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
             )
         except Exception:
