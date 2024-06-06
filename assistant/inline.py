@@ -491,13 +491,13 @@ async def _(c, iq):
 async def _(c, iq):
     kalkuteks = "Mix-Userbot Calculator"
     meki = [
-            InlineQueryResultArticle(
-                title="Calculator",
-                description="New calculator",
-                input_message_content=InputTextMessageContent(kalkuteks),
-                reply_markup=get_calculator_buttons(),
-            )
-        ]
+        InlineQueryResultArticle(
+            title="Calculator",
+            description="New calculator",
+            input_message_content=InputTextMessageContent(kalkuteks),
+            reply_markup=get_calculator_buttons(),
+        )
+    ]
     await c.answer_inline_query(iq.id, cache_time=0, results=meki)
     """
     if len(iq.query) == 0 or iq.query.lower() == "calcs":
