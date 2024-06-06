@@ -71,10 +71,10 @@ async def _(c, cq):
     global hitung
     data = cq.data
     if cq.from_user.id != nlx.me.id:
-            return await cq.answer(
-                f"BELI LAH Mix-Userbot WAHAI {cq.from_user.first_name} {cq.from_user.last_name or ""}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
-                show_alert=True,
-            )
+        return await cq.answer(
+            f"BELI LAH Mix-Userbot WAHAI {cq.from_user.first_name} {cq.from_user.last_name or ""}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
+            show_alert=True,
+        )
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
