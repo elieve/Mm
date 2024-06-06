@@ -1,7 +1,8 @@
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
-
+from struct import unpack
+from attrify import Attrify as Atr
 from Mix import bot, ky, nlx
 
 __modules__ = "Calculator"
@@ -16,7 +17,7 @@ def get_calculator_buttons(teks):
             [
                 InlineKeyboardButton("(", callback_data=f"({teks}"),
                 InlineKeyboardButton(")", callback_data=f"){teks}"),
-                InlineKeyboardButton("^", callback_data=f"^{teks}"),
+                InlineKeyboardButton("CLOSE", callback_data="KLOS"),
             ],
             [
                 InlineKeyboardButton("%", callback_data=f"%{teks}"),
@@ -67,19 +68,18 @@ async def _(c: nlx, m):
 @ky.callback("^.*")
 async def _(c, cq):
     data = cq.data
-    teks = ""
     if cq.message and cq.message.text:
-        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+        teks = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     else:
-        message_text = ""
+        teks = ""
 
     if data == "AC":
         teks = ""
     elif data == "DEL":
-        teks = message_text[:-1]
+        teks = teks[:-1]
     elif data == "=":
         try:
-            expression = message_text
+            expression = data[1:]
             teks = str(
                 eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
             )
@@ -141,6 +141,31 @@ async def _(c, iq):
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     print("Inline query dijawab")
 
+
+def unpacked2(inline_message_id: str):
+    dc_id, message_id, chat_id, query_id = unpack(
+        "<iiiq",
+        urlsafe_b64decode(
+            inline_message_id + "=" * (len(inline_message_id) % 4),
+        ),
+    )
+    temp = {
+        "dc_id": dc_id,
+        "message_id": message_id,
+        "chat_id": int(str(chat_id).replace("-", "-100")),
+        "query_id": query_id,
+        "inline_message_id": inline_message_id,
+    }
+    return Atr(temp)
+    
+
+@ky.callback("^KLOS")
+async def _(_, cq):
+    unPacked = unpacked2(cq.inline_message_id)
+    if cq.from_user.id =! nlx.me.id:
+        return await cq.answer("GAUSAH PENCET-PENCET GOBLOK! ANJING! NGENTOT! LO SIAPA? MAKANYA BELI MIX-USERBOT LAH! DASAR ANJING!", show_alert=True)
+    await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+    return
 
 """
 from pyrogram import *
