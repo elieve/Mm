@@ -121,6 +121,27 @@ async def _(c, iq):
     )
 
 
+# calcu
+
+
+@ky.inline("^kalku_in")
+async def _(c, iq):
+    txt = "<b>Mix-Userbot Calculator</b>"
+    await c.answer_inline_query(
+        iq.id,
+        cache_time=0,
+        results=[
+            (
+                InlineQueryResultArticle(
+                    title="Kalkulator!",
+                    reply_markup=calc_help(),
+                    input_message_content=InputTextMessageContent(txt),
+                )
+            )
+        ],
+    )
+
+
 # help
 
 
@@ -485,71 +506,3 @@ async def _(c, iq):
         )
     ]
     await c.answer_inline_query(iq.id, cache_time=0, results=meki)
-
-
-@ky.inline("^kalku_in")
-async def _(c, iq):
-    txt = "<b>Mix-Userbot Calculator</b>"
-    await c.answer_inline_query(
-        iq.id,
-        cache_time=0,
-        results=[
-            (
-                InlineQueryResultArticle(
-                    title="Kalkulator!",
-                    reply_markup=calc_help(),
-                    input_message_content=InputTextMessageContent(txt),
-                )
-            )
-        ],
-    )
-
-
-"""
-@ky.inline("^calcs")
-async def _(c, iq):
-    kalkuteks = "Mix-Userbot Calculator"
-    kb = get_calculator_buttons()
-    meki = [
-        InlineQueryResultArticle(
-            title="Calculator",
-            input_message_content=InputTextMessageContent(kalkuteks),
-            reply_markup=kb,
-        )
-    ]
-    await c.answer_inline_query(iq.id, cache_time=0, results=meki)
-    if len(iq.query) == 0 or iq.query.lower() == "calcs":
-        answers = [
-            InlineQueryResultArticle(
-                title="Calculator",
-                description="New calculator",
-                input_message_content=InputTextMessageContent(CALCULATE_TEXT),
-                reply_markup=get_calculator_buttons(),
-            )
-        ]
-    else:
-        try:
-            data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
-            result = str(eval(data))
-            answers = [
-                InlineQueryResultArticle(
-                    title="Answer",
-                    description=f"Result: {result}",
-                    input_message_content=InputTextMessageContent(
-                        message_text=f"{data} = {result}", disable_web_page_preview=True
-                    ),
-                )
-            ]
-        except Exception:
-            answers = [
-                InlineQueryResultArticle(
-                    title="Error",
-                    description="Invalid Expression",
-                    input_message_content=InputTextMessageContent(
-                        message_text="Invalid Expression", disable_web_page_preview=True
-                    ),
-                )
-            ]
-
-    await c.answer_inline_query(iq.id, cache_time=300, results=answers)
-"""
