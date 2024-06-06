@@ -27,9 +27,8 @@ from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
 from modular.pmpermit import *
 
-from .calc_calc import calc_help
 from .call_markdown import markdown_help
-
+from .call_calc import calc_help
 
 async def diinline(q):
     chats = []
