@@ -73,8 +73,8 @@ async def _(c, cq):
         teks = cq.message.text.split("\n")[0].strip().split("=")[0].strip()[:-1]
     elif data.startswith("="):
         try:
-            expression = ast.leteral_eval(data[1:])
-            teks = str(expression)
+            expression = data[1:]
+            text = str(eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**")))
         except Exception:
             teks = "Error"
     else:
@@ -107,7 +107,7 @@ async def _(c, iq):
     else:
         try:
             data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
-            result = str(ast.leteral_eval(data[1:]))
+            result = result = str(eval(data))
             answers = [
                 InlineQueryResultArticle(
                     title="Answer",
