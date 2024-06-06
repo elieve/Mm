@@ -36,6 +36,7 @@ mmk = {
 
 hitung = []
 
+
 def calc_help():
     return okb(
         [
@@ -79,6 +80,7 @@ def calc_help():
         ]
     )
 
+
 @ky.callback("calc_")
 async def _(c, cq):
     global hitung
@@ -104,9 +106,7 @@ async def _(c, cq):
     elif data == "AC":
         hitung = []
         nan = f"{''.join(hitung)}\n\n{teks}"
-        await cq.edit_message_text(
-            text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
-        )
+        await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
     elif data == "=":
         try:
             expression = (
@@ -115,9 +115,7 @@ async def _(c, cq):
             hasil = str(eval(expression))
             await cq.answer(f"Hasil: {hasil}", show_alert=True)
             hitung = [hasil]
-            await cq.edit_message_text(
-                text=f"{hasil}\n\n{teks}", reply_markup=kb
-            )
+            await cq.edit_message_text(text=f"{hasil}\n\n{teks}", reply_markup=kb)
         except Exception as e:
             await cq.answer(f"Error: {str(e)}", show_alert=True)
             hitung = []
@@ -142,9 +140,8 @@ async def _(c, cq):
             )
         hitung.append(data)
         nan = f"{''.join(hitung)}\n\n{teks}"
-        await cq.edit_message_text(
-            text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
-        )
+        await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
+
 
 def unpacked2(inline_message_id: str):
     dc_id, message_id, chat_id, query_id = unpack(
@@ -161,6 +158,7 @@ def unpacked2(inline_message_id: str):
         "inline_message_id": inline_message_id,
     }
     return Atr(temp)
+
 
 @ky.callback("KLOS")
 async def _(_, cq):
