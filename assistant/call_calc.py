@@ -100,14 +100,14 @@ async def _(c, cq):
             nan = f"{hitung}\n\n{teks}"
             await cq.edit_message_text(
                 text=nan,
-                reply_markup=InlineKeyboardMarkup(kb),
+                reply_markup=kb,
                 parse_mode=ParseMode.HTML,
             )
     elif data == "AC":
         hitung = []
         nan = f"{hitung}\n\n{teks}"
         await cq.edit_message_text(
-            text=nan, reply_markup=InlineKeyboardMarkup(kb), parse_mode=ParseMode.HTML
+            text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
         )
     elif data == "=":
         try:
@@ -118,7 +118,7 @@ async def _(c, cq):
             await cq.answer(f"Hasil: {hasil}", show_alert=True)
             hitung = [hasil]
             await cq.edit_message_text(
-                text=f"{teks}", reply_markup=InlineKeyboardMarkup(kb)
+                text=f"{teks}", reply_markup=kb
             )
         except Exception as e:
             await cq.answer(f"Error: {str(e)}", show_alert=True)
@@ -146,7 +146,7 @@ async def _(c, cq):
         hitung.append(tambah)
         nan = f"{hitung}\n\n{teks}"
         await cq.edit_message_text(
-            text=nan, reply_markup=InlineKeyboardMarkup(kb), parse_mode=ParseMode.HTML
+            text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
         )
 
 
