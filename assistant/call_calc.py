@@ -40,10 +40,9 @@ def get_calculator_buttons():
             [
                 InlineKeyboardButton("(", callback_data="("),
                 InlineKeyboardButton(")", callback_data=")"),
-                InlineKeyboardButton("🇮🇩", url="tg://resolve?domain=diemgausahbawel")
+                InlineKeyboardButton("🇮🇩", url="tg://resolve?domain=diemgausahbawel"),
             ],
             [
-                
                 InlineKeyboardButton("%", callback_data="%"),
                 InlineKeyboardButton("🆑", callback_data="AC"),
                 InlineKeyboardButton("⌫", callback_data="DEL"),
