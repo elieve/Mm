@@ -488,10 +488,7 @@ async def _(c, iq):
 
 @ky.inline("^calcs")
 async def _(c, iq):
-    CALCULATE_TEXT = """
-Mix-Userbot Calculator
-© [DEV](tg://resolve?domain=diemgausahbawel)
-"""
+    CALCULATE_TEXT = "Mix-Userbot Calculator"
     bo_ol = InlineKeyboardMarkup(
         [
             [
