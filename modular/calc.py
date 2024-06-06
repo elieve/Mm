@@ -21,11 +21,11 @@ def get_calculator_buttons():
             [
                 InlineKeyboardButton("(", callback_data="("),
                 InlineKeyboardButton(")", callback_data=")"),
-                InlineKeyboardButton(cgr("ttup"), callback_data="KLOS"),
+                InlineKeyboardButton("❌", callback_data="KLOS"),
             ],
             [
-                InlineKeyboardButton("AC", callback_data="AC"),
-                InlineKeyboardButton("DEL", callback_data="DEL"),
+                InlineKeyboardButton("🆑", callback_data="AC"),
+                InlineKeyboardButton("⌫", callback_data="DEL"),
                 InlineKeyboardButton("%", callback_data="%"),
                 InlineKeyboardButton("➗", callback_data="/"),
             ],
@@ -71,7 +71,10 @@ async def _(c, cq):
     global hitung
     data = cq.data
     user = cq.from_user
-    fullname = {user.first_name} + {user.last_name} if user.last_name else " "
+    fullname = user.first_name
+    if user.last_name:
+        fullname += f" {user.last_name}"
+
     if cq.from_user.id != nlx.me.id:
         return await cq.answer(
             f"BELI LAH Mix-Userbot WAHAI {fullname}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
