@@ -9,6 +9,7 @@ __help__ = "Calculator"
 
 CALCULATE_TEXT = "Mix-Userbot Calculator"
 
+
 def get_calculator_buttons(current_text):
     return InlineKeyboardMarkup(
         [
@@ -78,7 +79,9 @@ async def _(c, cq):
     elif data.startswith("="):
         try:
             expression = data[1:]
-            text = str(eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**")))
+            text = str(
+                eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
+            )
             print(f"Hasil evaluasi: {text}")
         except Exception as e:
             print(f"Error evaluasi: {e}")
@@ -139,4 +142,3 @@ async def _(c, iq):
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     print("Inline query dijawab")
-    
