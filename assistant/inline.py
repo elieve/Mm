@@ -510,7 +510,6 @@ Mix-Userbot Calculator
                 InlineKeyboardButton("7️⃣", callback_data="7"),
                 InlineKeyboardButton("8️⃣", callback_data="8"),
                 InlineKeyboardButton("9️⃣", callback_data="9"),
-                InlineKeyboardButton("❌", callback_data="KLOS"),
             ],
             [
                 InlineKeyboardButton("4️⃣", callback_data="4"),
@@ -521,14 +520,18 @@ Mix-Userbot Calculator
                 InlineKeyboardButton("1️⃣", callback_data="1"),
                 InlineKeyboardButton("2️⃣", callback_data="2"),
                 InlineKeyboardButton("3️⃣", callback_data="3"),
-                InlineKeyboardButton("🆑", callback_data="AC"),
             ],
             [
                 InlineKeyboardButton("0️⃣0️⃣", callback_data="00"),
                 InlineKeyboardButton("0️⃣", callback_data="0"),
                 InlineKeyboardButton("◾", callback_data="."),
-                InlineKeyboardButton("🟰", callback_data="="),
             ],
+            [
+                InlineKeyboardButton("🟰", callback_data="="),
+                InlineKeyboardButton("🆑", callback_data="AC"),
+            ],
+            [InlineKeyboardButton("❌", callback_data="KLOS"),],
+            [InlineKeyboardButton("DEVELOPER", url="tg://resolve?domain=diemgausahbawel"),],
         ]
     )
 
