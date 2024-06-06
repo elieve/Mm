@@ -74,7 +74,7 @@ async def _(c, cq):
         try:
             expression = ast.leteral_eval(data[1:])
             teks = str(expression)
-        except Exception as e:
+        except Exception:
             teks = "Error"
     else:
         teks = data[1:] + data[0]
@@ -112,7 +112,7 @@ async def _(c, iq):
                     ),
                 )
             ]
-        except Exception as e:
+        except Exception:
             answers = [
                 InlineQueryResultArticle(
                     title="Error",
