@@ -162,7 +162,7 @@ def unpacked2(inline_message_id: str):
 @ky.callback("^KLOS")
 async def _(_, cq):
     unPacked = unpacked2(cq.inline_message_id)
-    if cq.from_user.id =! nlx.me.id:
+    if cq.from_user.id != nlx.me.id:
         return await cq.answer("GAUSAH PENCET-PENCET GOBLOK! ANJING! NGENTOT! LO SIAPA? MAKANYA BELI MIX-USERBOT LAH! DASAR ANJING!", show_alert=True)
     await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
     return
