@@ -65,28 +65,34 @@ async def _(c: nlx, m):
 @ky.callback("^.*")
 async def _(c, cq):
     data = cq.data
+    teks = ""
+    if cq.message and cq.message.text:
+        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+    else:
+        message_text = ""
+
     if data.startswith("AC"):
         teks = ""
     elif data.startswith("DEL"):
-        teks = cq.message.text.split("\n")[0].strip().split("=")[0].strip()[:-1]
+        teks = message_text[:-1]
     elif data.startswith("="):
         try:
-            expression = data[1:]
+            expression = message_text
             teks = str(
                 eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
             )
         except Exception:
             teks = "Error"
     else:
-        teks = data[1:] + data[0]
+        teks = message_text + data
 
     try:
         await cq.edit_message_text(
             text=f"{teks}\n\n\n{CALCULATE_TEXT}",
             disable_web_page_preview=True,
-            reply_markup=get_calculator_buttons(teks),
+            reply_markup=CALCULATE_BUTTONS,
         )
-    except:
+    except Exception as e:
         await cq.answer(f"{teks}\n\n\n{CALCULATE_TEXT}", show_alert=True)
         return
 
