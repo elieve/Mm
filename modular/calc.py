@@ -99,7 +99,7 @@ async def _(c, cq):
     global hitung
     data = cq.data
 
-    if data not in mkk:
+    if data not in mmk:
         return
 
     user = cq.from_user
