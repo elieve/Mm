@@ -67,33 +67,37 @@ async def _(c: nlx, m):
 async def _(c, cq):
     data = cq.data
     print(f"Callback data diterima: {data}")
-    message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
-    text = "" if CALCULATE_TEXT in message_text else message_text
-    if data == "=":
-        try:
-            text = str(
-                eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
-            print(f"Hasil evaluasi: {text}")
-        except Exception as e:
-            print(f"Error evaluasi: {e}")
-            text = "Error"
-    elif data == "DEL":
-        text = message_text[:-1]
-        print(f"Teks setelah DEL: {text}")
-    elif data == "AC":
-        text = ""
-        print("Teks setelah AC: Kosong")
-    else:
-        text = message_text + data
-        print(f"Teks setelah menambahkan data: {text}")
 
-    await cq.message.edit_text(
-        text=f"{text}\n\n\n{CALCULATE_TEXT}",
-        disable_web_page_preview=True,
-        reply_markup=CALCULATE_BUTTONS,
-    )
-    print("Pesan hasil kalkulasi diubah")
+    if cq.message and cq.message.text:
+        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+        text = "" if CALCULATE_TEXT in message_text else message_text
+        if data == "=":
+            try:
+                text = str(
+                    eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
+                )
+                print(f"Hasil evaluasi: {text}")
+            except Exception as e:
+                print(f"Error evaluasi: {e}")
+                text = "Error"
+        elif data == "DEL":
+            text = message_text[:-1]
+            print(f"Teks setelah DEL: {text}")
+        elif data == "AC":
+            text = ""
+            print("Teks setelah AC: Kosong")
+        else:
+            text = message_text + data
+            print(f"Teks setelah menambahkan data: {text}")
+
+        await cq.message.edit_text(
+            text=f"{text}\n\n\n{CALCULATE_TEXT}",
+            disable_web_page_preview=True,
+            reply_markup=CALCULATE_BUTTONS,
+        )
+        print("Pesan hasil kalkulasi diubah")
+    else:
+        print("Error: cq.message atau cq.message.text adalah None")
 
 
 @ky.inline("^calcs")
@@ -140,3 +144,4 @@ async def _(c, iq):
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     print("Inline query dijawab")
+    
