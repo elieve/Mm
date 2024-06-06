@@ -79,7 +79,7 @@ async def _(c, cq):
     else:
         teks = data[1:] + data[0]
 
-    await cq.message.edit_text(
+    await cq.edit_message_text(
         teks=f"{teks}\n\n\n{CALCULATE_TEXT}",
         disable_web_page_preview=True,
         reply_markup=get_calculator_buttons(teks),
