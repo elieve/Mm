@@ -8,8 +8,6 @@ from pyrogram.types import *
 
 from Mix import *
 
-hitung = []
-
 
 mmk = {
     "(",
@@ -85,16 +83,11 @@ def get_calculator_buttons():
 
 @ky.callback("^[0-9/*\-+().=ACDEL%]{1,2}$")
 async def _(c, cq):
-    global hitung
+    hitung = []
     data = cq.data
-    CALCULATE_TEXT = """
-Mix-Userbot Calculator
-© [DEV](tg://resolve?domain=diemgausahbawel)
-"""
-
+    CALCULATE_TEXT = "Mix-Userbot Calculator"
     if data not in mmk:
         return
-
     user = cq.from_user
     fullname = user.first_name
     if user.last_name:
@@ -182,6 +175,4 @@ async def _(_, cq):
     elif cq.inline_message_id:
         unPacked = unpacked2(cq.inline_message_id)
         await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
-    global hitung
-    hitung = []
     return
