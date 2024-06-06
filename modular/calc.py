@@ -8,7 +8,7 @@ from pyrogram.types import *
 
 from Mix import bot, ky, nlx
 
-__modules__ = "Calculator"
+__models__ = "Calculator"
 __help__ = "Calculator"
 
 
