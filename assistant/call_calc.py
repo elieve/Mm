@@ -97,12 +97,14 @@ async def _(c, cq):
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
-            nan = (f"{teks}".join(hitung))
+            nan = f"{teks}".join(hitung)
             kb = calc_help()
-            await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
+            await cq.edit_message_text(
+                text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
+            )
     elif data == "AC":
         hitung = []
-        nan = (f"{teks}".join(hitung))
+        nan = f"{teks}".join(hitung)
         kb = calc_help()
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
     elif data == "=":
@@ -137,9 +139,10 @@ async def _(c, cq):
             )
         tambah = datanya[1:] + data
         hitung.append(tambah)
-        nan = (f"{teks}".join(hitung))
+        nan = f"{teks}".join(hitung)
         kb = calc_help()
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
+
 
 """
     current_text = "".join(hitung)
