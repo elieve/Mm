@@ -49,7 +49,6 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
     ]
 )
 
-
 @ky.ubot("calc|kalku", sudo=True)
 async def _(c: nlx, m):
     try:
@@ -58,17 +57,18 @@ async def _(c: nlx, m):
     except Exception as error:
         await m.reply_text(str(error))
 
-
 @ky.callback("^.*")
 async def _(c, cq):
     data = cq.data
     message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     text = "" if CALCULATE_TEXT in message_text else message_text
+    
     if data == "=":
         try:
-            text = str(
-                eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
+            allowed_chars = set("0123456789+-*/(). ")
+            if not all(char in allowed_chars for char in text):
+                raise ValueError("Invalid characters in expression")
+            text = str(eval(text.replace("×", "*").replace("÷", "/").replace("^", "**")))
         except Exception:
             text = "Error"
     elif data == "DEL":
@@ -84,7 +84,6 @@ async def _(c, cq):
         reply_markup=CALCULATE_BUTTONS,
     )
 
-
 @ky.inline("^calcs")
 async def _(c, iq):
     if len(iq.query) == 0:
@@ -99,6 +98,9 @@ async def _(c, iq):
     else:
         try:
             data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
+            allowed_chars = set("0123456789+-*/(). ")
+            if not all(char in allowed_chars for char in data):
+                raise ValueError("Invalid characters in expression")
             result = str(eval(data))
             answers = [
                 InlineQueryResultArticle(
