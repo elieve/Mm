@@ -65,43 +65,32 @@ async def _(c: nlx, m):
         await m.reply_text(str(error))
 
 
+import ast
+
 @ky.callback("^.*")
 async def _(c, cq):
     data = cq.data
-    print(f"Callback data diterima: {data}")
-
-    if cq.message is not None and cq.message.text:
-        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
-    else:
-        message_text = ""
-
-    if data.startswith("AC"):
-        text = ""
-        print("Teks setelah AC: Kosong")
-    elif data.startswith("DEL"):
-        text = message_text[:-1]
-        print(f"Teks setelah DEL: {text}")
-    elif data.startswith("="):
+    message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+    text = "" if CALCULATE_TEXT in message_text else message_text
+    if data == "=":
         try:
-            expression = message_text
-            text = str(
-                eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
-            print(f"Hasil evaluasi: {text}")
+            # Evaluasi ekspresi matematika menggunakan modul ast
+            result = ast.literal_eval(text)
+            text = str(result)
         except Exception as e:
-            print(f"Error evaluasi: {e}")
-            text = "Error"
+            text = f"Error: {str(e)}"
+    elif data == "DEL":
+        text = message_text[:-1]
+    elif data == "AC":
+        text = ""
     else:
-        text = message_text + data[1:]
-        print(f"Teks setelah menambahkan data: {text}")
+        text = message_text + data
 
-    if cq.message is not None:
-        await cq.message.edit_text(
-            text=f"{text}\n\n\n{CALCULATE_TEXT}",
-            disable_web_page_preview=True,
-            reply_markup=get_calculator_buttons(text),
-        )
-        print("Pesan hasil kalkulasi diubah")
+    await cq.message.edit_text(
+        text=f"{text}\n\n\n{CALCULATE_TEXT}",
+        disable_web_page_preview=True,
+        reply_markup=CALCULATE_BUTTONS,
+    )
 
 
 @ky.inline("^calcs")
