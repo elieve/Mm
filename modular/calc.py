@@ -112,7 +112,7 @@ async def _(c, cq):
         )
     except Exception as e:
         await cq.answer(f"{teks}")
-        await cq.answer(f"Error: {str(e)}", show_alert=True)
+        # await cq.answer(f"Error: {str(e)}", show_alert=True)
 
 
 @ky.inline("^calcs")
