@@ -8,7 +8,6 @@ from pyrogram.types import *
 
 from Mix import bot, ky, nlx
 
-
 __modules__ = "Calculator"
 __help__ = "Calculator"
 
@@ -18,7 +17,29 @@ hitung = []
 
 
 mmk = {
-    "(", ")", "KLOS", "AC", "DEL", "%", "/", "*", "-", "+", "00", "0", "1", "2", "3", "4", "5", "6", "7", "8", "9", ".", "="
+    "(",
+    ")",
+    "KLOS",
+    "AC",
+    "DEL",
+    "%",
+    "/",
+    "*",
+    "-",
+    "+",
+    "00",
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6",
+    "7",
+    "8",
+    "9",
+    ".",
+    "=",
 }
 
 
@@ -191,4 +212,3 @@ def unpacked2(inline_message_id: str):
         "inline_message_id": inline_message_id,
     }
     return Atr(temp)
-    
