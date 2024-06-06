@@ -489,7 +489,17 @@ async def _(c, iq):
 
 @ky.inline("^calcs")
 async def _(c, iq):
-    CALCULATE_TEXT = "Mix-Userbot Calculator"
+    kalkuteks = "Mix-Userbot Calculator"
+    meki = [
+            InlineQueryResultArticle(
+                title="Calculator",
+                description="New calculator",
+                input_message_content=InputTextMessageContent(kalkuteks),
+                reply_markup=get_calculator_buttons(),
+            )
+        ]
+    await c.answer_inline_query(iq.id, cache_time=0, results=meki)
+    """
     if len(iq.query) == 0 or iq.query.lower() == "calcs":
         answers = [
             InlineQueryResultArticle(
@@ -524,3 +534,4 @@ async def _(c, iq):
             ]
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
+    """
