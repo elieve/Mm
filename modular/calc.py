@@ -99,7 +99,7 @@ async def _(c, cq):
 @ky.inline("^calcs")
 async def _(c, iq):
     print(f"Inline query diterima: {iq.query}")
-    if len(iq.query) == 0:
+    if len(iq.query) == 0 or iq.query.lower() == "calcs":
         answers = [
             InlineQueryResultArticle(
                 title="Calculator",
@@ -110,7 +110,7 @@ async def _(c, iq):
                 reply_markup=CALCULATE_BUTTONS,
             )
         ]
-        print("Inline query kosong, menampilkan kalkulator baru")
+        print("Inline query kosong atau 'calcs', menampilkan kalkulator baru")
     else:
         try:
             data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
@@ -140,3 +140,4 @@ async def _(c, iq):
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     print("Inline query dijawab")
+    
