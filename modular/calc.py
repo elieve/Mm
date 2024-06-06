@@ -9,45 +9,46 @@ __help__ = "Calculator"
 
 CALCULATE_TEXT = "Mix-Userbot Calculator"
 
-CALCULATE_BUTTONS = InlineKeyboardMarkup(
-    [
+def get_calculator_buttons(teks):
+    return InlineKeyboardMarkup(
         [
-            InlineKeyboardButton("(", callback_data="("),
-            InlineKeyboardButton(")", callback_data=")"),
-            InlineKeyboardButton("^", callback_data="^"),
-        ],
-        [
-            InlineKeyboardButton("%", callback_data="%"),
-            InlineKeyboardButton("AC", callback_data="AC"),
-            InlineKeyboardButton("DEL", callback_data="DEL"),
-            InlineKeyboardButton("÷", callback_data="/"),
-        ],
-        [
-            InlineKeyboardButton("7", callback_data="7"),
-            InlineKeyboardButton("8", callback_data="8"),
-            InlineKeyboardButton("9", callback_data="9"),
-            InlineKeyboardButton("×", callback_data="*"),
-        ],
-        [
-            InlineKeyboardButton("4", callback_data="4"),
-            InlineKeyboardButton("5", callback_data="5"),
-            InlineKeyboardButton("6", callback_data="6"),
-            InlineKeyboardButton("-", callback_data="-"),
-        ],
-        [
-            InlineKeyboardButton("1", callback_data="1"),
-            InlineKeyboardButton("2", callback_data="2"),
-            InlineKeyboardButton("3", callback_data="3"),
-            InlineKeyboardButton("+", callback_data="+"),
-        ],
-        [
-            InlineKeyboardButton("00", callback_data="00"),
-            InlineKeyboardButton("0", callback_data="0"),
-            InlineKeyboardButton("=", callback_data="="),
-            InlineKeyboardButton(".", callback_data="."),
-        ],
-    ]
-)
+            [
+                InlineKeyboardButton("(", callback_data=f"({teks}"),
+                InlineKeyboardButton(")", callback_data=f"){teks}"),
+                InlineKeyboardButton("^", callback_data=f"^{teks}"),
+            ],
+            [
+                InlineKeyboardButton("%", callback_data=f"%{teks}"),
+                InlineKeyboardButton("AC", callback_data="AC"),
+                InlineKeyboardButton("DEL", callback_data="DEL"),
+                InlineKeyboardButton("÷", callback_data=f"/{teks}"),
+            ],
+            [
+                InlineKeyboardButton("7", callback_data=f"7{teks}"),
+                InlineKeyboardButton("8", callback_data=f"8{teks}"),
+                InlineKeyboardButton("9", callback_data=f"9{teks}"),
+                InlineKeyboardButton("×", callback_data=f"*{teks}"),
+            ],
+            [
+                InlineKeyboardButton("4", callback_data=f"4{teks}"),
+                InlineKeyboardButton("5", callback_data=f"5{teks}"),
+                InlineKeyboardButton("6", callback_data=f"6{teks}"),
+                InlineKeyboardButton("-", callback_data=f"-{teks}"),
+            ],
+            [
+                InlineKeyboardButton("1", callback_data=f"1{teks}"),
+                InlineKeyboardButton("2", callback_data=f"2{teks}"),
+                InlineKeyboardButton("3", callback_data=f"3{teks}"),
+                InlineKeyboardButton("+", callback_data=f"+{teks}"),
+            ],
+            [
+                InlineKeyboardButton("00", callback_data=f"00{teks}"),
+                InlineKeyboardButton("0", callback_data=f"0{teks}"),
+                InlineKeyboardButton("=", callback_data=f"={teks}"),
+                InlineKeyboardButton(".", callback_data=f".{teks}"),
+            ],
+        ]
+    )
 
 
 @ky.ubot("calc|kalku", sudo=True)
@@ -91,7 +92,7 @@ async def _(c, cq):
         await cq.edit_message_text(
             text=f"{teks}\n\n\n{CALCULATE_TEXT}",
             disable_web_page_preview=True,
-            reply_markup=CALCULATE_BUTTONS,
+            reply_markup=get_calculator_buttons(teks),
         )
         print(f"Pesan setelah mengedit: {teks}")
     except Exception as e:
@@ -108,7 +109,7 @@ async def _(c, iq):
                 title="Calculator",
                 description="New calculator",
                 input_message_content=InputTextMessageContent(CALCULATE_TEXT),
-                reply_markup=CALCULATE_BUTTONS,
+                reply_markup=get_calculator_buttons(""),
             )
         ]
     else:
