@@ -83,6 +83,7 @@ def calc_help():
 @ky.callback("calc_")
 async def _(c, cq):
     hitung = []
+    kb = calc_help()
     datanya = cq.data
     data = cq.data.split("_")[1]
     teks = "Mix-Userbot Calculator"
@@ -96,15 +97,13 @@ async def _(c, cq):
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
-            nan = f"{hitung}\n\n".join(teks)
-            kb = calc_help()
+            nan = f"{hitung}\n\n{teks}"
             await cq.edit_message_text(
                 text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
             )
     elif data == "AC":
         hitung = []
-        nan = f"{hitung}\n\n".join(teks)
-        kb = calc_help()
+        nan = f"{hitung}\n\n{teks}"
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
     elif data == "=":
         try:
@@ -138,8 +137,7 @@ async def _(c, cq):
             )
         tambah = datanya[1:] + data[0]
         hitung.append(tambah)
-        nan = f"{hitung}\n\n".join(teks)
-        kb = calc_help()
+        nan = f"{hitung}\n\n{teks}"
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
 
 
