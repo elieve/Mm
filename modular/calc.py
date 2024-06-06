@@ -74,7 +74,7 @@ async def _(c, cq):
     if data.startswith("AC"):
         teks = ""
     elif data.startswith("DEL"):
-        teks = message_text[:-1]
+        teks = cq.message.text.split("\n")[0].strip().split("=")[0].strip()[:-1]
     elif data.startswith("="):
         try:
             expression = data[1:]
@@ -83,6 +83,8 @@ async def _(c, cq):
             )
         except Exception:
             teks = "Error"
+    elif data.startswith("00"):
+        teks = data[1:] + "00"
     else:
         teks = data[1:] + data[0]
 
