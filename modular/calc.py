@@ -53,15 +53,20 @@ CALCULATE_BUTTONS = InlineKeyboardMarkup(
 @ky.ubot("calc|kalku", sudo=True)
 async def _(c: nlx, m):
     try:
+        print("Menerima perintah calc dari user")
         x = await c.get_inline_bot_results(bot.me.username, "calcs")
+        print("Inline bot results berhasil didapatkan")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
+        print("Hasil inline bot dibalas ke user")
     except Exception as error:
+        print(f"Error pada perintah calc: {error}")
         await m.reply_text(str(error))
 
 
 @ky.callback("^.*")
 async def _(c, cq):
     data = cq.data
+    print(f"Callback data diterima: {data}")
     message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     text = "" if CALCULATE_TEXT in message_text else message_text
     if data == "=":
@@ -69,24 +74,31 @@ async def _(c, cq):
             text = str(
                 eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
             )
-        except Exception:
+            print(f"Hasil evaluasi: {text}")
+        except Exception as e:
+            print(f"Error evaluasi: {e}")
             text = "Error"
     elif data == "DEL":
         text = message_text[:-1]
+        print(f"Teks setelah DEL: {text}")
     elif data == "AC":
         text = ""
+        print("Teks setelah AC: Kosong")
     else:
         text = message_text + data
+        print(f"Teks setelah menambahkan data: {text}")
 
     await cq.message.edit_text(
         text=f"{text}\n\n\n{CALCULATE_TEXT}",
         disable_web_page_preview=True,
         reply_markup=CALCULATE_BUTTONS,
     )
+    print("Pesan hasil kalkulasi diubah")
 
 
 @ky.inline("^calcs")
 async def _(c, iq):
+    print(f"Inline query diterima: {iq.query}")
     if len(iq.query) == 0:
         answers = [
             InlineQueryResultArticle(
@@ -98,6 +110,7 @@ async def _(c, iq):
                 reply_markup=CALCULATE_BUTTONS,
             )
         ]
+        print("Inline query kosong, menampilkan kalkulator baru")
     else:
         try:
             data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
@@ -111,7 +124,9 @@ async def _(c, iq):
                     ),
                 )
             ]
-        except Exception:
+            print(f"Evaluasi sukses: {data} = {result}")
+        except Exception as e:
+            print(f"Error evaluasi pada inline query: {e}")
             answers = [
                 InlineQueryResultArticle(
                     title="Error",
@@ -121,5 +136,8 @@ async def _(c, iq):
                     ),
                 )
             ]
+            print("Evaluasi gagal, menampilkan Invalid Expression")
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
+    print("Inline query dijawab")
+    
