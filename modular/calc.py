@@ -12,44 +12,44 @@ __modules__ = "Calculator"
 __help__ = "Calculator"
 
 CALCULATE_TEXT = "Mix-Userbot Calculator"
+hitung = []
 
-
-def get_calculator_buttons(teks):
+def get_calculator_buttons():
     return InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("(", callback_data=f"{teks}("),
-                InlineKeyboardButton(")", callback_data=f"{teks})"),
+                InlineKeyboardButton("(", callback_data="("),
+                InlineKeyboardButton(")", callback_data=")"),
                 InlineKeyboardButton("CLOSE", callback_data="KLOS"),
             ],
             [
                 InlineKeyboardButton("AC", callback_data="AC"),
                 InlineKeyboardButton("DEL", callback_data="DEL"),
-                InlineKeyboardButton("%", callback_data=f"{teks}%"),
-                InlineKeyboardButton("÷", callback_data=f"{teks}/"),
+                InlineKeyboardButton("%", callback_data="%"),
+                InlineKeyboardButton("÷", callback_data="/"),
             ],
             [
-                InlineKeyboardButton("7", callback_data=f"{teks}7"),
-                InlineKeyboardButton("8", callback_data=f"{teks}8"),
-                InlineKeyboardButton("9", callback_data=f"{teks}9"),
-                InlineKeyboardButton("×", callback_data=f"{teks}*"),
+                InlineKeyboardButton("7", callback_data="7"),
+                InlineKeyboardButton("8", callback_data="8"),
+                InlineKeyboardButton("9", callback_data="9"),
+                InlineKeyboardButton("×", callback_data="*"),
             ],
             [
-                InlineKeyboardButton("4", callback_data=f"{teks}4"),
-                InlineKeyboardButton("5", callback_data=f"{teks}5"),
-                InlineKeyboardButton("6", callback_data=f"{teks}6"),
-                InlineKeyboardButton("-", callback_data=f"{teks}-"),
+                InlineKeyboardButton("4", callback_data="4"),
+                InlineKeyboardButton("5", callback_data="5"),
+                InlineKeyboardButton("6", callback_data="6"),
+                InlineKeyboardButton("-", callback_data="-"),
             ],
             [
-                InlineKeyboardButton("1", callback_data=f"{teks}1"),
-                InlineKeyboardButton("2", callback_data=f"{teks}2"),
-                InlineKeyboardButton("3", callback_data=f"{teks}3"),
-                InlineKeyboardButton("+", callback_data=f"{teks}+"),
+                InlineKeyboardButton("1", callback_data="1"),
+                InlineKeyboardButton("2", callback_data="2"),
+                InlineKeyboardButton("3", callback_data="3"),
+                InlineKeyboardButton("+", callback_data="+"),
             ],
             [
-                InlineKeyboardButton("00", callback_data=f"{teks}00"),
-                InlineKeyboardButton("0", callback_data=f"{teks}0"),
-                InlineKeyboardButton(".", callback_data=f"{teks}."),
+                InlineKeyboardButton("00", callback_data="00"),
+                InlineKeyboardButton("0", callback_data="0"),
+                InlineKeyboardButton(".", callback_data="."),
                 InlineKeyboardButton("=", callback_data="="),
             ],
         ]
@@ -70,27 +70,23 @@ async def _(c: nlx, m):
 
 @ky.callback("^.*")
 async def _(c, cq):
+    global hitung
     data = cq.data
-    if cq.message and cq.message.text:
-        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
-        text = "" if CALCULATE_TEXT in message_text else message_text
-    else:
-        message_text = ""
-        text = ""
 
     if data == "DEL":
-        text = text[:-1]
+        if hitung:
+            hitung = hitung[:-1]
     elif data == "AC":
-        text = ""
+        hitung = []
     elif data == "=":
         try:
-            text = ""
-            hasil = str(
-                eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
-            cq.answer(f"{hasil}", show_alert=True)
-        except Exception:
-            text = "Error"
+            expression = ''.join(hitung).replace("×", "*").replace("÷", "/").replace("^", "**")
+            hasil = str(eval(expression))
+            await cq.answer(f"Hasil: {hasil}", show_alert=True)
+            hitung = [hasil]
+        except Exception as e:
+            await cq.answer(f"Error: {str(e)}", show_alert=True)
+            hitung = []
     elif data == "KLOS":
         if cq.from_user.id != nlx.me.id:
             return await cq.answer(
@@ -102,19 +98,20 @@ async def _(c, cq):
         elif cq.inline_message_id:
             unPacked = unpacked2(cq.inline_message_id)
             await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+        hitung = []
         return
     else:
-        text = text + data
+        hitung.append(data)
 
+    current_text = ''.join(hitung)
     try:
         await cq.message.edit_text(
-            text=f"{text}\n\n\n{CALCULATE_TEXT}",
+            text=f"{current_text}\n\n\n{CALCULATE_TEXT}",
             disable_web_page_preview=True,
-            reply_markup=get_calculator_buttons(text),
+            reply_markup=get_calculator_buttons(),
         )
-    except Exception:
-        await cq.answer(f"{text}")
-        # await cq.answer(f"Error: {str(e)}", show_alert=True)
+    except Exception as e:
+        await cq.answer(f"Error: {str(e)}", show_alert=True)
 
 
 @ky.inline("^calcs")
@@ -125,7 +122,7 @@ async def _(c, iq):
                 title="Calculator",
                 description="New calculator",
                 input_message_content=InputTextMessageContent(CALCULATE_TEXT),
-                reply_markup=get_calculator_buttons(""),
+                reply_markup=get_calculator_buttons(),
             )
         ]
     else:
@@ -170,3 +167,21 @@ def unpacked2(inline_message_id: str):
         "inline_message_id": inline_message_id,
     }
     return Atr(temp)
+
+
+@ky.callback("^KLOS")
+async def _(_, cq):
+    if cq.from_user.id != nlx.me.id:
+        return await cq.answer(
+            "Hanya pembuat Mix-Userbot yang dapat menutup kalkulator.",
+            show_alert=True,
+        )
+
+    if cq.message:
+        await cq.message.delete()
+    elif cq.inline_message_id:
+        unPacked = unpacked2(cq.inline_message_id)
+        await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+    global hitung
+    hitung = []
+    return
