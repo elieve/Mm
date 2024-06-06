@@ -90,7 +90,7 @@ async def _(c, cq):
         await cq.edit_message_text(
             text=f"{teks}\n\n\n{CALCULATE_TEXT}",
             disable_web_page_preview=True,
-            reply_markup=CALCULATE_BUTTONS,
+            reply_markup=get_calculator_buttons(teks),
         )
     except Exception as e:
         print(f"Error: {e}")
