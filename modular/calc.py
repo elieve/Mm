@@ -69,7 +69,7 @@ async def _(c, cq):
     if cq.message and cq.message.text:
         message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     else:
-        message_text = ""
+        pass
 
     if data.startswith("AC"):
         teks = ""
