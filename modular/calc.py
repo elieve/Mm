@@ -14,7 +14,6 @@ __help__ = "Calculator"
 CALCULATE_TEXT = "Mix-Userbot Calculator"
 hitung = []
 
-
 def get_calculator_buttons():
     return InlineKeyboardMarkup(
         [
@@ -81,9 +80,7 @@ async def _(c, cq):
         hitung = []
     elif data == "=":
         try:
-            expression = (
-                "".join(hitung).replace("×", "*").replace("÷", "/").replace("^", "**")
-            )
+            expression = ''.join(hitung).replace("×", "*").replace("÷", "/").replace("^", "**")
             hasil = str(eval(expression))
             await cq.answer(f"Hasil: {hasil}", show_alert=True)
             hitung = [hasil]
@@ -106,15 +103,19 @@ async def _(c, cq):
     else:
         hitung.append(data)
 
-    current_text = "".join(hitung)
-    try:
-        await cq.message.edit_text(
-            text=f"{current_text}\n\n\n{CALCULATE_TEXT}",
-            disable_web_page_preview=True,
-            reply_markup=get_calculator_buttons(),
-        )
-    except Exception as e:
-        await cq.answer(f"Error: {str(e)}", show_alert=True)
+    current_text = ''.join(hitung)
+
+    if cq.message:
+        try:
+            await cq.message.edit_text(
+                text=f"{current_text}\n\n\n{CALCULATE_TEXT}",
+                disable_web_page_preview=True,
+                reply_markup=get_calculator_buttons(),
+            )
+        except Exception as e:
+            await cq.answer(f"Error: {str(e)}", show_alert=True)
+    else:
+        await cq.answer(f"{current_text}")
 
 
 @ky.inline("^calcs")
@@ -188,3 +189,4 @@ async def _(_, cq):
     global hitung
     hitung = []
     return
+  
