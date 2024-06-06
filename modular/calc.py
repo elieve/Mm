@@ -57,10 +57,11 @@ def get_calculator_buttons(teks):
 @ky.ubot("calc|kalku", sudo=True)
 async def _(c: nlx, m):
     try:
-        x = await c.get_inline_bot_results(bot.me.username, "calcs")
+        x = await c.get_inline_bot_results(bot.me.username, f"calcs")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id, quote=True)
+        return
     except Exception as error:
-        await m.reply_text(str(error))
+        return await m.reply_text(str(error))
 
 
 @ky.callback("^.*")
@@ -69,7 +70,7 @@ async def _(c, cq):
     if data.startswith("AC"):
         teks = ""
     elif data.startswith("DEL"):
-        teks = cq.message.teks.split("\n")[0].strip().split("=")[0].strip()[:-1]
+        teks = cq.message.text.split("\n")[0].strip().split("=")[0].strip()[:-1]
     elif data.startswith("="):
         try:
             expression = ast.leteral_eval(data[1:])
@@ -79,11 +80,15 @@ async def _(c, cq):
     else:
         teks = data[1:] + data[0]
 
-    await cq.edit_message_text(
-        teks=f"{teks}\n\n\n{CALCULATE_TEXT}",
-        disable_web_page_preview=True,
-        reply_markup=get_calculator_buttons(teks),
-    )
+    try:
+        await cq.edit_message_text(
+            text=f"{teks}\n\n\n{CALCULATE_TEXT}",
+            disable_web_page_preview=True,
+            reply_markup=get_calculator_buttons(teks),
+        )
+    except:
+        await cq.answer(f"{teks}\n\n\n{CALCULATE_TEXT}", show_alert=True)
+        return
 
 
 @ky.inline("^calcs")
@@ -124,3 +129,4 @@ async def _(c, iq):
             ]
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
+    return
