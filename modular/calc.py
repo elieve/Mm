@@ -11,7 +11,7 @@ from Mix import *
 __modules__ = "Calculator"
 __help__ = "Calculator"
 
-CALCULATE_TEXT = "Mix-Userbot Calculator"
+CALCULATE_TEXT = "Mix-Userbot Calculator\n\n©️ [DEVELOPER](tg://resolve?domain=diemgausahbawel)"
 hitung = []
 
 
