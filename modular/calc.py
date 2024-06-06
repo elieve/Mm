@@ -94,7 +94,7 @@ async def _(c: nlx, m):
         await m.reply_text(str(error))
 
 
-@ky.callback("^.*")
+@ky.callback("^[0-9/*\-+().=ACDEL%]{1}$")
 async def _(c, cq):
     global hitung
     data = cq.data
