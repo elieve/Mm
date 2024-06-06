@@ -1,5 +1,3 @@
-
-
 from Mix import bot, ky, nlx
 
 __modles__ = "Calculator"
