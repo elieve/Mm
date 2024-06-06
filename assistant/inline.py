@@ -28,7 +28,7 @@ from modular.copy_con import *
 from modular.pmpermit import *
 
 from .call_markdown import markdown_help
-
+from .calc_calc import calc_help
 
 async def diinline(q):
     chats = []
