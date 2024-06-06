@@ -83,10 +83,10 @@ async def _(c, cq):
 
     try:
         await cq.edit_message_text(
-            text=f"{teks}\n\n\n{CALCULATE_TEXT}",
-            disable_web_page_preview=True,
-            reply_markup=get_calculator_buttons(teks),
-        )
+          text=f"{teks}\n\n\n{CALCULATE_TEXT}",
+          disable_web_page_preview=True,
+          reply_markup=get_calculator_buttons(teks),
+       )
     except:
         await cq.answer(f"{teks}\n\n\n{CALCULATE_TEXT}", show_alert=True)
         return
