@@ -1,4 +1,3 @@
-import ast
 
 from pyrogram import *
 from pyrogram.enums import *
@@ -74,7 +73,9 @@ async def _(c, cq):
     elif data.startswith("="):
         try:
             expression = data[1:]
-            text = str(eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**")))
+            text = str(
+                eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
+            )
         except Exception:
             teks = "Error"
     else:
