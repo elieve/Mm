@@ -14,7 +14,6 @@ from gc import get_objects
 from time import time
 
 import requests
-from asisstant.call_calc import *
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
