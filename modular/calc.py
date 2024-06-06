@@ -62,10 +62,7 @@ async def _(c: nlx, m):
     try:
         x = await c.get_inline_bot_results(bot.me.username, "calcs")
         await m.reply_inline_bot_result(x.query_id, x.results[0].id)
-        print("Inline bot results berhasil didapatkan")
-        print("Hasil inline bot dibalas ke user")
     except Exception as error:
-        print(f"Error mendapatkan hasil inline bot: {error}")
         await m.reply_text(str(error))
 
 
@@ -73,7 +70,11 @@ async def _(c: nlx, m):
 async def _(c, cq):
     global hitung
     data = cq.data
-
+    if cq.from_user.id != nlx.me.id:
+            return await cq.answer(
+                f"BELI LAH Mix-Userbot WAHAI {cq.from_user.first_name} {cq.from_user.last_name or ""}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
+                show_alert=True,
+            )
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
@@ -93,7 +94,7 @@ async def _(c, cq):
     elif data == "KLOS":
         if cq.from_user.id != nlx.me.id:
             return await cq.answer(
-                "Hanya pembuat Mix-Userbot yang dapat menutup kalkulator.",
+                f"{cq.from_user.first_name} {cq.from_user.last_name or ""} KAYA KONTOL! SIRIK AJA LO!\nGAUSAH DIPENCET! ANJING! MEMEK! NGENTOT! BELI SENDIRI SANA!!",
                 show_alert=True,
             )
         if cq.message:
