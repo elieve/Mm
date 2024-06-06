@@ -76,8 +76,6 @@ def calc_help():
             [
                 (cgr("ttup"), "calc_KLOS"),
             ],
-            True,
-            "cls_hlp",
         ]
     )
 
