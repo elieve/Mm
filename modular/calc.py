@@ -67,6 +67,7 @@ async def _(c: nlx, m):
 
 import ast
 
+
 @ky.callback("^.*")
 async def _(c, cq):
     data = cq.data
