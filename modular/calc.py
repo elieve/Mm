@@ -9,6 +9,148 @@ __help__ = "Calculator"
 
 CALCULATE_TEXT = "Mix-Userbot Calculator"
 
+CALCULATE_BUTTONS = InlineKeyboardMarkup(
+    [
+        [
+            InlineKeyboardButton("(", callback_data="("),
+            InlineKeyboardButton(")", callback_data=")"),
+            InlineKeyboardButton("^", callback_data="^"),
+        ],
+        [
+            InlineKeyboardButton("%", callback_data="%"),
+            InlineKeyboardButton("AC", callback_data="AC"),
+            InlineKeyboardButton("DEL", callback_data="DEL"),
+            InlineKeyboardButton("÷", callback_data="/"),
+        ],
+        [
+            InlineKeyboardButton("7", callback_data="7"),
+            InlineKeyboardButton("8", callback_data="8"),
+            InlineKeyboardButton("9", callback_data="9"),
+            InlineKeyboardButton("×", callback_data="*"),
+        ],
+        [
+            InlineKeyboardButton("4", callback_data="4"),
+            InlineKeyboardButton("5", callback_data="5"),
+            InlineKeyboardButton("6", callback_data="6"),
+            InlineKeyboardButton("-", callback_data="-"),
+        ],
+        [
+            InlineKeyboardButton("1", callback_data="1"),
+            InlineKeyboardButton("2", callback_data="2"),
+            InlineKeyboardButton("3", callback_data="3"),
+            InlineKeyboardButton("+", callback_data="+"),
+        ],
+        [
+            InlineKeyboardButton("00", callback_data="00"),
+            InlineKeyboardButton("0", callback_data="0"),
+            InlineKeyboardButton("=", callback_data="="),
+            InlineKeyboardButton(".", callback_data="."),
+        ],
+    ]
+)
+
+@ky.ubot("calc|kalku", sudo=True)
+async def _(c: nlx, m):
+    try:
+        x = await c.get_inline_bot_results(bot.me.username, "calcs")
+        await m.reply_inline_bot_result(x.query_id, x.results[0].id)
+        print("Inline bot results berhasil didapatkan")
+        print("Hasil inline bot dibalas ke user")
+    except Exception as error:
+        print(f"Error mendapatkan hasil inline bot: {error}")
+        await m.reply_text(str(error))
+
+
+@ky.callback("^.*")
+async def _(c, cq):
+    data = cq.data
+    teks = ""
+    if cq.message and cq.message.text:
+        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+    else:
+        message_text = ""
+
+    if data == "AC":
+        teks = ""
+    elif data == "DEL":
+        teks = message_text[:-1]
+    elif data == "=":
+        try:
+            expression = message_text
+            teks = str(
+                eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
+            )
+        except Exception as e:
+            print(f"Error evaluasi: {e}")
+            teks = "Error"
+    else:
+        teks = message_text + data
+
+    try:
+        await cq.edit_message_text(
+            text=f"{teks}\n\n\n{CALCULATE_TEXT}",
+            disable_web_page_preview=True,
+            reply_markup=CALCULATE_BUTTONS,
+        )
+        print(f"Pesan setelah mengedit: {teks}")
+    except Exception as e:
+        print(f"Error editing message: {e}")
+        await cq.answer(f"Error editing message: {e}", show_alert=True)
+        return
+
+
+@ky.inline("^calcs")
+async def _(c, iq):
+    if len(iq.query) == 0:
+        answers = [
+            InlineQueryResultArticle(
+                title="Calculator",
+                description="New calculator",
+                input_message_content=InputTextMessageContent(CALCULATE_TEXT),
+                reply_markup=CALCULATE_BUTTONS,
+            )
+        ]
+    else:
+        try:
+            data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
+            result = str(eval(data))
+            answers = [
+                InlineQueryResultArticle(
+                    title="Answer",
+                    description=f"Result: {result}",
+                    input_message_content=InputTextMessageContent(
+                        message_text=f"{data} = {result}", disable_web_page_preview=True
+                    ),
+                )
+            ]
+        except Exception as e:
+            print(f"Error evaluasi pada inline query: {e}")
+            answers = [
+                InlineQueryResultArticle(
+                    title="Error",
+                    description="Invalid Expression",
+                    input_message_content=InputTextMessageContent(
+                        message_text="Invalid Expression", disable_web_page_preview=True
+                    ),
+                )
+            ]
+
+    await c.answer_inline_query(iq.id, cache_time=300, results=answers)
+    print("Inline query dijawab")
+    
+    
+"""
+from pyrogram import *
+from pyrogram.enums import *
+from pyrogram.types import *
+
+from Mix import bot, ky, nlx
+
+__modules__ = "Calculator"
+__help__ = "Calculator"
+
+CALCULATE_TEXT = "Mix-Userbot Calculator"
+
 
 def get_calculator_buttons(teks):
     return InlineKeyboardMarkup(
@@ -139,3 +281,4 @@ async def _(c, iq):
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     return
+"""
