@@ -145,24 +145,6 @@ async def _(c, cq):
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
 
 
-"""
-    current_text = "".join(hitung)
-
-    if cq.message:
-        try:
-            kb = calc_help()
-            await cq.message.edit_text(
-                text=f"{hitung}\n\n\n{teks}",
-                disable_web_page_preview=True,
-                reply_markup=kb,
-            )
-        except Exception as e:
-            await cq.answer(f"Error: {str(e)}", show_alert=True)
-    else:
-        await cq.answer(f"{current_text}")
-"""
-
-
 def unpacked2(inline_message_id: str):
     dc_id, message_id, chat_id, query_id = unpack(
         "<iiiq",
