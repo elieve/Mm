@@ -26,6 +26,7 @@ from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
 from modular.pmpermit import *
+from asisstant.call_calc import *
 
 from .call_markdown import markdown_help
 
@@ -486,78 +487,39 @@ async def _(c, iq):
     await c.answer_inline_query(iq.id, cache_time=0, results=meki)
 
 
-"""
-@ky.inline("^calc")
-async def inline(c, iq):
-    CALCULATE_BUTTONS = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("(", callback_data="("),
-                InlineKeyboardButton(")", callback_data=")"),
-                InlineKeyboardButton("^", callback_data="^"),
-            ],
-            [
-                InlineKeyboardButton("%", callback_data="%"),
-                InlineKeyboardButton("AC", callback_data="AC"),
-                InlineKeyboardButton("DEL", callback_data="DEL"),
-                InlineKeyboardButton("÷", callback_data="/"),
-            ],
-            [
-                InlineKeyboardButton("7", callback_data="7"),
-                InlineKeyboardButton("8", callback_data="8"),
-                InlineKeyboardButton("9", callback_data="9"),
-                InlineKeyboardButton("×", callback_data="*"),
-            ],
-            [
-                InlineKeyboardButton("4", callback_data="4"),
-                InlineKeyboardButton("5", callback_data="5"),
-                InlineKeyboardButton("6", callback_data="6"),
-                InlineKeyboardButton("-", callback_data="-"),
-            ],
-            [
-                InlineKeyboardButton("1", callback_data="1"),
-                InlineKeyboardButton("2", callback_data="2"),
-                InlineKeyboardButton("3", callback_data="3"),
-                InlineKeyboardButton("+", callback_data="+"),
-            ],
-            [
-                InlineKeyboardButton("00", callback_data="00"),
-                InlineKeyboardButton("0", callback_data="0"),
-                InlineKeyboardButton("=", callback_data="="),
-                InlineKeyboardButton(".", callback_data="."),
-            ],
+@ky.inline("^calcs")
+async def _(c, iq):
+    if len(iq.query) == 0 or iq.query.lower() == "calcs":
+        answers = [
+            InlineQueryResultArticle(
+                title="Calculator",
+                description="New calculator",
+                input_message_content=InputTextMessageContent(CALCULATE_TEXT),
+                reply_markup=get_calculator_buttons(),
+            )
         ]
-    )
-    CALCULATE_TEXT = "Mix-Userbot Calculator"
-    if len(iq.query) == 0:
-        try:
-            answers = [
-                InlineQueryResultArticle(
-                    title="Calculator",
-                    description="New calculator",
-                    input_message_content=InputTextMessageContent(
-                        text=CALCULATE_TEXT, disable_web_page_preview=True
-                    ),
-                    reply_markup=CALCULATE_BUTTONS,
-                )
-            ]
-        except Exception as error:
-            print(error)
     else:
         try:
-            data = update.query.replace("×", "*").replace("÷", "/")
-            result = str(eval(text))
+            data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
+            result = str(eval(data))
             answers = [
                 InlineQueryResultArticle(
                     title="Answer",
                     description=f"Result: {result}",
                     input_message_content=InputTextMessageContent(
-                        text=f"{data} = {result}", disable_web_page_preview=True
+                        message_text=f"{data} = {result}", disable_web_page_preview=True
                     ),
                 )
             ]
-        except:
-            pass
-    await update.answer(answers)
-    await c.answer_inline_query(update.id, cache_time=0, results=answers)
-"""
+        except Exception:
+            answers = [
+                InlineQueryResultArticle(
+                    title="Error",
+                    description="Invalid Expression",
+                    input_message_content=InputTextMessageContent(
+                        message_text="Invalid Expression", disable_web_page_preview=True
+                    ),
+                )
+            ]
+
+    await c.answer_inline_query(iq.id, cache_time=300, results=answers)
