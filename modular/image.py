@@ -13,7 +13,7 @@ from pyrogram.types import InputMediaPhoto
 
 from Mix import *
 
-__models__ = "Image"
+__modles__ = "Image"
 __help__ = get_cgr("help_img")
 
 
