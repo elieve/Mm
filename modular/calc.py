@@ -64,12 +64,8 @@ async def _(c, cq):
     data = cq.data
     message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
     text = "" if CALCULATE_TEXT in message_text else message_text
-
     if data == "=":
         try:
-            allowed_chars = set("0123456789+-*/(). ")
-            if not all(char in allowed_chars for char in text):
-                raise ValueError("Invalid characters in expression")
             text = str(
                 eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
             )
@@ -96,16 +92,15 @@ async def _(c, iq):
             InlineQueryResultArticle(
                 title="Calculator",
                 description="New calculator",
-                input_message_content=InputTextMessageContent(CALCULATE_TEXT),
+                input_message_content=InputTextMessageContent(
+                    message_text=CALCULATE_TEXT, disable_web_page_preview=True
+                ),
                 reply_markup=CALCULATE_BUTTONS,
             )
         ]
     else:
         try:
             data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
-            allowed_chars = set("0123456789+-*/(). ")
-            if not all(char in allowed_chars for char in data):
-                raise ValueError("Invalid characters in expression")
             result = str(eval(data))
             answers = [
                 InlineQueryResultArticle(
