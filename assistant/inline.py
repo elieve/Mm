@@ -14,6 +14,7 @@ from gc import get_objects
 from time import time
 
 import requests
+from asisstant.call_calc import *
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
@@ -26,7 +27,6 @@ from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
 from modular.pmpermit import *
-from asisstant.call_calc import *
 
 from .call_markdown import markdown_help
 
