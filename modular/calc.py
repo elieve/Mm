@@ -9,45 +9,46 @@ __help__ = "Calculator"
 
 CALCULATE_TEXT = "Mix-Userbot Calculator"
 
-CALCULATE_BUTTONS = InlineKeyboardMarkup(
-    [
+def get_calculator_buttons(current_text):
+    return InlineKeyboardMarkup(
         [
-            InlineKeyboardButton("(", callback_data="("),
-            InlineKeyboardButton(")", callback_data=")"),
-            InlineKeyboardButton("^", callback_data="^"),
-        ],
-        [
-            InlineKeyboardButton("%", callback_data="%"),
-            InlineKeyboardButton("AC", callback_data="AC"),
-            InlineKeyboardButton("DEL", callback_data="DEL"),
-            InlineKeyboardButton("÷", callback_data="/"),
-        ],
-        [
-            InlineKeyboardButton("7", callback_data="7"),
-            InlineKeyboardButton("8", callback_data="8"),
-            InlineKeyboardButton("9", callback_data="9"),
-            InlineKeyboardButton("×", callback_data="*"),
-        ],
-        [
-            InlineKeyboardButton("4", callback_data="4"),
-            InlineKeyboardButton("5", callback_data="5"),
-            InlineKeyboardButton("6", callback_data="6"),
-            InlineKeyboardButton("-", callback_data="-"),
-        ],
-        [
-            InlineKeyboardButton("1", callback_data="1"),
-            InlineKeyboardButton("2", callback_data="2"),
-            InlineKeyboardButton("3", callback_data="3"),
-            InlineKeyboardButton("+", callback_data="+"),
-        ],
-        [
-            InlineKeyboardButton("00", callback_data="00"),
-            InlineKeyboardButton("0", callback_data="0"),
-            InlineKeyboardButton("=", callback_data="="),
-            InlineKeyboardButton(".", callback_data="."),
-        ],
-    ]
-)
+            [
+                InlineKeyboardButton("(", callback_data=f"({current_text}"),
+                InlineKeyboardButton(")", callback_data=f"){current_text}"),
+                InlineKeyboardButton("^", callback_data=f"^{current_text}"),
+            ],
+            [
+                InlineKeyboardButton("%", callback_data=f"%{current_text}"),
+                InlineKeyboardButton("AC", callback_data="AC"),
+                InlineKeyboardButton("DEL", callback_data="DEL"),
+                InlineKeyboardButton("÷", callback_data=f"/{current_text}"),
+            ],
+            [
+                InlineKeyboardButton("7", callback_data=f"7{current_text}"),
+                InlineKeyboardButton("8", callback_data=f"8{current_text}"),
+                InlineKeyboardButton("9", callback_data=f"9{current_text}"),
+                InlineKeyboardButton("×", callback_data=f"*{current_text}"),
+            ],
+            [
+                InlineKeyboardButton("4", callback_data=f"4{current_text}"),
+                InlineKeyboardButton("5", callback_data=f"5{current_text}"),
+                InlineKeyboardButton("6", callback_data=f"6{current_text}"),
+                InlineKeyboardButton("-", callback_data=f"-{current_text}"),
+            ],
+            [
+                InlineKeyboardButton("1", callback_data=f"1{current_text}"),
+                InlineKeyboardButton("2", callback_data=f"2{current_text}"),
+                InlineKeyboardButton("3", callback_data=f"3{current_text}"),
+                InlineKeyboardButton("+", callback_data=f"+{current_text}"),
+            ],
+            [
+                InlineKeyboardButton("00", callback_data=f"00{current_text}"),
+                InlineKeyboardButton("0", callback_data=f"0{current_text}"),
+                InlineKeyboardButton("=", callback_data=f"={current_text}"),
+                InlineKeyboardButton(".", callback_data=f".{current_text}"),
+            ],
+        ]
+    )
 
 
 @ky.ubot("calc|kalku", sudo=True)
@@ -68,43 +69,28 @@ async def _(c, cq):
     data = cq.data
     print(f"Callback data diterima: {data}")
 
-    if cq.message.reply_to_message and cq.message.reply_to_message.text:
-        message_text = (
-            cq.message.reply_to_message.text.split("\n")[0]
-            .strip()
-            .split("=")[0]
-            .strip()
-        )
-    else:
-        print(
-            "Error: cq.message.reply_to_message atau cq.message.reply_to_message.text adalah None"
-        )
-        return
-
-    text = "" if CALCULATE_TEXT in message_text else message_text
-    if data == "=":
+    if data.startswith("AC"):
+        text = ""
+        print("Teks setelah AC: Kosong")
+    elif data.startswith("DEL"):
+        text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()[:-1]
+        print(f"Teks setelah DEL: {text}")
+    elif data.startswith("="):
         try:
-            text = str(
-                eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
+            expression = data[1:]
+            text = str(eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**")))
             print(f"Hasil evaluasi: {text}")
         except Exception as e:
             print(f"Error evaluasi: {e}")
             text = "Error"
-    elif data == "DEL":
-        text = message_text[:-1]
-        print(f"Teks setelah DEL: {text}")
-    elif data == "AC":
-        text = ""
-        print("Teks setelah AC: Kosong")
     else:
-        text = message_text + data
+        text = data[1:] + data[0]
         print(f"Teks setelah menambahkan data: {text}")
 
     await cq.message.edit_text(
         text=f"{text}\n\n\n{CALCULATE_TEXT}",
         disable_web_page_preview=True,
-        reply_markup=CALCULATE_BUTTONS,
+        reply_markup=get_calculator_buttons(text),
     )
     print("Pesan hasil kalkulasi diubah")
 
@@ -120,7 +106,7 @@ async def _(c, iq):
                 input_message_content=InputTextMessageContent(
                     message_text=CALCULATE_TEXT, disable_web_page_preview=True
                 ),
-                reply_markup=CALCULATE_BUTTONS,
+                reply_markup=get_calculator_buttons(""),
             )
         ]
         print("Inline query kosong atau 'calcs', menampilkan kalkulator baru")
@@ -153,3 +139,4 @@ async def _(c, iq):
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
     print("Inline query dijawab")
+    
