@@ -17,39 +17,40 @@ def get_calculator_buttons(teks):
     return InlineKeyboardMarkup(
         [
             [
-                InlineKeyboardButton("(", callback_data=f"({teks}"),
-                InlineKeyboardButton(")", callback_data=f"){teks}"),
+                InlineKeyboardButton("(", callback_data=f"{teks}("),
+                InlineKeyboardButton(")", callback_data=f"{teks})"),
+                InlineKeyboardButton("^", callback_data=f"{teks}^"),
                 InlineKeyboardButton("CLOSE", callback_data="KLOS"),
             ],
             [
-                InlineKeyboardButton("%", callback_data=f"%{teks}"),
                 InlineKeyboardButton("AC", callback_data="AC"),
                 InlineKeyboardButton("DEL", callback_data="DEL"),
-                InlineKeyboardButton("÷", callback_data=f"/{teks}"),
+                InlineKeyboardButton("%", callback_data=f"{teks}%"),
+                InlineKeyboardButton("÷", callback_data=f"{teks}/"),
             ],
             [
-                InlineKeyboardButton("7", callback_data=f"7{teks}"),
-                InlineKeyboardButton("8", callback_data=f"8{teks}"),
-                InlineKeyboardButton("9", callback_data=f"9{teks}"),
-                InlineKeyboardButton("×", callback_data=f"*{teks}"),
+                InlineKeyboardButton("7", callback_data=f"{teks}7"),
+                InlineKeyboardButton("8", callback_data=f"{teks}8"),
+                InlineKeyboardButton("9", callback_data=f"{teks}9"),
+                InlineKeyboardButton("×", callback_data=f"{teks}*"),
             ],
             [
-                InlineKeyboardButton("4", callback_data=f"4{teks}"),
-                InlineKeyboardButton("5", callback_data=f"5{teks}"),
-                InlineKeyboardButton("6", callback_data=f"6{teks}"),
-                InlineKeyboardButton("-", callback_data=f"-{teks}"),
+                InlineKeyboardButton("4", callback_data=f"{teks}4"),
+                InlineKeyboardButton("5", callback_data=f"{teks}5"),
+                InlineKeyboardButton("6", callback_data=f"{teks}6"),
+                InlineKeyboardButton("-", callback_data=f"{teks}-"),
             ],
             [
-                InlineKeyboardButton("1", callback_data=f"1{teks}"),
-                InlineKeyboardButton("2", callback_data=f"2{teks}"),
-                InlineKeyboardButton("3", callback_data=f"3{teks}"),
-                InlineKeyboardButton("+", callback_data=f"+{teks}"),
+                InlineKeyboardButton("1", callback_data=f"{teks}1"),
+                InlineKeyboardButton("2", callback_data=f"{teks}2"),
+                InlineKeyboardButton("3", callback_data=f"{teks}3"),
+                InlineKeyboardButton("+", callback_data=f"{teks}+"),
             ],
             [
-                InlineKeyboardButton("00", callback_data=f"00{teks}"),
-                InlineKeyboardButton("0", callback_data=f"0{teks}"),
-                InlineKeyboardButton("=", callback_data=f"={teks}"),
-                InlineKeyboardButton(".", callback_data=f".{teks}"),
+                InlineKeyboardButton("00", callback_data=f"{teks}00"),
+                InlineKeyboardButton("0", callback_data=f"{teks}0"),
+                InlineKeyboardButton(".", callback_data=f"{teks}."),
+                InlineKeyboardButton("=", callback_data="="),
             ],
         ]
     )
@@ -71,42 +72,37 @@ async def _(c: nlx, m):
 async def _(c, cq):
     data = cq.data
     if cq.message and cq.message.text:
-        teks = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
+        text = "" if CALCULATE_TEXT in message_text else message_text
     else:
-        teks = ""
-
-    if data == "AC":
-        teks = ""
-    elif data == "DEL":
-        teks = teks[:-1]
+        message_text = ""
+        text = ""
+    
+    if data == "DEL":
+        text = text[:-1]
+    elif data == "AC":
+        text = ""
     elif data == "=":
         try:
-            expression = data[1:]
-            teks = str(
-                eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
-        except Exception as e:
-            print(f"Error evaluasi: {e}")
-            teks = "Error"
+            text = str(eval(text.replace("×", "*").replace("÷", "/").replace("^", "**")))
+        except Exception:
+            text = "Error"
     else:
-        teks = data[1:] + data[0]
+        text = text + data
 
     try:
-        await cq.edit_message_text(
-            text=f"{teks}\n\n\n{CALCULATE_TEXT}",
+        await cq.message.edit_text(
+            text=f"{text}\n\n\n{CALCULATE_TEXT}",
             disable_web_page_preview=True,
-            reply_markup=get_calculator_buttons(teks),
+            reply_markup=get_calculator_buttons(text),
         )
-        print(f"Pesan setelah mengedit: {teks}")
     except Exception as e:
-        print(f"Error editing message: {e}")
-        await cq.answer(f"Error editing message: {e}", show_alert=True)
-        return
+        await cq.answer(f"Error: {str(e)}", show_alert=True)
 
 
 @ky.inline("^calcs")
 async def _(c, iq):
-    if len(iq.query) == 0 or iq.query.lower() == "calcs":
+    if len(iq.query) == 0:
         answers = [
             InlineQueryResultArticle(
                 title="Calculator",
@@ -128,8 +124,7 @@ async def _(c, iq):
                     ),
                 )
             ]
-        except Exception as e:
-            print(f"Error evaluasi pada inline query: {e}")
+        except Exception:
             answers = [
                 InlineQueryResultArticle(
                     title="Error",
@@ -141,7 +136,6 @@ async def _(c, iq):
             ]
 
     await c.answer_inline_query(iq.id, cache_time=300, results=answers)
-    print("Inline query dijawab")
 
 
 def unpacked2(inline_message_id: str):
@@ -163,156 +157,16 @@ def unpacked2(inline_message_id: str):
 
 @ky.callback("^KLOS")
 async def _(_, cq):
-    unPacked = unpacked2(cq.inline_message_id)
     if cq.from_user.id != nlx.me.id:
         return await cq.answer(
-            "GAUSAH PENCET-PENCET GOBLOK! ANJING! NGENTOT! LO SIAPA? MAKANYA BELI MIX-USERBOT LAH! DASAR ANJING!",
+            "Hanya pembuat Mix-Userbot yang dapat menutup kalkulator.",
             show_alert=True,
         )
-    await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+    
+    if cq.message:
+        await cq.message.delete()
+    elif cq.inline_message_id:
+        unPacked = unpacked2(cq.inline_message_id)
+        await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
+
     return
-
-
-"""
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.types import *
-
-from Mix import bot, ky, nlx
-
-__modules__ = "Calculator"
-__help__ = "Calculator"
-
-CALCULATE_TEXT = "Mix-Userbot Calculator"
-
-
-def get_calculator_buttons(teks):
-    return InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("(", callback_data=f"({teks}"),
-                InlineKeyboardButton(")", callback_data=f"){teks}"),
-                InlineKeyboardButton("^", callback_data=f"^{teks}"),
-            ],
-            [
-                InlineKeyboardButton("%", callback_data=f"%{teks}"),
-                InlineKeyboardButton("AC", callback_data="AC"),
-                InlineKeyboardButton("DEL", callback_data="DEL"),
-                InlineKeyboardButton("÷", callback_data=f"/{teks}"),
-            ],
-            [
-                InlineKeyboardButton("7", callback_data=f"7{teks}"),
-                InlineKeyboardButton("8", callback_data=f"8{teks}"),
-                InlineKeyboardButton("9", callback_data=f"9{teks}"),
-                InlineKeyboardButton("×", callback_data=f"*{teks}"),
-            ],
-            [
-                InlineKeyboardButton("4", callback_data=f"4{teks}"),
-                InlineKeyboardButton("5", callback_data=f"5{teks}"),
-                InlineKeyboardButton("6", callback_data=f"6{teks}"),
-                InlineKeyboardButton("-", callback_data=f"-{teks}"),
-            ],
-            [
-                InlineKeyboardButton("1", callback_data=f"1{teks}"),
-                InlineKeyboardButton("2", callback_data=f"2{teks}"),
-                InlineKeyboardButton("3", callback_data=f"3{teks}"),
-                InlineKeyboardButton("+", callback_data=f"+{teks}"),
-            ],
-            [
-                InlineKeyboardButton("00", callback_data=f"00{teks}"),
-                InlineKeyboardButton("0", callback_data=f"0{teks}"),
-                InlineKeyboardButton("=", callback_data=f"={teks}"),
-                InlineKeyboardButton(".", callback_data=f".{teks}"),
-            ],
-        ]
-    )
-
-
-@ky.ubot("calc|kalku", sudo=True)
-async def _(c: nlx, m):
-    try:
-        x = await c.get_inline_bot_results(bot.me.username, f"calcs")
-        await m.reply_inline_bot_result(x.query_id, x.results[0].id, quote=True)
-        return
-    except Exception as error:
-        return await m.reply_text(str(error))
-
-
-@ky.callback("^.*")
-async def _(c, cq):
-    data = cq.data
-    teks = ""
-    if cq.message and cq.message.text:
-        message_text = cq.message.text.split("\n")[0].strip().split("=")[0].strip()
-    else:
-        pass
-
-    if data.startswith("AC"):
-        teks = ""
-    elif data.startswith("DEL"):
-        teks = message_text.split("\n")[0].strip().split("=")[0].strip()[:-1]
-    elif data.startswith("="):
-        try:
-            expression = data[1:]
-            teks = str(
-                eval(expression.replace("×", "*").replace("÷", "/").replace("^", "**"))
-            )
-        except Exception:
-            teks = "Error"
-    elif data.startswith("00"):
-        teks = data[1:] + "00"
-    else:
-        teks = data[1:] + data[0]
-
-    try:
-        await cq.edit_message_text(
-            text=f"{teks}\n\n\n{CALCULATE_TEXT}",
-            disable_web_page_preview=True,
-            reply_markup=get_calculator_buttons(teks),
-        )
-    except Exception as e:
-        print(f"Error: {e}")
-        await cq.answer(f"{teks}\n\n\n{CALCULATE_TEXT}")
-        return
-
-
-@ky.inline("^calcs")
-async def _(c, iq):
-    if len(iq.query) == 0 or iq.query.lower() == "calcs":
-        answers = [
-            InlineQueryResultArticle(
-                title="Calculator",
-                description="New calculator",
-                input_message_content=InputTextMessageContent(
-                    message_text=CALCULATE_TEXT, disable_web_page_preview=True
-                ),
-                reply_markup=get_calculator_buttons(""),
-            )
-        ]
-    else:
-        try:
-            data = iq.query.replace("×", "*").replace("÷", "/").replace("^", "**")
-            result = result = str(eval(data))
-            answers = [
-                InlineQueryResultArticle(
-                    title="Answer",
-                    description=f"Result: {result}",
-                    input_message_content=InputTextMessageContent(
-                        message_text=f"{data} = {result}", disable_web_page_preview=True
-                    ),
-                )
-            ]
-        except Exception:
-            answers = [
-                InlineQueryResultArticle(
-                    title="Error",
-                    description="Invalid Expression",
-                    input_message_content=InputTextMessageContent(
-                        message_text="Invalid Expression", disable_web_page_preview=True
-                    ),
-                )
-            ]
-
-    await c.answer_inline_query(iq.id, cache_time=300, results=answers)
-    return
-"""
