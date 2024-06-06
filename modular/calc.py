@@ -14,6 +14,7 @@ __help__ = "Calculator"
 CALCULATE_TEXT = "Mix-Userbot Calculator"
 hitung = []
 
+
 def get_calculator_buttons():
     return InlineKeyboardMarkup(
         [
@@ -80,7 +81,9 @@ async def _(c, cq):
         hitung = []
     elif data == "=":
         try:
-            expression = ''.join(hitung).replace("×", "*").replace("÷", "/").replace("^", "**")
+            expression = (
+                "".join(hitung).replace("×", "*").replace("÷", "/").replace("^", "**")
+            )
             hasil = str(eval(expression))
             await cq.answer(f"Hasil: {hasil}", show_alert=True)
             hitung = [hasil]
@@ -103,7 +106,7 @@ async def _(c, cq):
     else:
         hitung.append(data)
 
-    current_text = ''.join(hitung)
+    current_text = "".join(hitung)
 
     if cq.message:
         try:
@@ -189,4 +192,3 @@ async def _(_, cq):
     global hitung
     hitung = []
     return
-  
