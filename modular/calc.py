@@ -84,9 +84,11 @@ async def _(c, cq):
         text = ""
     elif data == "=":
         try:
-            text = str(
+            text = ""
+            hasil = str(
                 eval(text.replace("×", "*").replace("÷", "/").replace("^", "**"))
             )
+            cq.answer(f"{hasil}", show_alert=True)
         except Exception:
             text = "Error"
     elif data == "KLOS":
@@ -111,7 +113,7 @@ async def _(c, cq):
             reply_markup=get_calculator_buttons(text),
         )
     except Exception:
-        await cq.answer(f"{teks}")
+        await cq.answer(f"{text}")
         # await cq.answer(f"Error: {str(e)}", show_alert=True)
 
 
