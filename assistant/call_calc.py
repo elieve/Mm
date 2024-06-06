@@ -35,6 +35,51 @@ mmk = {
 }
 
 
+def calc_help():
+
+    return okb(
+        [
+            [
+                ("(", "calc_("),
+                (")", "calc_)"),
+            ],
+            [
+                ("%", "calc_%"),
+                ("AC", "calc_AC"),
+                ("DEL", "calc_DEL"),
+                ("÷", "calc_/"),
+            ],
+            [
+                ("7", "calc_7"),
+                ("8", "calc_8"),
+                ("9", "calc_9"),
+                ("x", "calc_*"),
+            ],
+            [
+                ("4", "calc_4"),
+                ("5", "calc_5"),
+                ("6", "calc_6"),
+                ("-", "calc_-"),
+            ],
+            [
+                ("1", "calc_1"),
+                ("2", "calc_2"),
+                ("3", "calc_3"),
+                ("+", "calc_+"),
+            ],
+            [
+                ("00", "calc_00"),
+                ("0", "calc_0"),
+                ("=", "calc_="),
+                (".", "calc_."),
+            ],
+            [
+                (cgr("ttup"), "calc_KLOS"),
+            ],
+        ]
+    )
+    
+"""
 def get_calculator_buttons():
     return InlineKeyboardMarkup(
         [
@@ -78,13 +123,14 @@ def get_calculator_buttons():
             ],
         ]
     )
+"""
 
 
-@ky.callback("^[0-9/*\-+().=ACDEL%]{1,2}$")
+@ky.callback("calc_")
 async def _(c, cq):
     hitung = []
-    data = cq.data
-    CALCULATE_TEXT = "Mix-Userbot Calculator"
+    data = cq.data.split("_")[1]
+    teks = "Mix-Userbot Calculator"
     if data not in mmk:
         return
     user = cq.from_user
@@ -109,7 +155,7 @@ async def _(c, cq):
             await cq.answer(f"Error: {str(e)}", show_alert=True)
             hitung = []
     elif data == "KLOS":
-        if cq.from_user.id != nlx.me.id:
+        if user.id != nlx.me.id:
             return await cq.answer(
                 f"{fullname} KAYA KONTOL! SIRIK AJA LO!\nGAUSAH DIPENCET! ANJING! MEMEK! NGENTOT! BELI SENDIRI SANA!!",
                 show_alert=True,
@@ -122,7 +168,7 @@ async def _(c, cq):
         hitung = []
         return
     else:
-        if cq.from_user.id != nlx.me.id:
+        if user.id != nlx.me.id:
             return await cq.answer(
                 f"BELI LAH Mix-Userbot WAHAI {fullname}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
                 show_alert=True,
@@ -134,10 +180,11 @@ async def _(c, cq):
 
     if cq.message:
         try:
+            kb = calc_help()
             await cq.message.edit_text(
-                text=f"{current_text}\n\n\n{CALCULATE_TEXT}",
+                text=f"{hitung}\n\n\n{teks}",
                 disable_web_page_preview=True,
-                reply_markup=get_calculator_buttons(),
+                reply_markup=kb,
             )
         except Exception as e:
             await cq.answer(f"Error: {str(e)}", show_alert=True)
@@ -162,7 +209,7 @@ def unpacked2(inline_message_id: str):
     return Atr(temp)
 
 
-@ky.callback("^KLOS")
+@ky.callback("KLOS")
 async def _(_, cq):
     if cq.from_user.id != nlx.me.id:
         return await cq.answer(
