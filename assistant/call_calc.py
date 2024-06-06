@@ -127,7 +127,8 @@ async def _(c, cq):
                 f"BELI LAH Mix-Userbot WAHAI {fullname}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
                 show_alert=True,
             )
-        hitung.append(data)
+        itung = data[1:] + data[0]
+        hitung.append(itung)
 
     current_text = "".join(hitung)
 
