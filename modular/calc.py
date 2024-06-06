@@ -110,7 +110,7 @@ async def _(c, cq):
             disable_web_page_preview=True,
             reply_markup=get_calculator_buttons(text),
         )
-    except Exception as e:
+    except Exception:
         await cq.answer(f"{teks}")
         # await cq.answer(f"Error: {str(e)}", show_alert=True)
 
