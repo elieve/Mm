@@ -76,60 +76,15 @@ def calc_help():
             [
                 (cgr("ttup"), "calc_KLOS"),
             ],
+            True,
         ]
     )
-
-
-"""
-def get_calculator_buttons():
-    return InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton("(", callback_data="("),
-                InlineKeyboardButton(")", callback_data=")"),
-                InlineKeyboardButton("🇮🇩", url="tg://resolve?domain=diemgausahbawel"),
-            ],
-            [
-                InlineKeyboardButton("%", callback_data="%"),
-                InlineKeyboardButton("🆑", callback_data="AC"),
-                InlineKeyboardButton("⌫", callback_data="DEL"),
-                InlineKeyboardButton("➗", callback_data="/"),
-            ],
-            [
-                InlineKeyboardButton("7️⃣", callback_data="7"),
-                InlineKeyboardButton("8️⃣", callback_data="8"),
-                InlineKeyboardButton("9️⃣", callback_data="9"),
-                InlineKeyboardButton("✖️", callback_data="*"),
-            ],
-            [
-                InlineKeyboardButton("4️⃣", callback_data="4"),
-                InlineKeyboardButton("5️⃣", callback_data="5"),
-                InlineKeyboardButton("6️⃣", callback_data="6"),
-                InlineKeyboardButton("➖", callback_data="-"),
-            ],
-            [
-                InlineKeyboardButton("1️⃣", callback_data="1"),
-                InlineKeyboardButton("2️⃣", callback_data="2"),
-                InlineKeyboardButton("3️⃣", callback_data="3"),
-                InlineKeyboardButton("➕", callback_data="+"),
-            ],
-            [
-                InlineKeyboardButton("0️⃣0️⃣", callback_data="00"),
-                InlineKeyboardButton("0️⃣", callback_data="0"),
-                InlineKeyboardButton("🟰", callback_data="="),
-                InlineKeyboardButton("◾", callback_data="."),
-            ],
-            [
-                InlineKeyboardButton("❌", callback_data="KLOS"),
-            ],
-        ]
-    )
-"""
 
 
 @ky.callback("calc_")
 async def _(c, cq):
     hitung = []
+    datanya = cq.data
     data = cq.data.split("_")[1]
     teks = "Mix-Userbot Calculator"
     if data not in mmk:
@@ -142,8 +97,14 @@ async def _(c, cq):
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
+            nan = (f"{teks}".join(hitung))
+            kb = calc_help()
+            await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
     elif data == "AC":
         hitung = []
+        nan = (f"{teks}".join(hitung))
+            kb = calc_help()
+            await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
     elif data == "=":
         try:
             expression = (
@@ -174,9 +135,13 @@ async def _(c, cq):
                 f"BELI LAH Mix-Userbot WAHAI {fullname}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
                 show_alert=True,
             )
-        tambah = data[1:] + data
+        tambah = datanya[1:] + data
         hitung.append(tambah)
+        nan = (f"{teks}".join(hitung))
+        kb = calc_help()
+        await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
 
+"""
     current_text = "".join(hitung)
 
     if cq.message:
@@ -191,6 +156,7 @@ async def _(c, cq):
             await cq.answer(f"Error: {str(e)}", show_alert=True)
     else:
         await cq.answer(f"{current_text}")
+"""
 
 
 def unpacked2(inline_message_id: str):
