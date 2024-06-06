@@ -87,7 +87,7 @@ async def _(c, cq):
             print(f"Error evaluasi: {e}")
             teks = "Error"
     else:
-        teks = message_text + data
+        teks = data[1:] + data[0]
 
     try:
         await cq.edit_message_text(
