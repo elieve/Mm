@@ -34,9 +34,9 @@ mmk = {
     "=",
 }
 
+hitung = []
 
 def calc_help():
-
     return okb(
         [
             [
@@ -79,12 +79,10 @@ def calc_help():
         ]
     )
 
-
 @ky.callback("calc_")
 async def _(c, cq):
-    hitung = []
+    global hitung
     kb = calc_help()
-    datanya = cq.data
     data = cq.data.split("_")[1]
     teks = "Mix-Userbot Calculator"
     if data not in mmk:
@@ -97,16 +95,18 @@ async def _(c, cq):
     if data == "DEL":
         if hitung:
             hitung = hitung[:-1]
-            nan = f"{hitung}\n\n{teks}"
-            await cq.edit_message_text(
-                text=nan,
-                reply_markup=kb,
-                parse_mode=ParseMode.HTML,
-            )
+        nan = f"{''.join(hitung)}\n\n{teks}"
+        await cq.edit_message_text(
+            text=nan,
+            reply_markup=kb,
+            parse_mode=ParseMode.HTML,
+        )
     elif data == "AC":
         hitung = []
-        nan = f"{hitung}\n\n{teks}"
-        await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
+        nan = f"{''.join(hitung)}\n\n{teks}"
+        await cq.edit_message_text(
+            text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
+        )
     elif data == "=":
         try:
             expression = (
@@ -115,7 +115,9 @@ async def _(c, cq):
             hasil = str(eval(expression))
             await cq.answer(f"Hasil: {hasil}", show_alert=True)
             hitung = [hasil]
-            await cq.edit_message_text(text=f"{teks}", reply_markup=kb)
+            await cq.edit_message_text(
+                text=f"{hasil}\n\n{teks}", reply_markup=kb
+            )
         except Exception as e:
             await cq.answer(f"Error: {str(e)}", show_alert=True)
             hitung = []
@@ -138,11 +140,11 @@ async def _(c, cq):
                 f"BELI LAH Mix-Userbot WAHAI {fullname}.\nHANYA 35k, ANDA SUDAH BISA MENIKMATI SEKIAN BANYAKNYA FITUR DI Mix-Userbot!",
                 show_alert=True,
             )
-        tambah = datanya[1:] + data[0]
-        hitung.append(tambah)
-        nan = f"{hitung}\n\n{teks}"
-        await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
-
+        hitung.append(data)
+        nan = f"{''.join(hitung)}\n\n{teks}"
+        await cq.edit_message_text(
+            text=nan, reply_markup=kb, parse_mode=ParseMode.HTML
+        )
 
 def unpacked2(inline_message_id: str):
     dc_id, message_id, chat_id, query_id = unpack(
@@ -159,7 +161,6 @@ def unpacked2(inline_message_id: str):
         "inline_message_id": inline_message_id,
     }
     return Atr(temp)
-
 
 @ky.callback("KLOS")
 async def _(_, cq):
