@@ -99,12 +99,16 @@ async def _(c, cq):
             hitung = hitung[:-1]
             nan = f"{hitung}\n\n{teks}"
             await cq.edit_message_text(
-                text=nan, reply_markup=InlineKeyboardMarkup(kb), parse_mode=ParseMode.HTML
+                text=nan,
+                reply_markup=InlineKeyboardMarkup(kb),
+                parse_mode=ParseMode.HTML,
             )
     elif data == "AC":
         hitung = []
         nan = f"{hitung}\n\n{teks}"
-        await cq.edit_message_text(text=nan, reply_markup=InlineKeyboardMarkup(kb), parse_mode=ParseMode.HTML)
+        await cq.edit_message_text(
+            text=nan, reply_markup=InlineKeyboardMarkup(kb), parse_mode=ParseMode.HTML
+        )
     elif data == "=":
         try:
             expression = (
@@ -113,7 +117,9 @@ async def _(c, cq):
             hasil = str(eval(expression))
             await cq.answer(f"Hasil: {hasil}", show_alert=True)
             hitung = [hasil]
-            await cq.edit_message_text(text=f"{teks}", reply_markup=InlineKeyboardMarkup(kb))
+            await cq.edit_message_text(
+                text=f"{teks}", reply_markup=InlineKeyboardMarkup(kb)
+            )
         except Exception as e:
             await cq.answer(f"Error: {str(e)}", show_alert=True)
             hitung = []
@@ -139,7 +145,9 @@ async def _(c, cq):
         tambah = datanya[1:] + data[0]
         hitung.append(tambah)
         nan = f"{hitung}\n\n{teks}"
-        await cq.edit_message_text(text=nan, reply_markup=InlineKeyboardMarkup(kb), parse_mode=ParseMode.HTML)
+        await cq.edit_message_text(
+            text=nan, reply_markup=InlineKeyboardMarkup(kb), parse_mode=ParseMode.HTML
+        )
 
 
 def unpacked2(inline_message_id: str):
