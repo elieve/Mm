@@ -78,7 +78,8 @@ def calc_help():
             ],
         ]
     )
-    
+
+
 """
 def get_calculator_buttons():
     return InlineKeyboardMarkup(

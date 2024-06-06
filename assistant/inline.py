@@ -27,7 +27,6 @@ from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
 from modular.pmpermit import *
 
-from .call_calc import get_calculator_buttons
 from .call_markdown import markdown_help
 
 
