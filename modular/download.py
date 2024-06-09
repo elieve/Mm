@@ -55,17 +55,6 @@ async def download_youtube(link, as_video=True):
     return file_name, title, url, duration, views, channel, thumb, data_ytp
 
 
-def download_thumbnail(url):
-    thumb_path = "thumbnail.jpg"
-    response = requests.get(url, stream=True)
-    if response.status_code == 200:
-        with open(thumb_path, "wb") as f:
-            f.write(response.content)
-    else:
-        thumb_path = None
-    return thumb_path
-
-
 @ky.ubot("vtube", sudo=True)
 async def _(c, m):
     em = Emojik()
@@ -92,10 +81,14 @@ async def _(c, m):
             channel,
             thumb_url,
             data_ytp,
-        ) = download_youtube(link, as_video=True)
+        ) = await download_youtube(link, as_video=True)
     except Exception as error:
         return await pros.reply_text(cgr("err").format(em.gagal, error))
     thumbik = wget.download(thumb_url)
+    if os.path.exists(thumbik):
+        print(f"Thumbnail downloaded: {thumbik}")
+    else:
+        print("Failed to download thumbnail.")
     await c.send_video(
         m.chat.id,
         video=file_name,
@@ -161,6 +154,10 @@ async def _(c, m):
     except Exception as error:
         return await pros.edit(cgr("err").format(em.gagal, error))
     thumbik = wget.download(thumb_url)
+    if os.path.exists(thumbik):
+        print(f"Thumbnail downloaded: {thumbik}")
+    else:
+        print("Failed to download thumbnail.")
     await c.send_audio(
         m.chat.id,
         audio=file_name,
