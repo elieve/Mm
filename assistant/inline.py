@@ -296,7 +296,7 @@ async def _(c, iq):
     start = datetime.now()
     await nlx.invoke(Ping(ping_id=0))
     pink = (datetime.now() - start).microseconds / 1000
-    emping = pink / 10
+    pink / 10
     upnya = await get_time((time() - start_time))
     ape = await diinline("group")
     apa = await diinline("users")

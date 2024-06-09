@@ -28,7 +28,5 @@ async def _(c: nlx, m):
     delta_ping = (end - start).microseconds / 1000
     emping = delta_ping / 10
     upnya = await get_time((time() - start_time))
-    _ping = cgr("ping_1").format(
-        em.ping, str(emping).replace(".", ","), em.pong, upnya
-    )
+    _ping = cgr("ping_1").format(em.ping, str(emping).replace(".", ","), em.pong, upnya)
     await m.reply(_ping)
