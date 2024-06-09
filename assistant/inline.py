@@ -295,8 +295,7 @@ async def _(c, iq):
     stutas = None
     start = datetime.now()
     await nlx.invoke(Ping(ping_id=0))
-    pink = (datetime.now() - start).microseconds / 1000
-    pink / 10
+    delta_ping = round((end - start).microseconds / 10000, 1)
     upnya = await get_time((time() - start_time))
     ape = await diinline("group")
     apa = await diinline("users")
@@ -313,7 +312,7 @@ async def _(c, iq):
     txt = cgr("alv_3").format(
         stutas,
         nlx.me.dc_id,
-        str(pink).replace(".", ","),
+        str(delta_ping).replace(".", ","),
         pmper,
         len(apa),
         len(upu),
