@@ -81,7 +81,7 @@ async def _(c, m):
             channel,
             thumb_url,
             data_ytp,
-        ) = await download_youtube(link, as_video=True)
+        ) = await YoutubeDL(link, as_video=True)
     except Exception as error:
         return await pros.reply_text(cgr("err").format(em.gagal, error))
     thumbik = wget.download(thumb_url)
@@ -150,7 +150,7 @@ async def _(c, m):
             channel,
             thumb_url,
             data_ytp,
-        ) = await download_youtube(link, as_video=False)
+        ) = await YoutubeDL(link, as_video=False)
     except Exception as error:
         return await pros.edit(cgr("err").format(em.gagal, error))
     thumbik = wget.download(thumb_url)
