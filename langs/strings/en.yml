@@ -130,6 +130,7 @@ down_14: "{} **Media type not supported.**"
 down_15: "{} **Failed to download media from link : `{}`.**"
 down_16: "{} **Invalid Instagram link or private content.**"
 down_17: "{} **Incorrect command format.\nUse the command `{} [instagram_link]`**."
+yutup: "**Type: `{}`\nTitle: `{}`\nDuration: `{}`\n**Views: `{}`\nChannel: `{}`\nURL: [url]({})\nDownloaded by: {}**"
 
 # button
 butt_1: "{} **Please type `help markdown` to see button format!**"
