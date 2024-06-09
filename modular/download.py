@@ -171,7 +171,7 @@ def tiktok_id(url):
 
 async def download_tiktok(c, m, url, em):
     response = requests.get(url)
-    print(response)
+    print(response.json)
     video_id = tiktok_id(response.url)
 
     if not video_id:
