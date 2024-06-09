@@ -41,15 +41,18 @@ def download_youtube(link, as_video=True):
         views = info_dict.get("view_count", 0)
         channel = info_dict.get("uploader", None)
         thumb = info_dict.get("thumbnail", None)
-        data_ytp = (
-            "Type: {}\n"
-            "Title: {}\n"
-            "Duration: {}\n"
-            "Views: {}\n"
-            "Channel: {}\n"
-            "URL: {}\n"
-            "Downloaded by: {}"
+        data_ytp = cgr("yutup").format(file_name, title, url, duration, views, channel, thumb)
+"""        
+        (
+            "**Type: `{}`**\n"
+            "**Title: `{}`**\n"
+            "**Duration: `{}`**\n"
+            "**Views: `{}`**\n"
+            "**Channel: `{}`**\n"
+            "**URL: [url]({})**\n"
+            "**Downloaded by: {}**"
         )
+"""
     return file_name, title, url, duration, views, channel, thumb, data_ytp
 
 
@@ -102,7 +105,7 @@ async def _(c, m):
         duration=duration,
         supports_streaming=True,
         caption=data_ytp.format(
-            "VIDEO",
+            "Video",
             title,
             timedelta(seconds=duration),
             views,
@@ -164,7 +167,7 @@ async def _(c, m):
         performer=channel,
         duration=duration,
         caption=data_ytp.format(
-            "AUDIO",
+            "Audio",
             title,
             timedelta(seconds=duration),
             views,
