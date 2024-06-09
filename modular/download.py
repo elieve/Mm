@@ -24,6 +24,7 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
+"""
 async def download_youtube(link, as_video=True):
     ydl_opts = {
         "format": "bestvideo+bestaudio/best" if as_video else "bestaudio/best",
@@ -53,6 +54,7 @@ async def download_youtube(link, as_video=True):
             "**Downloaded by: {}**"
         )
     return file_name, title, url, duration, views, channel, thumb, data_ytp
+"""
 
 
 @ky.ubot("vtube", sudo=True)
