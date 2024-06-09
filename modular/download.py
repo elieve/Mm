@@ -12,7 +12,7 @@ import time
 from datetime import timedelta
 from time import time
 from urllib.parse import urlparse
-
+import wget
 import requests
 from youtubesearchpython import VideosSearch
 from yt_dlp import YoutubeDL
