@@ -41,7 +41,9 @@ def download_youtube(link, as_video=True):
         views = info_dict.get("view_count", 0)
         channel = info_dict.get("uploader", None)
         thumb = info_dict.get("thumbnail", None)
-        data_ytp = cgr("yutup").format(file_name, title, url, duration, views, channel, thumb)
+        data_ytp = cgr("yutup").format(
+            file_name, title, url, duration, views, channel, thumb
+        )
     return file_name, title, url, duration, views, channel, thumb, data_ytp
 
 
