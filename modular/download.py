@@ -24,38 +24,6 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
-"""
-async def download_youtube(link, as_video=True):
-    ydl_opts = {
-        "format": "bestvideo+bestaudio/best" if as_video else "bestaudio/best",
-        "outtmpl": "%(title)s.%(ext)s",
-        "noplaylist": True,
-        "quiet": True,
-        "merge_output_format": "mp4" if as_video else "mp3",
-    }
-
-    with YoutubeDL(ydl_opts) as ydl:
-        info_dict = ydl.extract_info(link, download=True)
-        print(f"info_dict")
-        file_name = ydl.prepare_filename(info_dict)
-        title = info_dict.get("title", None)
-        url = info_dict.get("webpage_url", None)
-        duration = info_dict.get("duration", 0)
-        views = info_dict.get("view_count", 0)
-        channel = info_dict.get("uploader", None)
-        thumb = info_dict.get("thumbnail", None)
-        data_ytp = (
-            "**Type: `{}`**\n"
-            "**Title: `{}`**\n"
-            "**Duration: `{}`**\n"
-            "**Views: `{}`**\n"
-            "**Channel: `{}`**\n"
-            "**URL: [url]({})**\n"
-            "**Downloaded by: {}**"
-        )
-    return file_name, title, url, duration, views, channel, thumb, data_ytp
-"""
-
 
 @ky.ubot("vtube", sudo=True)
 async def _(c, m):
@@ -204,6 +172,7 @@ def tiktok_id(url):
 
 async def download_tiktok(c, m, url, em):
     response = requests.get(url)
+    print(response)
     video_id = tiktok_id(response.url)
 
     if not video_id:
