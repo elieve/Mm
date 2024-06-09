@@ -94,10 +94,11 @@ async def _(c, m):
         ) = download_youtube(link, as_video=True)
     except Exception as error:
         return await pros.reply_text(cgr("err").format(em.gagal, error))
+    thumbik = wget.download(thumb_url)
     await c.send_video(
         m.chat.id,
         video=file_name,
-        thumb=thumb_url,
+        thumb=thumbik,
         file_name=title,
         duration=duration,
         supports_streaming=True,
@@ -121,7 +122,7 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in file_name:
+    for files in (thumbik,file_name):
         try:
             if files and os.path.exists(files):
                 os.remove(files)
@@ -158,10 +159,11 @@ async def _(c, m):
         ) = await download_youtube(link, as_video=False)
     except Exception as error:
         return await pros.edit(cgr("err").format(em.gagal, error))
+    thumbik = wget.download(thumb_url)
     await c.send_audio(
         m.chat.id,
         audio=file_name,
-        thumb=thumb_url,
+        thumb=thumbik,
         file_name=title,
         performer=channel,
         duration=duration,
@@ -185,7 +187,7 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in file_name:
+    for files in (thumbik,file_name):
         try:
             if files and os.path.exists(files):
                 os.remove(files)
