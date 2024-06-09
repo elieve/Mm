@@ -121,7 +121,7 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in (file_name):
+    for files in file_name:
         try:
             if files and os.path.exists(files):
                 os.remove(files)
@@ -185,7 +185,7 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in (file_name):
+    for files in file_name:
         try:
             if files and os.path.exists(files):
                 os.remove(files)
