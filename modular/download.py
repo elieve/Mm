@@ -164,7 +164,15 @@ async def _(c, m):
         # file_name=title,
         # performer=channel,
         # duration=duration,
-        caption=cgr("yutup").format("Audio", title, timedelta(seconds=duration), views, channel, url, c.me.mention),
+        caption=cgr("yutup").format(
+            "Audio",
+            title,
+            timedelta(seconds=duration),
+            views,
+            channel,
+            url,
+            c.me.mention,
+        ),
         progress=progress,
         progress_args=(
             pros,
