@@ -23,7 +23,7 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
-def download_youtube(link, as_video=True):
+async def download_youtube(link, as_video=True):
     ydl_opts = {
         "format": "bestvideo+bestaudio/best" if as_video else "bestaudio/best",
         "outtmpl": "%(title)s.%(ext)s",
@@ -121,9 +121,12 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in (thumb_path, file_name):
-        if files and os.path.exists(files):
-            os.remove(files)
+    for files in (file_name):
+        try:
+            if files and os.path.exists(files):
+                os.remove(files)
+        except:
+            pass
 
 
 @ky.ubot("stube", sudo=True)
@@ -152,16 +155,16 @@ async def _(c, m):
             channel,
             thumb_url,
             data_ytp,
-        ) = download_youtube(link, as_video=False)
+        ) = await download_youtube(link, as_video=False)
     except Exception as error:
         return await pros.edit(cgr("err").format(em.gagal, error))
     await c.send_audio(
         m.chat.id,
         audio=file_name,
         thumb=thumb_url,
-        # file_name=title,
-        # performer=channel,
-        # duration=duration,
+        file_name=title,
+        performer=channel,
+        duration=duration,
         caption=cgr("yutup").format(
             "Audio",
             title,
@@ -182,9 +185,12 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in (thumb_path, file_name):
-        if files and os.path.exists(files):
-            os.remove(files)
+    for files in (file_name):
+        try:
+            if files and os.path.exists(files):
+                os.remove(files)
+        except:
+            pass
 
 
 def tiktok_id(url):
