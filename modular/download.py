@@ -92,17 +92,16 @@ async def _(c, m):
             thumb_url,
             data_ytp,
         ) = download_youtube(link, as_video=True)
-        thumb_path = download_thumbnail(thumb_url)
     except Exception as error:
         return await pros.reply_text(cgr("err").format(em.gagal, error))
     await c.send_video(
         m.chat.id,
         video=file_name,
-        thumb=thumb_path,
+        thumb=thumb_url,
         file_name=title,
         duration=duration,
         supports_streaming=True,
-        caption=data_ytp.format(
+        caption=cgr("yutup").format(
             "Video",
             title,
             timedelta(seconds=duration),
@@ -154,13 +153,12 @@ async def _(c, m):
             thumb_url,
             data_ytp,
         ) = download_youtube(link, as_video=False)
-        thumb_path = download_thumbnail(thumb_url)
     except Exception as error:
         return await pros.edit(cgr("err").format(em.gagal, error))
     await c.send_audio(
         m.chat.id,
         audio=file_name,
-        thumb=thumb_path,
+        thumb=thumb_url,
         # file_name=title,
         # performer=channel,
         # duration=duration,
