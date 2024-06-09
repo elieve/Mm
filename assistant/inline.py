@@ -295,6 +295,7 @@ async def _(c, iq):
     stutas = None
     start = datetime.now()
     await nlx.invoke(Ping(ping_id=0))
+    end = datetime.now()
     delta_ping = round((end - start).microseconds / 10000, 1)
     upnya = await get_time((time() - start_time))
     ape = await diinline("group")
