@@ -12,8 +12,9 @@ import time
 from datetime import timedelta
 from time import time
 from urllib.parse import urlparse
-import wget
+
 import requests
+import wget
 from youtubesearchpython import VideosSearch
 from yt_dlp import YoutubeDL
 
@@ -122,7 +123,7 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in (thumbik,file_name):
+    for files in (thumbik, file_name):
         try:
             if files and os.path.exists(files):
                 os.remove(files)
@@ -187,7 +188,7 @@ async def _(c, m):
     )
     await pros.delete()
     await m.delete()
-    for files in (thumbik,file_name):
+    for files in (thumbik, file_name):
         try:
             if files and os.path.exists(files):
                 os.remove(files)
