@@ -63,7 +63,7 @@ down_14: "{} **Tipe media kaga didukung tuh jink.**"
 down_15: "{} **Gagal donlod media dari tautan : `{}`.**"
 down_16: "{} **Tautan Instagram kaga palid atau konten pribadi.**"
 down_17: "{} **Format perintah salah.\Pake perintah `{} [tautan_instagram]`**."
-yutup: "**Jenis: `{}`\nJudul: `{}`\nDurasi: `{}`\n**Ditonton: `{}`\nSaluran: `{}`\nURL: [url]({})\nDiunduh oleh: {}**"
+yutup: "**💡 Jenis file: `{}`\n📝 Judul: `{}`\n⌛ Durasi: `{}`\n**👁️ Penonton: `{}`\n📢 Saluran: `{}`\n🔗 Tautan: [tautan]({})\n👤 Diunduh oleh: {}**"
 
 # filter
 fil_1: "{} Daftar Filter Di Grup {}:\n"
