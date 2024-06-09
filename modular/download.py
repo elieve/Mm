@@ -34,6 +34,7 @@ def download_youtube(link, as_video=True):
 
     with YoutubeDL(ydl_opts) as ydl:
         info_dict = ydl.extract_info(link, download=True)
+        print(f"info_dict")
         file_name = ydl.prepare_filename(info_dict)
         title = info_dict.get("title", None)
         url = info_dict.get("webpage_url", None)
@@ -41,8 +42,14 @@ def download_youtube(link, as_video=True):
         views = info_dict.get("view_count", 0)
         channel = info_dict.get("uploader", None)
         thumb = info_dict.get("thumbnail", None)
-        data_ytp = cgr("yutup").format(
-            file_name, title, url, duration, views, channel, thumb
+        data_ytp = (
+            "**Type: `{}`**\n"
+            "**Title: `{}`**\n"
+            "**Duration: `{}`**\n"
+            "**Views: `{}`**\n"
+            "**Channel: `{}`**\n"
+            "**URL: [url]({})**\n"
+            "**Downloaded by: {}**"
         )
     return file_name, title, url, duration, views, channel, thumb, data_ytp
 
@@ -154,18 +161,10 @@ async def _(c, m):
         m.chat.id,
         audio=file_name,
         thumb=thumb_path,
-        file_name=title,
-        performer=channel,
-        duration=duration,
-        caption=data_ytp.format(
-            "Audio",
-            title,
-            timedelta(seconds=duration),
-            views,
-            channel,
-            url,
-            c.me.mention,
-        ),
+        # file_name=title,
+        # performer=channel,
+        # duration=duration,
+        caption=cgr("yutup").format("Audio", title,timedelta(seconds=duration), views, channel, url, c.me.mention),
         progress=progress,
         progress_args=(
             pros,
