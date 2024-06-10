@@ -12,11 +12,9 @@ import requests
 
 from Mix import *
 
+
 __modles__ = "Country"
 __help__ = get_cgr("help_negara")
-
-
-import requests
 
 
 def get_colok(kontol):
@@ -48,19 +46,19 @@ def get_colok(kontol):
                     "flag": data[0]["flags"]["png"],
                     "demonym": data[0]["demonyms"]["eng"]["m"],
                     "iso": data[0]["cca2"],
-                    "languages": ", ".join(data[0]["languages"].keys()),
+                    "languages": ", ".join(data[0]["languages"].values()),
                     "population": data[0]["population"],
                     "region": data[0]["region"],
                     "subregion": data[0]["subregion"],
                     "timezones": ", ".join(data[0]["timezones"]),
                     "top_level_domain": ", ".join(data[0]["tld"]),
-                    "wikipedia": data[0]["flags"],
                 }
                 return info
     except requests.exceptions.Timeout:
-        return "Server tidak merespon, silahkan coba lagi .."
-    except requests.exceptions.RequestException as e:
         return None
+    except requests.exceptions.RequestException:
+        return None
+
     return None
 
 
