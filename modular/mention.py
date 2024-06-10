@@ -145,12 +145,15 @@ async def _(c: nlx, m):
         }
 
     status = status_per_grup[chat_id]
+    xx = await m.edit(cgr("proses").format(em.proses))
 
     if not status["jalan"]:
-        await m.reply(cgr("ment_10").format(em.gagal))
+        await xx.edit(cgr("ment_10").format(em.gagal))
+        await asyncio.sleep(2)
+        await xx.delete()
         return
 
     status["jalan"] = False
-    await m.reply(cgr("ment_11").format(em.sukses))
+    await xx.edit(cgr("ment_11").format(em.sukses))
     await asyncio.sleep(3)
-    await m.delete()
+    await xx.delete()
