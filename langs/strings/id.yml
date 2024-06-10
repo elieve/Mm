@@ -88,6 +88,13 @@ ment_1: "{} <b>Anda harus menjadi admin untuk menggunakan perintah ini!</b>"
 ment_2: "{} <b>Harap berikan teks untuk di-mention.</b>"
 ment_3: "{} <b>Tidak ada proses tagall yang sedang berlangsung.</b>"
 ment_4: "{} <b>Tagall telah dihentikan.</b>"
+ment_5: "{} <b>Sedang ada proses tagall/mention lain yang sedang berlangsung.</b>"
+ment_6: "{} <b>Sedang proses tagall/mention ke {} anggota/members</b>"
+ment_7: "{} <b>Proses mention dihentikan karna floodwait terlalu lama `{}` detik.\n\nBerhasil melakukan mention ke : `{}` anggota.\nDari total : `{}` anggota."
+ment_8: "{} <b>Berhasil melakukan mention kepada : `{}` anggota.\nDari total `{}` anggota."
+ment_9: "{} <b>Berhasil melakukan mention kepada <code>{}</code> anggota.\nDari total <code>{}</code> anggota.</b>"
+ment_10: "{} <b>Tidak ada proses TagAll/Mention yang sedang berlangsung.</b>"
+ment_11: "{} <b>Proses Tag All/Mention berhasil dihentikan.</b>"
 
 # sangmata
 sangmat_1: "{} <b>sg username/id/reply</b>"
