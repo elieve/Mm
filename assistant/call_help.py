@@ -180,7 +180,6 @@ async def _(c, cq):
         button = okb([[("≪", "help_back")]])
         if "Animasi" in text:
             text1 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
-            )
             button = okb(
                 [
                     [
