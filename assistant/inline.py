@@ -151,7 +151,7 @@ async def _(c, iq):
     user_id = iq.from_user.id
     emut = await nlx.get_prefix(user_id)
     msg = (
-        "<b>Commands\n      Prefixes: `{}`\n      Modules: <code>{}</code></b>".format(
+        "```Commands\n      Prefixes: `{}`\n      Modules: <code>{}</code>```".format(
             " ".join(emut), len(CMD_HELP)
         )
     )
