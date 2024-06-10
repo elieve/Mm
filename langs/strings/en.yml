@@ -63,11 +63,18 @@ fil_14: "{} Filter `{}` deleted!"
 fil_15: "{} All Filters successfully deleted."
 fil_16: "{} Unable to find this Filter."
 
-# mention
-ment_1: "{} <b>You're not an ADMIN on this Group!</b>"
-ment_2: "{} <b>Please give me someme text.</b>"
-ment_3: "{} <b>There's no procces mention all.</b>"
-ment_4: "{} <b>Mention all has been stoped!</b>"
+# mentions
+ment_1: "{} <b>You must be an admin to use this command!</b>"
+ment_2: "{} <b>Please provide text or reply message for mention.</b>"
+ment_3: "{} <b>There are no tagall processes in progress.</b>"
+ment_4: "{} <b>Tagall has been discontinued.</b>"
+ment_5: "{} <b>There is another tagall/mention process in progress.</b>"
+ment_6: "{} <b>Tagall/mention to {} members</b>"
+ment_7: "{} <b>The mention process was stopped because the floodwait took too long `{}` seconds.\n\nSuccessfully mentioned to : `{}` members.\nFrom the total : `{}` members."
+ment_8: "{} <b>Successfully mentioned : `{}` members.\nFrom the total `{}` members."
+ment_9: "{} <b>Successfully mentioned : `{}` members.\nFrom the total : `{}` members.</b>"
+ment_10: "{} <b>There are no TagAll/Mention processes in progress.</b>"
+ment_11: "{} <b>The Tag All/Mention process was successfully terminated.</b>"
 
 # sangmata
 sangmat_1: "{} <b><code>sg</code> username/id/reply</b>"
