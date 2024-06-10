@@ -268,7 +268,6 @@ async def _(c, cq):
             return
     if back_match:
         t3 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
-        )
         try:
             await cq.edit_message_text(
                 text=t3,
