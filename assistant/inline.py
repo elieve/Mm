@@ -15,6 +15,7 @@ from time import time
 
 import requests
 from pyrogram import *
+from pyrogram import enums
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.raw.functions import Ping
