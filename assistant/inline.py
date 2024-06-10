@@ -150,7 +150,7 @@ async def _(c, iq):
 async def _(c, iq):
     user_id = iq.from_user.id
     emut = await nlx.get_prefix(user_id)
-    msg = "```Commands\n      Prefixes: `{}`\n      Modules: <code>{}</code>```".format(
+    msg = "<blockquote>Commands\nPrefixes: `{}`\nModules: <code>{}</code></blockquote>".format(
         " ".join(emut), len(CMD_HELP)
     )
     await c.answer_inline_query(
@@ -165,7 +165,7 @@ async def _(c, iq):
                     reply_markup=InlineKeyboardMarkup(
                         paginate_modules(0, CMD_HELP, "help")
                     ),
-                    input_message_content=InputTextMessageContent(msg),
+                    input_message_content=InputTextMessageContent(msg, parse_mode="MarkdownV2"),
                 )
             )
         ],
