@@ -35,18 +35,14 @@ async def tag_all_members(c: nlx, m):
     status = status_per_grup[chat_id]
 
     if status["jalan"]:
-        await m.reply(
-            "Sedang ada proses tagall/mention lain yang sedang berlangsung."
-        )
+        await m.reply("Sedang ada proses tagall/mention lain yang sedang berlangsung.")
         return
 
     status["jalan"] = True
     status["mentioned_count"] = 0
     status["total_members"] = []
 
-    progres = await m.reply(
-        "Sedang proses tagall/mention seluruh member grup ..."
-    )
+    progres = await m.reply("Sedang proses tagall/mention seluruh member grup ...")
 
     async for member in c.get_chat_members(chat_id):
         user = member.user
