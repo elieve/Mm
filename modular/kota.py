@@ -13,11 +13,7 @@ import requests
 from Mix import *
 
 __modles__ = "Negara"
-__help__ = """
- Kota
-• Perintah: `{0}negara` [query]
-• Penjelasan: Untuk mencari info tentang Negara tersebut.
-"""
+__help__ = get_cgr("help_negara")
 
 
 def get_colok(kontol):
@@ -66,33 +62,44 @@ async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     pros = await m.reply(cgr("proses").format(em.proses))
-    rep = c.get_text(m)
-    country_info = get_colok(rep)
     if len(m.command) == 1 and not m.reply_to_message:
         return await pros.edit(f"`{m.text} [negara]`")
+    rep = c.get_text(m)
+    country_info = get_colok(rep)
     if country_info:
-        response_message = f"**Nama negara:-** `{country_info['name']}`\n"
-        response_message += (
-            f"**Ejaan Alternatif:-** `{country_info['alt_spellings']}`\n"
-        )
-        response_message += (
-            f"**Wilayah Negara:-** `{country_info['area']}` kilometer persegi\n"
-        )
-        response_message += f"**Perbatasan:-** `{country_info['borders']}`\n"
-        response_message += f"**Kode Panggilan:-** `{country_info['calling_code']}`\n"
-        response_message += f"**Ibukota Negara:-** `{country_info['capital']}`\n"
-        response_message += f"**Mata uang negara:-** `{country_info['currencies']}`\n"
-        response_message += f"**Bendera Negara:-** [Link]({country_info['flag']})\n"
-        response_message += f"**Demonim:-** `{country_info['demonym']}`\n"
-        response_message += f"**Nama ISO:-** `{country_info['iso']}`\n"
-        response_message += f"**Bahasa:-** `{country_info['languages']}`\n"
-        response_message += f"**Populasi:-** `{country_info['population']}`\n"
-        response_message += f"**Wilayah:-** `{country_info['region']}`\n"
-        response_message += f"**Sub Wilayah:-** `{country_info['subregion']}`\n"
-        response_message += f"**Zona waktu:-** `{country_info['timezones']}`\n"
-        response_message += (
-            f"**Top Level Domain:-** `{country_info['top_level_domain']}`\n"
-        )
+        neg = country_info['name']
+        spel = country_info['alt_spellings', 'Unknown']
+        wilneg = country_info['area', 'Unknown']
+        bates = country_info['borders', 'Unknown']
+        kod = country_info['calling_code', 'Unknown']
+        kot = country_info['capital', 'Unknown']
+        duit = country_info['currencies', 'Unknown']
+        bende = country_info['flag', 'Unknown']
+        demo = country_info['demonym', 'Unknown']
+        izo = country_info['iso', 'Unknown']
+        lang = country_info['languages', 'Unknown']
+        popul = country_info['population', 'Unknown']
+        wil = country_info['region', 'Unknown']
+        subwil = country_info['subregion', 'Unknown']
+        jon = country_info['timezones', 'Unknown']
+        top = country_info['top_level_domain', 'Unknown']
+
+        response_message = cgr("negar_1").format(neg)
+        response_message += cgr("negar_2").format(spel)
+        response_message += cgr("negar_3").format(wilneg)
+        response_message += cgr("negar_4").format(bates)
+        response_message += cgr("negar_5").format(kod)
+        response_message += cgr("negar_6").format(kot)
+        response_message += cgr("negar_7").format(duit)
+        response_message += cgr("negar_8").format(bende)
+        response_message += cgr("negar_9").format(demo)
+        response_message += cgr("negar_10").format(izo)
+        response_message += cgr("negar_11").format(lang)
+        response_message += cgr("negar_12").format(popul)
+        response_message += cgr("negar_13").format(wil)
+        response_message += cgr("negar_14").format(subwil)
+        response_message += cgr("negar_15").format(jon)
+        response_message += cgr("negar_16").format(top)
         await pros.edit(response_message, disable_web_page_preview=True)
     else:
         await pros.edit("Maaf, informasi tidak ditemukan.")
