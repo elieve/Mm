@@ -151,8 +151,8 @@ async def _(c, iq):
 async def _(c, iq):
     user_id = iq.from_user.id
     emut = await nlx.get_prefix(user_id)
-    msg = "<blockquote>Commands\nPrefixes: `{}`\nModules: <code>{}</code></blockquote>".format(
-        " ".join(emut), len(CMD_HELP)
+    msg = "```Commands\nPrefixes: `{}`\nModules: <code>{}</code>\nUser: {}".format(
+        " ".join(emut), len(CMD_HELP), nlx.me.mention
     )
     await c.answer_inline_query(
         iq.id,
@@ -167,7 +167,7 @@ async def _(c, iq):
                         paginate_modules(0, CMD_HELP, "help")
                     ),
                     input_message_content=InputTextMessageContent(
-                        msg, parse_mode=enums.ParseMode.HTML
+                        msg
                     ),
                 )
             )
