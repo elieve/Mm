@@ -152,3 +152,5 @@ async def _(c: nlx, m):
 
     status["jalan"] = False
     await m.reply(cgr("ment_11").format(em.sukses))
+    await asyncio.sleep(3)
+    await m.delete()
