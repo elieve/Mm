@@ -150,14 +150,10 @@ async def _(c, iq):
 async def _(c, iq):
     user_id = iq.from_user.id
     emut = await nlx.get_prefix(user_id)
-    msg = """
-```Commands
-    Prefixes: `{}`
-    Modules: <code>{}</code>
-    User: {}
-```
-""".format(
-        " ".join(emut), len(CMD_HELP), nlx.me.mention
+    msg = (
+        "<b>Commands\n      Prefixes: `{}`\n      Modules: <code>{}</code></b>".format(
+            " ".join(emut), len(CMD_HELP)
+        )
     )
     await c.answer_inline_query(
         iq.id,
