@@ -57,7 +57,7 @@ def get_colok(kontol):
     return None
 
 
-@ky.ubot("negara", sudo=True)
+@ky.ubot("negara|country", sudo=True)
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
