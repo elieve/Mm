@@ -68,7 +68,7 @@ async def _(c: nlx, m):
     pros = await m.reply(cgr("proses").format(em.proses))
     rep = c.get_text(m)
     country_info = get_colok(rep)
-    if rep is None:
+    if len(m.command) == 1 and not m.reply_to_message:
         return await pros.edit(f"`{m.text} [negara]`")
     if country_info:
         response_message = f"**Nama negara:-** `{country_info['name']}`\n"
