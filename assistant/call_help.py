@@ -178,7 +178,9 @@ async def _(c, cq):
         text = f"<b>{CMD_HELP[module].__help__}</b>\n".format(next((p) for p in prefix))
         button = okb([[("≪", "help_back")]])
         if "Animasi" in text:
-            text1 = tekhelp.join(prefix), len(CMD_HELP), nlx.me.mention
+            text1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+                " ".join(prefix), len(CMD_HELP)
+            )
             button = okb(
                 [
                     [
@@ -202,7 +204,9 @@ async def _(c, cq):
                 await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
                 return
         elif "Toxic" in text:
-            text1 = tekhelp.join(prefix), len(CMD_HELP), nlx.me.mention
+            text1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+                " ".join(prefix), len(CMD_HELP)
+            )
             button = okb(
                 [
                     [
@@ -238,7 +242,9 @@ async def _(c, cq):
                 return
 
     if prev_match:
-        t1 = tekhelp.join(prefix), len(CMD_HELP), nlx.me.mention
+        t1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+            " ".join(prefix), len(CMD_HELP)
+        )
         curr_page = int(prev_match.group(1))
         try:
             await cq.edit_message_text(
@@ -252,7 +258,9 @@ async def _(c, cq):
             await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
             return
     if next_match:
-        t2 = tekhelp.join(prefix), len(CMD_HELP), nlx.me.mention
+        t2 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+            " ".join(prefix), len(CMD_HELP)
+        )
         next_page = int(next_match.group(1))
         try:
             await cq.edit_message_text(
@@ -266,7 +274,9 @@ async def _(c, cq):
             await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
             return
     if back_match:
-        t3 = tekhelp.join(prefix), len(CMD_HELP), nlx.me.mention
+        t3 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
+            " ".join(prefix), len(CMD_HELP)
+        )
         try:
             await cq.edit_message_text(
                 text=t3,
