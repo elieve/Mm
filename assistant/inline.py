@@ -15,7 +15,6 @@ from time import time
 
 import requests
 from pyrogram import *
-from pyrogram import enums
 from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.raw.functions import Ping
@@ -166,9 +165,7 @@ async def _(c, iq):
                     reply_markup=InlineKeyboardMarkup(
                         paginate_modules(0, CMD_HELP, "help")
                     ),
-                    input_message_content=InputTextMessageContent(
-                        msg
-                    ),
+                    input_message_content=InputTextMessageContent(msg),
                 )
             )
         ],
