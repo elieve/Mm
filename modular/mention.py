@@ -11,100 +11,121 @@ from Mix import *
 __modles__ = "Mention"
 __help__ = get_cgr("help_mention")
 
-berenti = False
+jalan = False
+status_per_grup = {}
 
 
 def random_emoji():
-    emojis = "🍦 🎈 🎸 🌼 🌳 🚀 🎩 📷 💡 🏄‍♂️ 🎹 🚲 🍕 🌟 🎨 📚 🚁 🎮 🍔 🍉 🎉 🎵 🌸 🌈 🏝️ 🌞 🎢 🚗 🎭 🍩 🎲 📱 🏖️ 🛸 🧩 🚢 🎠 🏰 🎯 🥳 🎰 🛒 🧸 🛺 🧊 🛷 🦩 🎡 🎣 🏹 🧁 🥨 🎻 🎺 🥁 🛹".split(
+    emojis = "⌚️ 📱 📲 💻 ⌨️ 🖥 🖨 🖱 🖲 🕹 🗜 💽 💾 💿 📀 📼 📷 📸 📹 🎥 📽 🎞 📞 ☎️ 📟 📠 📺 📻 🎙 🎚 🎛 🧭 ⏱ ⏲ ⏰ 🕰 ⌛️ ⏳ 📡 🔋 🪫 🔌 💡 🔦 🕯 🪔 🧯 🛢 🛍️ 💸 💵 💴 💶 💷 🪙 💰 💳 💎 ⚖️ 🪮 🪜 🧰 🪛 🔧 🔨 ⚒ 🛠 ⛏ 🪚 🔩 ⚙️ 🪤 🧱 ⛓ ⛓️‍💥 🧲 🔫 💣 🧨 🪓 🔪 🗡 ⚔️ 🛡 🚬 ⚰️ 🪦 ⚱️ 🏺 🔮 📿 🧿 🪬 💈 ⚗️ 🔭 🔬 🕳 🩹 🩺 🩻 🩼 💊 💉 🩸 🧬 🦠 🧫 🧪 🌡 🧹 🪠 🧺 🧻 🚽 🚰 🚿 🛁 🛀 🧼 🪥 🪒 🧽 🪣 🧴 🛎 🔑 🗝 🚪 🪑 🛋 🛏 🛌 🧸 🪆 🖼 🪞 🪟 🛍 🛒 🎁 🎈 🎏 🎀 🪄 🪅 🎊 🎉 🪩 🎎 🏮 🎐 🧧 ✉️ 📩 📨 📧 💌 📥 📤 📦 🏷 🪧 📪 📫 📬 📭 📮 📯 📜 📃 📄 📑 🧾 📊 📈 📉 🗒 🗓 📆 📅 🗑 🪪 📇 🗃 🗳 🗄 📋 📁 📂 🗂 🗞 📰 📓 📔 📒 📕 📗 📘 📙 📚 📖 🔖 🧷 🔗 📎 🖇 📐 📏 🧮 📌 📍 ✂️ 🖊 🖋 ✒️ 🖌 🖍 📝 ✏️ 🔍 🔎 🔏 🔐 🔒 🔓".split(
         " "
     )
     return random.choice(emojis)
 
 
 @ky.ubot("tagall", sudo=True)
-async def tag_all_members(c: nlx, m: Message):
-    em = Emojik()
-    em.initialize()
-    global berenti
+async def tag_all_members(c: nlx, m):
     chat_id = m.chat.id
-    admins = False
-    berenti = True
-    progres = await m.edit(cgr("proses").format(em.proses))
+    if chat_id not in status_per_grup:
+        status_per_grup[chat_id] = {
+            "jalan": False,
+            "mentioned_count": 0,
+            "total_members": [],
+        }
 
-    try:
-        administrator = []
-        async for admin in c.get_chat_members(
-            chat_id, filter=ChatMembersFilter.ADMINISTRATORS
-        ):
-            if not berenti:
-                break
-            administrator.append(admin)
-        await c.get_chat_member(chat_id, m.from_user.id)
-        admins = administrator
-    except Exception as e:
-        await m.reply(cgr("err").format(em.gagal))
-        print(e)
+    status = status_per_grup[chat_id]
 
-    if not admins:
-        await m.reply(cgr("ment_1").format(em.gagal))
+    if status["jalan"]:
+        await m.reply(
+            "Sedang ada proses tagall/mention lain yang sedang berlangsung."
+        )
         return
+
+    status["jalan"] = True
+    status["mentioned_count"] = 0
+    status["total_members"] = []
+
+    progres = await m.reply(
+        "Sedang proses tagall/mention seluruh member grup ..."
+    )
+
+    async for member in c.get_chat_members(chat_id):
+        user = member.user
+        if not user.is_bot and not user.is_self and not user.is_deleted:
+            status["total_members"].append(user.id)
 
     if not m.reply_to_message and len(m.command) < 2:
-        await m.reply(cgr("ment_2").format(em.gagal))
+        await progres.edit("Silahkan beri pesan atau balas pesan.")
+        status["jalan"] = False
         return
 
-    send = c.get_text(m)
-    text = " ".join(m.command[1:])
+    text = await c.get_text(m)
     mention_texts = []
-    members = c.get_chat_members(chat_id)
-    berenti = True
-    count = 0
 
-    async for member in members:
-        if not berenti:
+    for member_id in status["total_members"]:
+        if not status["jalan"]:
             break
-        if not member.user.is_bot and member.status != "user_status_empty":
-            mention_texts.append(f"[{random_emoji()}](tg://user?id={member.user.id})")
-            count += 1
-            if len(mention_texts) == 4:
-                mention_text = f"{send}\n\n"
-                mention_text += " ".join(mention_texts)
-                try:
-                    await c.send_message(chat_id, mention_text)
-                except FloodWait as e:
-                    await asyncio.sleep(e.x)
-                    await c.send_message(chat_id, mention_text)
-                await asyncio.sleep(2.5)
-                mention_texts = []
+        mention_texts.append(f"[{random_emoji()}](tg://user?id={member_id})")
+        status["mentioned_count"] += 1
+        if len(mention_texts) == 4:
+            mention_text = f"{text}\n\n{' ★ '.join(mention_texts)}"
+            try:
+                await c.send_message(chat_id, mention_text)
+                await asyncio.sleep(3)
+            except FloodWait as e:
+                tunggu = int(e.value)
+                if tunggu > 200:
+                    status["jalan"] = False
+                    await c.send_message(
+                        chat_id,
+                        f"Gagal melakukan mention karena waktu tunggu terlalu lama: `{tunggu}` detik.",
+                    )
+                    return
+                await asyncio.sleep(tunggu)
+                await c.send_message(chat_id, mention_text)
+                await asyncio.sleep(3)
+            mention_texts = []
 
     if mention_texts:
-        repl_text = m.reply_to_message.text if m.reply_to_message else None
-        if repl_text:
-            repl_text += "\n\n" + "\n".join(mention_texts)
-        else:
-            repl_text = " ".join(mention_texts)
+        mention_text = f"{text}\n\n{' ★ '.join(mention_texts)}"
         try:
-            await c.send_message(chat_id, repl_text)
+            await c.send_message(chat_id, mention_text)
+            await asyncio.sleep(3)
         except FloodWait as e:
-            await asyncio.sleep(e.x)
-            await c.send_message(chat_id, repl_text)
-        await asyncio.sleep(2.5)
+            tunggu = int(e.value)
+            if tunggu > 200:
+                status["jalan"] = False
+                await c.send_message(
+                    chat_id,
+                    f"Gagal melakukan mention karena waktu tunggu terlalu lama: `{tunggu}` detik.",
+                )
+                return
+            await asyncio.sleep(tunggu)
+            await c.send_message(chat_id, mention_text)
+            await asyncio.sleep(3)
 
-    berenti = False
+    status["jalan"] = False
     await progres.delete()
-    await m.reply(
-        f"{em.sukses} <b>Berhasil melakukan mention kepada <code>{count}</code> anggota.</b>"
+    await c.send_message(
+        m.chat.id,
+        f"Berhasil melakukan mention kepada <code>{status['mentioned_count']}</code> anggota dari total <code>{len(status['total_members'])}</code> anggota.",
     )
 
 
-@ky.ubot("stop", sudo=True)
-async def stop_tagall(c: nlx, m: Message):
-    em = Emojik()
-    em.initialize()
-    global berenti
-    if not berenti:
-        await m.reply(cgr("ment_3").format(em.gagal))
+@ky.ubot("stop|cancel")
+async def _(c: nlx, m):
+    chat_id = m.chat.id
+    if chat_id not in status_per_grup:
+        status_per_grup[chat_id] = {
+            "jalan": False,
+            "mentioned_count": 0,
+            "total_members": [],
+        }
+
+    status = status_per_grup[chat_id]
+
+    if not status["jalan"]:
+        await m.reply("Tidak ada proses TagAll/Mention yang sedang berlangsung.")
         return
 
-    berenti = False
-    await m.reply(cgr("ment_4").format(em.sukses))
+    status["jalan"] = False
+    await m.reply(f"Proses Tag All/Mention berhasil dihentikan.")
