@@ -84,10 +84,17 @@ fil_15: "{} Semua Filter berhasil dihapus."
 fil_16: "{} Tidak dapat menemukan Filter ini"
 
 # mention
-ment_1: "{} <b>Yang bener aje goblok! Lo itu bukan admin di sini! Lo itu ampas!</b>"
-ment_2: "{} <b>Minimal kasih teks nya lah goblok!</b>"
-ment_3: "{} <b>Yahh TOLOL! orang kaga ada proses tagall!</b>"
-ment_4: "{} <b>IYA! UDAH GUE MATIIN JINK! BAWEL!</b>"
+ment_1: "{} <b>Anda harus menjadi admin untuk menggunakan perintah ini!</b>"
+ment_2: "{} <b>Minimal kasih teks atau rep pesan lah jink!</b>"
+ment_3: "{} <b>kaga ada proses tagall jink!</b>"
+ment_4: "{} <b>Udah gue mampusin tuh proses tagall!</b>"
+ment_5: "{} <b>Lagi ada tagall jink! lo mau double?! SERAKAH LO!</b>"
+ment_6: "{} <b>Gue tag ke `{}` babu nih ..</b>"
+ment_7: "{} <b>Floodwait jink! males nungguin `{}` detik.\n\nUdah gue tag ke : `{}` babu.\nDari total : `{}` babu."
+ment_8: "{} <b>Udah gue tag ke : `{}` babu.\nDari total `{}` babu."
+ment_9: "{} <b>Sukses tag ke : <code>{}</code> babu.\nDari total <code>{}</code> babu.</b>"
+ment_10: "{} <b>Kaga ada proses tagall jink!</b>"
+ment_11: "{} <b>Udah gue mampusin tuh proses tagall!</b>"
 
 # sangmata
 sangmat_1: "{} <b><code>sg</code> username/id/bales pesan</b>"
