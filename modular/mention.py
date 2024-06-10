@@ -80,7 +80,14 @@ async def _(c: nlx, m):
                     await asyncio.sleep(tunggu)
                     await c.send_message(
                         chat_id,
-                        cgr("ment_7").format(em.gagal, tunggu, em.sukses, status["mentioned_count"], jummem))
+                        cgr("ment_7").format(
+                            em.gagal,
+                            tunggu,
+                            em.sukses,
+                            status["mentioned_count"],
+                            jummem,
+                        ),
+                    )
                     return
                 await asyncio.sleep(tunggu)
                 try:
@@ -91,7 +98,10 @@ async def _(c: nlx, m):
                 except:
                     await c.send_message(
                         chat_id,
-                        cgr("ment_8").format(em.sukses, status["mentioned_count"], jummem))
+                        cgr("ment_8").format(
+                            em.sukses, status["mentioned_count"], jummem
+                        ),
+                    )
             mention_texts = []
 
     if mention_texts:
@@ -108,7 +118,10 @@ async def _(c: nlx, m):
                 await asyncio.sleep(tunggu)
                 await c.send_message(
                     chat_id,
-                    cgr("ment_7").format(em.gagal, tunggu, em.sukses, status["mentioned_count"], jummem))
+                    cgr("ment_7").format(
+                        em.gagal, tunggu, em.sukses, status["mentioned_count"], jummem
+                    ),
+                )
                 return
             await asyncio.sleep(tunggu)
             try:
@@ -118,14 +131,15 @@ async def _(c: nlx, m):
                 await asyncio.sleep(3)
             except:
                 await c.send_message(
-                        chat_id,
-                        cgr("ment_8").format(em.sukses, status["mentioned_count"], jummem))
+                    chat_id,
+                    cgr("ment_8").format(em.sukses, status["mentioned_count"], jummem),
+                )
 
     status["jalan"] = False
     await progres.delete()
     await c.send_message(
-        m.chat.id,
-        cgr("ment_9").format(em.sukses, status["mentioned_count"], jummem))
+        m.chat.id, cgr("ment_9").format(em.sukses, status["mentioned_count"], jummem)
+    )
 
 
 @ky.ubot("stop|cancel|batal")
