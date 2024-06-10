@@ -651,7 +651,7 @@ negar_15: "📌 **Timezone:-** `{}`\n"
 negar_16: "📌 **Top Level Domain:-** `{}`\n"
 
 # help_for
-help_negara: " **Country**\n\n• Command: `{0}country` [which country]\n•Description: To find info about Country."
+help_negara: " **Country**\n\n• Command: `{0}country` [query]\n•Description: To find info about Country."
 help_mail: " **Mail**\n\n• Command: `{0}genmail`\n• Description: To get Google Temporary Email.\n\n• Command: `{0}getmail [email] [token]` \n • Description: To get incoming messages in Gmail Temp.\n\n•Command: `{0}tempmail`\n• Description: To get Temporary Random Email.\n\n• Command: `{0}gettemp` [email]\n• Description: To get messages contained in Temporary Random Email."
 help_katnim: " **Kata Anime**\n\n• Command: `{0}katanimelist`\n• Description: View the list and total of anime words.\n\n• Command: `{0}katanime ` \n• Description: Choose random anime words and characters\n\n•Command: `{0}word` [anime]\n• Description: Take words from anime.\n\n• Command: `{0}katanime` [word]\n• Description: Searches for anime words based on the given arguments."
 
