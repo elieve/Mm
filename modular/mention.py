@@ -22,7 +22,7 @@ def random_emoji():
     return random.choice(emojis)
 
 
-@ky.ubot("tagall", sudo=True)
+@ky.ubot("tagall|mention", sudo=True)
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -56,8 +56,6 @@ async def _(c: nlx, m):
         return
 
     text = c.get_text(m)
-    kirim = c.get_m(m)
-    rep = m.reply_to_message
     jummem = len(status["total_members"])
     mention_texts = []
 
@@ -69,8 +67,6 @@ async def _(c: nlx, m):
         if len(mention_texts) == 4:
             mention_text = f"{text}\n\n{' ★ '.join(mention_texts)}"
             try:
-                if rep:
-                    await kirim.copy(chat_id)
                 await c.send_message(chat_id, mention_text)
                 await asyncio.sleep(3)
             except FloodWait as e:
@@ -91,8 +87,6 @@ async def _(c: nlx, m):
                     return
                 await asyncio.sleep(tunggu)
                 try:
-                    if rep:
-                        kirim.copy(chat_id)
                     await c.send_message(chat_id, mention_text)
                     await asyncio.sleep(3)
                 except:
@@ -107,8 +101,6 @@ async def _(c: nlx, m):
     if mention_texts:
         mention_text = f"{text}\n\n{' ★ '.join(mention_texts)}"
         try:
-            if rep:
-                kirim.copy(chat_id)
             await c.send_message(chat_id, mention_text)
             await asyncio.sleep(3)
         except FloodWait as e:
@@ -125,8 +117,6 @@ async def _(c: nlx, m):
                 return
             await asyncio.sleep(tunggu)
             try:
-                if rep:
-                    await kirim.copy(chat_id)
                 await c.send_message(chat_id, mention_text)
                 await asyncio.sleep(3)
             except:
