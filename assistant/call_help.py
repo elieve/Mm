@@ -28,6 +28,15 @@ from Mix.core.waktu import get_time, start_time
 from modular.pmpermit import *
 
 
+tekhelp = """
+```Commands
+Prefixes: {}
+Modules: {}
+User: {}
+```
+"""
+
+
 def clbk_stasm():
     return okb(
         [
@@ -170,8 +179,7 @@ async def _(c, cq):
         text = f"<b>{CMD_HELP[module].__help__}</b>\n".format(next((p) for p in prefix))
         button = okb([[("≪", "help_back")]])
         if "Animasi" in text:
-            text1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
-                " ".join(prefix), len(CMD_HELP)
+            text1 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
             )
             button = okb(
                 [
@@ -196,8 +204,7 @@ async def _(c, cq):
                 await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
                 return
         elif "Toxic" in text:
-            text1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
-                " ".join(prefix), len(CMD_HELP)
+            text1 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
             )
             button = okb(
                 [
@@ -234,8 +241,7 @@ async def _(c, cq):
                 return
 
     if prev_match:
-        t1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
-            " ".join(prefix), len(CMD_HELP)
+        t1 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
         )
         curr_page = int(prev_match.group(1))
         try:
@@ -250,8 +256,7 @@ async def _(c, cq):
             await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
             return
     if next_match:
-        t2 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
-            " ".join(prefix), len(CMD_HELP)
+        t2 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
         )
         next_page = int(next_match.group(1))
         try:
@@ -266,8 +271,7 @@ async def _(c, cq):
             await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
             return
     if back_match:
-        t3 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
-            " ".join(prefix), len(CMD_HELP)
+        t3 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
         )
         try:
             await cq.edit_message_text(
