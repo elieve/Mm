@@ -204,7 +204,6 @@ async def _(c, cq):
                 return
         elif "Toxic" in text:
             text1 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
-            )
             button = okb(
                 [
                     [
@@ -241,7 +240,6 @@ async def _(c, cq):
 
     if prev_match:
         t1 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
-        )
         curr_page = int(prev_match.group(1))
         try:
             await cq.edit_message_text(
@@ -256,7 +254,6 @@ async def _(c, cq):
             return
     if next_match:
         t2 = tekshelp.join(prefix), len(CMD_HELP), nlx.me.mention
-        )
         next_page = int(next_match.group(1))
         try:
             await cq.edit_message_text(
