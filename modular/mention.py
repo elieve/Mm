@@ -49,7 +49,6 @@ async def _(c: nlx, m):
         user = member.user
         if not user.is_bot and not user.is_self and not user.is_deleted:
             status["total_members"].append(user.id)
-            jummem = len(status["total_members"])
 
     if not m.reply_to_message and len(m.command) < 2:
         await progres.edit(cgr("ment_2").format(em.gagal))
@@ -59,6 +58,7 @@ async def _(c: nlx, m):
     text = c.get_text(m)
     kirim = c.get_m(m)
     rep = m.reply_to_message
+    jummem = len(status["total_members"])
     mention_texts = []
 
     for member_id in status["total_members"]:
