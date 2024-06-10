@@ -43,7 +43,7 @@ async def _(c: nlx, m):
     status["jalan"] = True
     status["mentioned_count"] = 0
     status["total_members"] = []
-    progres = await m.reply(cgr("ment_6").format(em.proses, jummem))
+    progres = await m.reply(cgr("ment_6").format(em.proses))
 
     async for member in c.get_chat_members(chat_id):
         user = member.user
