@@ -56,8 +56,8 @@ async def _(c: nlx, m):
         status["jalan"] = False
         return
 
-    text = await c.get_text(m)
-    kirim = await c.get_m(m)
+    text = c.get_text(m)
+    kirim = c.get_m(m)
     rep = m.reply_to_message
     mention_texts = []
 
