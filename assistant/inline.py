@@ -152,9 +152,9 @@ async def _(c, iq):
     emut = await nlx.get_prefix(user_id)
     msg = """
 ```Commands
-Prefixes: `{}`
-Modules: <code>{}</code>
-User: {}
+    Prefixes: `{}`
+    Modules: <code>{}</code>
+    User: {}
 ```
 """.format(
         " ".join(emut), len(CMD_HELP), nlx.me.mention
