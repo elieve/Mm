@@ -43,13 +43,13 @@ async def _(c: nlx, m):
     status["jalan"] = True
     status["mentioned_count"] = 0
     status["total_members"] = []
-    jummem = len(status["total_members"])
     progres = await m.reply(cgr("ment_6").format(em.proses, jummem))
 
     async for member in c.get_chat_members(chat_id):
         user = member.user
         if not user.is_bot and not user.is_self and not user.is_deleted:
             status["total_members"].append(user.id)
+            jummem = len(status["total_members"])
 
     if not m.reply_to_message and len(m.command) < 2:
         await progres.edit(cgr("ment_2").format(em.gagal))
