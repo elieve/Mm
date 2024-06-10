@@ -165,7 +165,9 @@ async def _(c, iq):
                     reply_markup=InlineKeyboardMarkup(
                         paginate_modules(0, CMD_HELP, "help")
                     ),
-                    input_message_content=InputTextMessageContent(msg, parse_mode="MarkdownV2"),
+                    input_message_content=InputTextMessageContent(
+                        msg, parse_mode="MarkdownV2"
+                    ),
                 )
             )
         ],
