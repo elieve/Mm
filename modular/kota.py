@@ -161,7 +161,7 @@ async def _(c: nlx, m):
         wil = country_info["continent"]
         subwil = country_info["independence_date"]
         jon = country_info["covid19_last_updated"]
-        top = country_info["href_self"]
+        country_info["href_self"]
 
         response_message = cgr("negar_1").format(neg)
         response_message += cgr("negar_2").format(spel)
@@ -184,7 +184,12 @@ async def _(c: nlx, m):
             flag_response = requests.get(bende)
             if flag_response.status_code == 200:
                 flag_image = BytesIO(flag_response.content)
-                await c.send_photo(m.chat.id, flag_image, caption=response_message, reply_to_message_id=ReplyCheck(m))
+                await c.send_photo(
+                    m.chat.id,
+                    flag_image,
+                    caption=response_message,
+                    reply_to_message_id=ReplyCheck(m),
+                )
                 await pros.delete()
             else:
                 await pros.edit(response_message, disable_web_page_preview=True)
