@@ -143,7 +143,7 @@ async def format_temp_mail(temp_mail):
         em = Emojik()
         em.initialize()
         imel = temp_mail["email"]
-        temp_mail["token"]
+        token = temp_mail["token"]
         return cgr("mail_9").format(em.sukses, imel, token, em.warn)
     else:
         raise ValueError(cgr("mail_err"))
