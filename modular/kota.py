@@ -64,8 +64,9 @@ def get_colok(kontol):
 
 
 from io import BytesIO
-from pytz import timezone
+
 import requests
+from pytz import timezone
 
 
 def parse_country_data(country_data):
@@ -160,11 +161,15 @@ async def _(c: nlx, m):
         popul = country_info["population"]
         wil = country_info["continent"]
         subwil = country_info["independence_date"]
-        jon = country_info["covid19_last_updated"]
+        country_info["covid19_last_updated"]
         try:
-            tz = timezone(country_info.get("capital", "UTC")[0]) if "capital" in country_info else timezone("UTC")
-            local_time = datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')
-        except Exception as e:
+            tz = (
+                timezone(country_info.get("capital", "UTC")[0])
+                if "capital" in country_info
+                else timezone("UTC")
+            )
+            local_time = datetime.now(tz).strftime("%Y-%m-%d %H:%M:%S")
+        except Exception:
             local_time = "Unknown timezone"
 
         response_message = cgr("negar_1").format(neg)
