@@ -64,7 +64,7 @@ def get_colok(kontol):
 
 
 from io import BytesIO
-
+from pytz import timezone
 import requests
 
 
@@ -161,7 +161,11 @@ async def _(c: nlx, m):
         wil = country_info["continent"]
         subwil = country_info["independence_date"]
         jon = country_info["covid19_last_updated"]
-        country_info["href_self"]
+        try:
+            tz = timezone(country_info.get("capital", "UTC")[0]) if "capital" in country_info else timezone("UTC")
+            local_time = datetime.now(tz).strftime('%Y-%m-%d %H:%M:%S')
+        except Exception as e:
+            local_time = "Unknown timezone"
 
         response_message = cgr("negar_1").format(neg)
         response_message += cgr("negar_2").format(spel)
@@ -177,7 +181,7 @@ async def _(c: nlx, m):
         response_message += cgr("negar_12").format(popul)
         response_message += cgr("negar_13").format(wil)
         response_message += cgr("negar_14").format(subwil)
-        response_message += cgr("negar_15").format(jon)
+        response_message += cgr("negar_15").format(local_time)
         # response_message += cgr("negar_16").format(top)
 
         try:
