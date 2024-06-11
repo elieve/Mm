@@ -16,6 +16,7 @@ __modles__ = "Country"
 __help__ = get_cgr("help_negara")
 
 
+"""
 def get_colok(kontol):
     url = f"https://restcountries.com/v3.1/name/{kontol}"
     try:
@@ -59,7 +60,76 @@ def get_colok(kontol):
         return None
 
     return None
+"""
 
+
+import requests
+
+def parse_country_data(country_data):
+    data = country_data.get('data', {})
+
+    name = data.get('name', 'Unknown')
+    full_name = data.get('full_name', 'Unknown')
+    capital = data.get('capital', 'Unknown')
+    iso2 = data.get('iso2', 'Unknown')
+    iso3 = data.get('iso3', 'Unknown')
+    covid19_total_case = data.get('covid19', {}).get('total_case', 'Unknown')
+    covid19_total_deaths = data.get('covid19', {}).get('total_deaths', 'Unknown')
+    covid19_last_updated = data.get('covid19', {}).get('last_updated', 'Unknown')
+    current_president = data.get('current_president', 'Unknown')
+    currency = data.get('currency', 'Unknown')
+    phone_code = data.get('phone_code', 'Unknown')
+    continent = data.get('continent', 'Unknown')
+    description = data.get('description', 'Unknown')
+    size = data.get('size', 'Unknown')
+    independence_date = data.get('independence_date', 'Unknown')
+    population = data.get('population', 'Unknown')
+    href_self = data.get('href', {}).get('self', 'Unknown')
+    href_states = data.get('href', {}).get('states', 'Unknown')
+    href_presidents = data.get('href', {}).get('presidents', 'Unknown')
+    flag_url = data.get('href', {}).get('flag', 'Unknown')
+
+    return {
+        "name": name,
+        "full_name": full_name,
+        "capital": capital,
+        "iso2": iso2,
+        "iso3": iso3,
+        "covid19_total_case": covid19_total_case,
+        "covid19_total_deaths": covid19_total_deaths,
+        "covid19_last_updated": covid19_last_updated,
+        "current_president": current_president,
+        "currency": currency,
+        "phone_code": phone_code,
+        "continent": continent,
+        "description": description,
+        "size": size,
+        "independence_date": independence_date,
+        "population": population,
+        "href_self": href_self,
+        "href_states": href_states,
+        "href_presidents": href_presidents,
+        "flag_url": flag_url
+    }
+
+def kontri(kont):
+    url = f"https://restfulcountries.com/api/v1/countries/{kont}"
+    headers = {
+        "Accept": "application/json",
+        "Authorization": "Bearer 1163|gslX6NwH9CfYDwTjaD7b99iIdVwEIms3XeHU9hSi",
+    }
+    try:
+        response = requests.get(url, headers=headers, timeout=60)
+        if response.status_code == 200:
+            data = response.json()
+            if data:
+                return parse_country_data(data)
+    except requests.exceptions.Timeout:
+        return None
+    except requests.exceptions.RequestException:
+        return None
+
+    return None
 
 @ky.ubot("negara|country", sudo=True)
 async def _(c: nlx, m):
@@ -69,24 +139,24 @@ async def _(c: nlx, m):
     if len(m.command) == 1 and not m.reply_to_message:
         return await pros.edit(f"`{m.text} [negara]`")
     rep = c.get_text(m)
-    country_info = get_colok(rep)
+    country_info = kontri(rep)
     if country_info:
         neg = country_info["name"]
-        spel = country_info["alt_spellings"]
-        wilneg = country_info["area"]
-        bates = country_info["borders"]
-        kod = country_info["calling_code"]
+        spel = country_info["full_name"]
+        wilneg = country_info["size"]
+        bates = country_info["covid19_total_case"]
+        kod = country_info["phone_code"]
         kot = country_info["capital"]
-        duit = country_info["currencies"]
-        bende = country_info["flag"]
-        demo = country_info["demonym"]
-        izo = country_info["iso"]
-        lang = country_info["languages"]
+        duit = country_info["currency"]
+        bende = country_info["flag_url"]
+        demo = country_info["current_president"]
+        izo = country_info["iso2"]
+        lang = country_info["description"]
         popul = country_info["population"]
-        wil = country_info["region"]
-        subwil = country_info["subregion"]
-        jon = country_info["timezones"]
-        top = country_info["top_level_domain"]
+        wil = country_info["continent"]
+        subwil = country_info["independence_date"]
+        jon = country_info["covid19_last_updated"]
+        top = country_info["href_self"]
 
         response_message = cgr("negar_1").format(neg)
         response_message += cgr("negar_2").format(spel)
