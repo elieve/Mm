@@ -178,18 +178,13 @@ async def _(c: nlx, m):
         response_message += cgr("negar_13").format(wil)
         response_message += cgr("negar_14").format(subwil)
         response_message += cgr("negar_15").format(jon)
-        response_message += cgr("negar_16").format(top)
+        # response_message += cgr("negar_16").format(top)
 
         try:
             flag_response = requests.get(bende)
             if flag_response.status_code == 200:
                 flag_image = BytesIO(flag_response.content)
-                await c.send_photo(
-                    m.chat.id,
-                    flag_image,
-                    caption=response_message,
-                    reply_to_message_id=ReplyCheck(m),
-                )
+                await c.send_photo(m.chat.id, flag_image, caption=response_message, reply_to_message_id=ReplyCheck(m))
                 await pros.delete()
             else:
                 await pros.edit(response_message, disable_web_page_preview=True)
