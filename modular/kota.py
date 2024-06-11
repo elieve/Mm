@@ -63,33 +63,34 @@ def get_colok(kontol):
 """
 
 
-import requests
 from io import BytesIO
-from pyrogram import Client, filters
+
+import requests
+
 
 def parse_country_data(country_data):
-    data = country_data.get('data', {})
+    data = country_data.get("data", {})
 
-    name = data.get('name', 'Unknown')
-    full_name = data.get('full_name', 'Unknown')
-    capital = data.get('capital', 'Unknown')
-    iso2 = data.get('iso2', 'Unknown')
-    iso3 = data.get('iso3', 'Unknown')
-    covid19_total_case = data.get('covid19', {}).get('total_case', 'Unknown')
-    covid19_total_deaths = data.get('covid19', {}).get('total_deaths', 'Unknown')
-    covid19_last_updated = data.get('covid19', {}).get('last_updated', 'Unknown')
-    current_president = data.get('current_president', 'Unknown')
-    currency = data.get('currency', 'Unknown')
-    phone_code = data.get('phone_code', 'Unknown')
-    continent = data.get('continent', 'Unknown')
-    description = data.get('description', 'Unknown')
-    size = data.get('size', 'Unknown')
-    independence_date = data.get('independence_date', 'Unknown')
-    population = data.get('population', 'Unknown')
-    href_self = data.get('href', {}).get('self', 'Unknown')
-    href_states = data.get('href', {}).get('states', 'Unknown')
-    href_presidents = data.get('href', {}).get('presidents', 'Unknown')
-    flag_url = data.get('href', {}).get('flag', 'Unknown')
+    name = data.get("name", "Unknown")
+    full_name = data.get("full_name", "Unknown")
+    capital = data.get("capital", "Unknown")
+    iso2 = data.get("iso2", "Unknown")
+    iso3 = data.get("iso3", "Unknown")
+    covid19_total_case = data.get("covid19", {}).get("total_case", "Unknown")
+    covid19_total_deaths = data.get("covid19", {}).get("total_deaths", "Unknown")
+    covid19_last_updated = data.get("covid19", {}).get("last_updated", "Unknown")
+    current_president = data.get("current_president", "Unknown")
+    currency = data.get("currency", "Unknown")
+    phone_code = data.get("phone_code", "Unknown")
+    continent = data.get("continent", "Unknown")
+    description = data.get("description", "Unknown")
+    size = data.get("size", "Unknown")
+    independence_date = data.get("independence_date", "Unknown")
+    population = data.get("population", "Unknown")
+    href_self = data.get("href", {}).get("self", "Unknown")
+    href_states = data.get("href", {}).get("states", "Unknown")
+    href_presidents = data.get("href", {}).get("presidents", "Unknown")
+    flag_url = data.get("href", {}).get("flag", "Unknown")
 
     return {
         "name": name,
@@ -111,8 +112,9 @@ def parse_country_data(country_data):
         "href_self": href_self,
         "href_states": href_states,
         "href_presidents": href_presidents,
-        "flag_url": flag_url
+        "flag_url": flag_url,
     }
+
 
 def kontri(kont):
     url = f"https://restfulcountries.com/api/v1/countries/{kont}"
@@ -132,6 +134,7 @@ def kontri(kont):
         return None
 
     return None
+
 
 @ky.ubot("negara|country", sudo=True)
 async def _(c: nlx, m):
@@ -189,4 +192,3 @@ async def _(c: nlx, m):
             await pros.edit("Maaf, terjadi kesalahan.")
     else:
         await pros.edit("Maaf, informasi tidak ditemukan.")
-
