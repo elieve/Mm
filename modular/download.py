@@ -451,34 +451,34 @@ async def insta_handler(c: nlx, m):
     pros = await m.edit(cgr("proses").format(em.proses))
     try:
         url = m.command[1]
-        if url.startswith("https://www.instagram.com/p/") or url.startswith(
-            "https://instagram.com/p/"
-        ):
+        if "www.instagram.com" in url:
             querystring = {"url": url}
+            jnbt = "https://instagram-bulk-scraper-latest.p.rapidapi.com/media_download_from_url"
             headers = {
-                "X-RapidAPI-Key": "24d6a3913bmsh3561d6af783658fp1a8240jsneef57a49ff14",
-                "X-RapidAPI-Host": "instagram-api-special.p.rapidapi.com",
+                "x-rapidapi-key": "24d6a3913bmsh3561d6af783658fp1a8240jsneef57a49ff14",
+                "x-rapidapi-host": "instagram-bulk-scraper-latest.p.rapidapi.com",
+                "Content-Type": "application/json"
             }
-            response = requests.get(
-                "https://instagram-api-special.p.rapidapi.com/instagram/",
+            response = requests.post(
+                jnbt,
+                json=querystring,
                 headers=headers,
-                params=querystring,
             )
             data = response.json()
-            if data["status"]:
-                result = data["result"][0]
-                media_url = result["url"]
+            if data["status"] == "ok":
+                result = data["data"]
+                media_url = result["main_media_hd"]
+                media_type = result["main_media_type"]
                 thumb_url = result.get("thumb", None)
-                if result["type"] == "image/jpeg":
+
+                if media_type == "image":
                     await c.send_photo(
                         m.chat.id,
                         photo=media_url,
                         caption=cgr("down_12").format(em.sukses, nlx.me.mention),
                         reply_to_message_id=m.id,
                     )
-                    await pros.delete()
-                    return
-                elif result["type"] == "video/mp4":
+                elif media_type == "video":
                     await c.send_video(
                         m.chat.id,
                         video=media_url,
@@ -486,11 +486,10 @@ async def insta_handler(c: nlx, m):
                         caption=cgr("down_13").format(em.sukses, nlx.me.mention),
                         reply_to_message_id=m.id,
                     )
-                    await pros.delete()
-                    return
                 else:
                     await pros.edit(cgr("down_14").format(em.gagal))
-                    return
+                await pros.delete()
+                return
             else:
                 await pros.edit(
                     cgr("down_15").format(em.gagal, url), disable_web_page_preview=True
@@ -501,4 +500,7 @@ async def insta_handler(c: nlx, m):
             return
     except IndexError:
         await pros.edit(cgr("down_17").format(em.gagal, m.command))
+        return
+    except Exception as e:
+        await pros.edit(cgr("down_18").format(em.gagal, str(e)))
         return
