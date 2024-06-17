@@ -457,7 +457,7 @@ async def insta_handler(c: nlx, m):
             headers = {
                 "x-rapidapi-key": "24d6a3913bmsh3561d6af783658fp1a8240jsneef57a49ff14",
                 "x-rapidapi-host": "instagram-bulk-scraper-latest.p.rapidapi.com",
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             }
             response = requests.post(
                 jnbt,
