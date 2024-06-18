@@ -1,4 +1,4 @@
-FROM python3:3.9-slim-bullseye
+FROM python:3.9.2-slim
 
 RUN apt-get update -y && apt-get upgrade -y \
     && apt-get install -y --no-install-recommends \
