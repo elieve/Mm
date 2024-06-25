@@ -408,7 +408,7 @@ async def _(c, iq):
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
-    teks, button = get_msg_button(ikb, pm_text)
+    teks, button = get_msg_button(pm_text)
     button = create_tl_btn(button)
     def_keyb = ikb([[("Setuju", f"pm_ okein {int(org[1])}"), ("Blokir": f"pm_ blokbae {int(org[1])}")]])
     if button:
