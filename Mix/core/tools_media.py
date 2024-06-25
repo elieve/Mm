@@ -7,15 +7,12 @@
 #
 # t.me/SharingUserbot & t.me/Lunatic0de
 
-import math
 import os
 import subprocess
 import textwrap
 
 from PIL import Image, ImageDraw, ImageFont
-from pymediainfo import MediaInfo
 
-from Mix import nlx
 
 
 async def dl_font():
