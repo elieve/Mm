@@ -17,7 +17,6 @@ from pyrogram.types import *
 
 from Mix import *
 
-# from .start import clbk_strt
 
 
 def st_lang():
