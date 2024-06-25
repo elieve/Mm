@@ -310,7 +310,7 @@ async def _(c, iq):
         len(ape),
         upnya,
     )
-    bo_ol = ikb([[(f"{cgr('alv_4')}", "suprot"), ("Stats": "stats_mix")]])
+    bo_ol = ikb([[(f"{cgr('alv_4')}", "suprot"), ("Stats", "stats_mix")]])
     cekpic = udB.get_var(nlx.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
