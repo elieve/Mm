@@ -31,7 +31,6 @@ from modular.pmpermit import *
 from .call_calc import calc_help
 
 
-
 async def diinline(q):
     chats = []
     chat_types = {
