@@ -17,7 +17,7 @@ from Mix import *
 @ky.callback("markd.")
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
-    kb = ikb([[("Kembali": "bace.markd")],])
+    kb = ikb([[("Kembali", "bace.markd")]])
     if cmd == "butformat":
         nan = cgr("mark_1")
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
