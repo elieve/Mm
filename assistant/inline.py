@@ -291,14 +291,15 @@ async def send_inline(c, iq):
 async def _(c, iq):
     pmper = None
     stutas = None
+    self = iq.from_user.id
     start = datetime.now()
     await nlx.invoke(Ping(ping_id=0))
     end = datetime.now()
     delta_ping = round((end - start).microseconds / 10000, 1)
     upnya = await get_time((time() - start_time))
-    ape = await diinline("group")
-    apa = await diinline("users")
-    upu = await diinline("bot")
+    ape = udB.get_var(self, "gc") or "N/A"
+    apa = udB.get_var(self, "us") or "N/A"
+    upu = udB.get_var(self, "bot") or "N/A"
     if nlx.me.id in DEVS:
         stutas = cgr("alv_1")
     else:
