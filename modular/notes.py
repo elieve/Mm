@@ -39,10 +39,10 @@ async def _(c: nlx, m):
     if getnotes:
         return await xx.edit("{} Notes already exist.".format(em.gagal))
     if data_type == Types.TEXT:
-        # teks, _ = text_keyb(ikb, text)
+        # teks, _ = get_msg_button(text)
         udB.save_note(c.me.id, note_name, text, data_type, content)
     elif data_type in [Types.PHOTO, Types.VIDEO]:
-        # teks, _ = text_keyb(ikb, text)
+        # teks, _ = get_msg_button(text)
         file_type = "jpg" if data_type == Types.PHOTO else "mp4"
         xo = kontol_siapa(gua, file_type)
         mek = await c.download_media(cek, xo)
@@ -78,7 +78,7 @@ async def _(c: nlx, m):
         return await xx.edit(cgr("nts_5").format(em.gagal, note))
 
     if getnotes["type"] == Types.TEXT:
-        teks, button = text_keyb(ikb, getnotes.get("value"))
+        teks, button = get_msg_button(getnotes.get("value"))
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
@@ -97,7 +97,7 @@ async def _(c: nlx, m):
             await m.reply(getnotes["value"])
 
     elif getnotes["type"] == Types.PHOTO:
-        teks, button = text_keyb(ikb, getnotes.get("value"))
+        teks, button = get_msg_button(getnotes.get("value"))
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
@@ -120,7 +120,7 @@ async def _(c: nlx, m):
                 reply_to_message_id=ReplyCheck(m),
             )
     elif getnotes["type"] == Types.VIDEO:
-        teks, button = text_keyb(ikb, getnotes.get("value"))
+        teks, button = get_msg_button(getnotes.get("value"))
         if button:
             try:
                 inlineresult = await c.get_inline_bot_results(
@@ -168,7 +168,7 @@ async def _(c: nlx, m):
             reply_to_message_id=ReplyCheck(m),
         )
     else:
-        teks, button = text_keyb(ikb, getnotes.get("value"))
+        teks, button = get_msg_button(getnotes.get("value"))
         if button:
             try:
                 xi = await c.get_inline_bot_results(
