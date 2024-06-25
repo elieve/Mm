@@ -36,7 +36,7 @@ User: {}
 
 
 def clbk_stasm():
-    return okb([[(cgr("ttup"), "cls_hlp")]])
+    return ikb([[(cgr("ttup"), "cls_hlp")]])
 
 
 @ky.callback("^pm_")
@@ -54,7 +54,7 @@ async def _(c, cq):
             cq.inline_message_id, "User Has Been Approved To PM."
         )
 
-    if data == "blokbae":
+    if data == "blikbae":
         if org != nlx.me.id:
             return await cq.answer("This Button Not For You FCVK !!!!", True)
         await bot.edit_inline_text(
@@ -116,12 +116,12 @@ async def _(c, cq):
     if mod_match:
         module = (mod_match.group(1)).replace(" ", "_")
         text = f"<b>{CMD_HELP[module].__help__}</b>\n".format(next((p) for p in prefix))
-        button = okb([[("≪", "help_back")]])
+        button = ikb([[("≪", "help_back")]])
         if "Animasi" in text:
             text1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
                 " ".join(prefix), len(CMD_HELP)
             )
-            button = okb(
+            button = ikb(
                 [
                     [
                         ("Animasi 1", "anim.anm1"),
@@ -147,7 +147,7 @@ async def _(c, cq):
             text1 = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
                 " ".join(prefix), len(CMD_HELP)
             )
-            button = okb(
+            button = ikb(
                 [
                     [
                         ("Toxic 1", "to.tox1"),
@@ -233,7 +233,7 @@ async def _(c, cq):
 @ky.callback("^anim.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
-    kemem = okb([[("≪", "anim.bc")]])
+    kemem = ikb([[("≪", "anim.bc")]])
     user_id = cq.from_user.id
     prefix = await nlx.get_prefix(user_id)
     txt = None
@@ -269,7 +269,7 @@ async def _(c, cq):
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
-        kemem = okb(
+        kemem = ikb(
             [
                 [
                     ("Animasi 1", "anim.anm1"),
@@ -294,7 +294,7 @@ async def _(c, cq):
 @ky.callback("^to.")
 async def _(c, cq):
     colmek = cq.data.split(".")[1]
-    kemem = okb([[("≪", "to.bc"), ("⪼", "to.next")]])
+    kemem = ikb([[("≪", "to.bc"), ("⪼", "to.next")]])
     user_id = cq.from_user.id
     prefix = await nlx.get_prefix(user_id)
     txt = None
@@ -302,7 +302,7 @@ async def _(c, cq):
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
-        kemem2 = okb(
+        kemem2 = ikb(
             [
                 [
                     ("Toxic 5", "to.tox5"),
@@ -392,7 +392,7 @@ async def _(c, cq):
         txt = "<b>Commands\n      Prefixes: <code>{}</code>\n      Modules: <code>{}</code></b>".format(
             " ".join(prefix), len(CMD_HELP)
         )
-        kemem3 = okb(
+        kemem3 = ikb(
             [
                 [
                     ("Toxic 1", "to.tox1"),

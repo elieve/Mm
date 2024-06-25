@@ -402,7 +402,7 @@ async def _(c, iq):
         [
             [
                 ("Setuju", f"pm_ okein {int(org[1])}"),
-                ("Blokir", f"pm_ blokbae {int(org[1])}"),
+                ("Blokir", f"pm_ blikbae {int(org[1])}"),
             ]
         ]
     )

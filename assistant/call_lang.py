@@ -59,7 +59,7 @@ async def _(c, cq):
     lang_code = cq.data.split("_")[1]
     op = get_bahasa_()
     sl = next((ox for ox in op if ox["code"] == lang_code), None)
-    kb = okb([[(cgr("balik"), "clbk.bek")]])
+    kb = ikb([[(cgr("balik"), "clbk.bek")]])
     if sl:
         ndB.set_key("bahasa", lang_code)
         await cq.edit_message_text(
