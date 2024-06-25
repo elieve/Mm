@@ -17,8 +17,14 @@ async def start_user():
     LOGGER.info(f"Starting Telegram User Client...")
     try:
         await nlx.start()
-    except (SessionExpired, ApiIdInvalid, UserDeactivatedBan):
-        LOGGER.info("Check your session or api id!!")
+    except SessionExpired as e:
+        LOGGER.info(f"Error {e}")
+        sys.exit(1)
+    except ApiIdInvalid as e:
+        LOGGER.info(f"Error {e}")
+        sys.exit(1)
+    except UserDeactivated as e:
+        LOGGER.info(f"Error {e}")
         sys.exit(1)
 
 
@@ -37,8 +43,8 @@ async def start_bot():
         print(f"Error : {e}")
         ndB.del_key("BOT_TOKEN")
         sys.exit(1)
-    except AccessTokenExpired:
-        print("Error : {e}")
+    except AccessTokenExpired as e:
+        print(f"Error : {e}")
         ndB.del_key("BOT_TOKEN")
         sys.exit(1)
 
