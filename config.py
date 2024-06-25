@@ -2,7 +2,7 @@ from os import getenv
 
 from dotenv import load_dotenv
 
-load_dotenv(".env")
+load_dotenv()
 
 api_id = int(getenv("api_id", None))
 api_hash = getenv("api_hash", None)
@@ -18,9 +18,8 @@ upstream_repo = getenv(
     "upstream_repo",
     "https://github.com/naya1503/Mix-Userbot",
 )
-upstream_branch = getenv("upstream_branch", "proxy")
+upstream_branch = getenv("upstream_branch", "final")
 git_token = getenv("git_token", None)
-alive_pic = getenv("alive_pic", "https://telegra.ph//file/43cec0ae0ded594b55247.jpg")
 log_channel = getenv("log_channel", None)
 genius_api = getenv(
     "genius_api",
