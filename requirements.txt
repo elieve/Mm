@@ -13,7 +13,6 @@ uvloop
 wget
 psutil
 yt-dlp
-pykeyboard
 bs4
 pymediainfo
 youtube-search
@@ -40,7 +39,6 @@ pyyaml
 lyricsgenius==3.0.1
 SafoneApi
 pytgcalls==3.0.0.dev22
-#git+https://github.com/jonesroot/pyrogram.git@main#egg=pyrogram
 pyrofork
 PySocks
 pexpect
@@ -49,4 +47,5 @@ pyquery
 aiogram
 assemblyai
 removebg
-numpy==1.21.4
+numpy
+openvc-python
