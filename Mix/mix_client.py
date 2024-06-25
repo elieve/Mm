@@ -25,7 +25,7 @@ from team.nandev.database import ndB, udB
 from config import *
 from modular import USER_MOD
 
-TOKEN_BOT = ndB.get_key("BOT_TOKEN") or bot_token
+TOKEN_BOT = str(ndB.get_key("BOT_TOKEN")) or bot_token
 OWNER = ndB.get_key("OWNER_ID")
 
 
