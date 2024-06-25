@@ -15,36 +15,9 @@ from pyrogram.raw.functions.messages import *
 from pyrogram.raw.functions.stickers import *
 from pyrogram.raw.types import *
 from pyrogram.types import *
-
+from pyrogram.helpers import ikb
 from Mix import *
 
-
-def clbk_strt():
-    return okb(
-        [
-            [
-                (cgr("asst_3"), "clbk.bhsa"),
-                (cgr("asst_6"), "clbk.rebot"),
-            ],
-            [
-                (cgr("ttup"), "close_asst"),
-            ],
-        ],
-        False,
-        "close_asst",
-    )
-
-
-def clbk_strto():
-    return okb(
-        [
-            [
-                (cgr("ttup"), "close_asst"),
-            ],
-        ],
-        False,
-        "close_asst",
-    )
 
 
 @ky.bots("start", human.pv)
@@ -56,6 +29,8 @@ async def _(c, m):
     ts_1 = cgr("asst_1").format(user_name)
     ts_2 = cgr("asst_2").format(user_name, user2)
     if m.from_user.id == owner_nih:
+        button = ikb([[(cgr("asst_3"), "clbk.bhsa"), (cgr("asst_6"), "clbk.rebot")], [(cgr("ttup"), "close_asst")]])
         await m.reply(ts_1, reply_markup=clbk_strt())
     else:
+        button = ikb([[(cgr("ttup"), "close_asst")]])
         await m.reply(ts_2, reply_markup=clbk_strto())
