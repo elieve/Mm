@@ -19,7 +19,6 @@ __modles__ = "Broadcast"
 __help__ = get_cgr("help_gcast")
 
 
-
 @ky.ubot("gcast", sudo=True)
 async def _(c: nlx, m):
     em = Emojik()
