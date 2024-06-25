@@ -1,4 +1,4 @@
-from pyrogram.helper import ikb
+from pyrogram.helpers import ikb
 
 from config import *
 from Mix.core import *
