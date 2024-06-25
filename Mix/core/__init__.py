@@ -6,5 +6,4 @@ from .misc import *
 from .msgty import *
 from .newdb import *
 from .pastebin import *
-from .regex_tools import *
 from .tools_anim import *
