@@ -11,12 +11,9 @@
 
 import re
 from datetime import datetime, timedelta
-from re import findall
 
-from pykeyboard import InlineKeyboard
-from pyrogram.types import InlineKeyboardButton
 from pyrogram.types import InlineKeyboardButton as Ikb
-from pyrogram.types import InlineKeyboardMarkup
+from pyrogram.types import InlineKeyboardMarkup as IkM
 
 # NOTE: the url \ escape may cause double escapes
 # match * (bold) (don't escape if in url)
@@ -29,95 +26,94 @@ from pyrogram.types import InlineKeyboardMarkup
 # William
 
 
-BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\(buttonurl:(?:/{0,2})(.+?)(:same)?\))")
+def is_url(text):
+    regex = r"(?:https?://)?(?:www\.)?[a-zA-Z0-9.-]+(?:\.[a-zA-Z]{2,})+(?:[/?]\S+)?|tg://\S+"
+    matches = re.findall(regex, text)
+    if matches:
+        return True
+    return False
 
 
-def is_url(text: str) -> bool:
-    regex = r"""(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]
-                [.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(
-                \([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\
-                ()<>]+\)))*\)|[^\s`!()\[\]{};:'".,<>?«»“”‘’]))""".strip()
-    return [x[0] for x in findall(regex, str(text))]
+def get_msg_button(texts: str):
+    btn = []
+    for z in re.findall(r"\[(.*?)\|(.*?)\]", texts):
+        text, url = z
+        urls = url.split("|")
+        url = urls[0]
+        if len(urls) > 1:
+            btn[-1].append([text, url])
+        else:
+            btn.append([[text, url]])
+
+    txt = texts
+    for z in re.findall(r"\[.+?\|.+?\]", texts):
+        txt = txt.replace(z, "")
+
+    return txt.strip(), btn
 
 
-def keyboard(buttons_list, row_width: int = 2):
-    buttons = InlineKeyboard(row_width=row_width)
-    data = [
-        (
-            Ikb(text=str(i[0]), url=str(i[1]))
-            if is_url(i[1])
-            else Ikb(text=str(i[0]), callback_data=str(i[1]))
+def create_tl_btn(button: list):
+    btn = []
+    for z in button:
+        if len(z) > 1:
+            kk = []
+            for x, y in z:
+                if is_url(y):
+                    kk.append(Ikb(text=x, url=y.strip()))
+                else:
+                    kk.append(Ikb(text=x, callback_data=y.strip()))
+            btn.append(kk)
+        else:
+            x, y = z[0]
+            if is_url(y):
+                btn.append([Ikb(text=x, url=y.strip())])
+            else:
+                btn.append([Ikb(text=x, callback_data=y.strip())])
+    return IkM(btn)
+
+
+"""
+def format_btn(buttons: list):
+    txt = ""
+    for i in buttons:
+        a = 0
+        for i in i:
+            if hasattr(i.button, "url"):
+                a += 1
+                if a > 1:
+                    txt += f"[{i.button.text} | {i.button.url} | same]"
+                else:
+                    txt += f"[{i.button.text} | {i.button.url}]"
+    _, btn = get_msg_button(txt)
+    return btn
+"""
+
+
+def format_btn(buttons: list, main_text: str):
+    for tag, replacement in [
+        ("<b>", "**"),
+        ("<i>", "__"),
+        ("<strike>", "~~"),
+        ("<spoiler>", "||"),
+        ("<u>", "--"),
+    ]:
+        main_text = main_text.replace(tag, replacement).replace(
+            f"</{tag[1:]}>", replacement
         )
-        for i in buttons_list
-    ]
-    buttons.add(*data)
-    return buttons
 
+    txt = main_text
+    for i in buttons:
+        a = 0
+        for i in i:
+            if hasattr(i.button, "url"):
+                a += 1
+                if a > 1:
+                    txt += f"[{i.button.text} | {i.button.url} | same]"
+                else:
+                    txt += f"[{i.button.text} | {i.button.url}]"
 
-def ikb(data: dict, row_width: int = 2):
-    return keyboard(data.items(), row_width=row_width)
-
-
-"""
-def text_keyb(ikb, text: str, row_width: int = 2):
-    keyboard = {}
-    try:
-        text = text.strip()
-        if text.startswith("`"):
-            text = text[1:]
-        if text.endswith("`"):
-            text = text[:-1]
-
-        text, keyb = text.split("-")
-
-        keyb = findall(r"\[([^|]+)\|([^]]+)\]", keyb)
-        for btn_str in keyb:
-
-            btn_str = btn_str.strip("[]")
-            btn_txt, btn_data = btn_str.split("|")
-            btn_txt = btn_txt.strip()
-            btn_data = btn_data.strip()
-
-            if not is_url(btn_data):
-                continue
-            keyboard[btn_txt] = btn_data
-        keyboard = ikb(keyboard, row_width)
-    except Exception as e:
-        print(f"Error in text_keyb: {e}")
-        return None, None
-    return text, keyboard
-"""
-
-
-def text_keyb(ikb, text: str, row_width: int = 2):
-    keyboard = {}
-    try:
-        text_parts = text.split("~")
-        if len(text_parts) != 2:
-            return None, None
-
-        main_text = text_parts[0].strip()
-        button_text = text_parts[1].strip()
-        main_text = main_text.replace("<b>", "**").replace("</b>", "**")
-        main_text = main_text.replace("<i>", "__").replace("</i>", "__")
-        main_text = main_text.replace("<strike>", "~~").replace("</strike>", "~~")
-        main_text = main_text.replace("<spoiler>", "||").replace("</spoiler>", "||")
-        main_text = main_text.replace("<u>", "--").replace("</u>", "--")
-
-        keyb_texts = findall(r"\[([^]]+)\]", button_text)
-        for keyb_text in keyb_texts:
-            keyb_parts = keyb_text.split("|")
-            if len(keyb_parts) == 2:
-                btn_txt, btn_data = keyb_parts[0].strip(), keyb_parts[1].strip()
-                if not is_url(btn_data):
-                    btn_data = f"{btn_data}"
-                keyboard[btn_txt] = btn_data
-
-        keyboard = ikb(keyboard, row_width)
-    except Exception as e:
-        print(f"Error in text_keyb: {e}")
-        return None, None
-    return main_text, keyboard
+    _, btn = get_msg_button(txt)
+    return btn
 
 
 def extract_time(time_val):
@@ -152,44 +148,3 @@ def format_welcome_caption(html_string, chat_member):
         mention=chat_member.mention,
         username=chat_member.username,
     )
-
-
-def okb(rows=None, back=False, todo="closeru"):
-    """
-    rows = pass the rows
-    back - if want to make back button
-    todo - callback data of back button
-    """
-    if rows is None:
-        rows = []
-    lines = []
-    try:
-        for row in rows:
-            line = []
-            for button in row:
-                btn_text = button.split(".")[1].capitalize()
-                button = btn(btn_text, button)  # InlineKeyboardButton
-                line.append(button)
-            lines.append(line)
-    except AttributeError:
-        for row in rows:
-            line = []
-            for button in row:
-                button = btn(*button)  # Will make the kb which don't have "." in them
-                line.append(button)
-            lines.append(line)
-    except TypeError:
-        # make a code to handel that error
-        line = []
-        for button in rows:
-            button = btn(*button)  # InlineKeyboardButton
-            line.append(button)
-        lines.append(line)
-    if back:
-        back_btn = [(btn("Back", todo))]
-        lines.append(back_btn)
-    return InlineKeyboardMarkup(inline_keyboard=lines)
-
-
-def btn(text, value, type="callback_data"):
-    return InlineKeyboardButton(text, **{type: value})
