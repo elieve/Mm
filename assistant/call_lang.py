@@ -21,23 +21,11 @@ from Mix import *
 
 
 def st_lang():
-    keyboard = InlineKeyboard(row_width=2)
     languages = get_bahasa_()
-    keyboard.add(
-        *[
-            (
-                InlineKeyboardButton(
-                    f"{lang['natively']}",
-                    callback_data=f"set_{lang['code']}",
-                )
-            )
-            for lang in languages
-        ]
-    )
-    keyboard.row(
-        InlineKeyboardButton(text="Back", callback_data="clbk.bek"),
-        InlineKeyboardButton(text="Close", callback_data="close_asst"),
-    )
+    keyboard = ikb([[(f"{lang['natively']}", f"set_{lang['code']}") for lang in languages]])
+    keb = ikb([[("Back", "clbk.bek"), ("Close", "close_asst")]])
+    for row in keb.inline_keyboard:
+      keyboard.inline_keyboard.append(row)
     return keyboard
 
 
