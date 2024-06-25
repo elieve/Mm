@@ -50,7 +50,7 @@ async def _(c: nlx, m):
     if ok_tak:
         await babi.edit(cgr("pmper_3").format(em.sukses))
         return
-    teks, button = text_keyb(ikb, custom_pm_txt)
+    teks, button = get_msg_button(custom_pm_txt)
     if button:
         async for m in c.get_chat_history(dia, limit=custom_pm_warns):
             if m.reply_markup:
