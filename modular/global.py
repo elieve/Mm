@@ -26,25 +26,6 @@ __modles__ = "Global"
 __help__ = get_cgr("help_global")
 
 
-async def digiben_(q):
-    chats = []
-    chat_types = {
-        "giben": [ChatType.GROUP, ChatType.SUPERGROUP, ChatType.CHANNEL],
-        "gimut": [ChatType.GROUP, ChatType.SUPERGROUP],
-    }
-    try:
-        async for dialog in nlx.get_dialogs():
-            try:
-                if dialog.chat.type in chat_types[q]:
-                    chats.append(dialog.chat.id)
-            except Exception as e:
-                LOGGER.error(f"An error occurred while processing dialog: {e}")
-    except Exception as e:
-        LOGGER.error(f"An error occurred while getting dialogs: {e}")
-
-    return chats
-
-
 @ky.ubot("gban", sudo=True)
 @ky.devs("cgban")
 async def _(c: nlx, m):
@@ -67,7 +48,7 @@ async def _(c: nlx, m):
         alasan = m.text.split(None, 2)[2]
     bs = 0
     gg = 0
-    chats = await digiben_("giben")
+    chats = await c.get_chats_dialog(c, "gban")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -112,7 +93,7 @@ async def _(c: nlx, m):
         return
     bs = 0
     gg = 0
-    chats = await digiben_("giben")
+    chats = await c.get_chats_dialog(c, "gban")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
@@ -157,7 +138,7 @@ async def _(c: nlx, m):
         alasan = m.text.split(None, 2)[2]
     bs = 0
     gg = 0
-    chats = await digiben_("gimut")
+    chats = await c.get_chats_dialog(c, "grup")
 
     try:
         mention = (await c.get_users(nyet)).mention
@@ -195,7 +176,7 @@ async def _(c: nlx, m):
         return
     bs = 0
     gg = 0
-    chats = await digiben_("gimut")
+    chats = await c.get_chats_dialog(c, "grup")
     try:
         mention = (await c.get_users(nyet)).mention
     except IndexError:
