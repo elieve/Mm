@@ -284,7 +284,7 @@ class Userbot(Client):
         else:
             self._prefix[self.me.id] = ["."]
         self._translate[self.me.id] = {"negara": "id"}
-        LOGGER.info(f"Starting Userbot {self.me.id}|{self.me.mention}")
+        LOGGER.info(f"Starting Userbot {self.me.id}|{self.me.username}")
 
 
 class Bot(Client):
@@ -324,7 +324,7 @@ class Bot(Client):
                         imported_module
                     )
         LOGGER.info(f"Successfully Import Modules...")
-        LOGGER.info(f"Starting Assistant {self.me.id}|{self.me.mention}")
+        LOGGER.info(f"Starting Assistant {self.me.id}|{self.me.username}")
 
 
 class _SudoManager:
