@@ -7,7 +7,7 @@
 ################################################################
 
 
-from Mix import bot, get_cgr, ky, nlx
+from Mix import bot, get_cgr, ky, nlx, udB
 
 __modles__ = "Alive"
 __help__ = get_cgr("help_alive")
