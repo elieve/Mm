@@ -64,7 +64,7 @@ async def _(c: nlx, m):
     if variable.lower() == "pmtext":
         bb = udB.get_var(c.me.id, "PMTEXT")
         cc = bb if bb else DEFAULT_TEXT
-        teks, button = text_keyb(ikb, cc)
+        teks, button = get_msg_button(cc)
         if button:
             try:
                 x = await c.get_inline_bot_results(
@@ -100,7 +100,7 @@ async def _(c, iq):
     gw = iq.from_user.id
     getpm_txt = udB.get_var(gw, "PMTEXT")
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
-    teks, button = text_keyb(ikb, pm_text)
+    teks, button = get_msg_button(pm_text)
     duar = [
         (
             InlineQueryResultArticle(
