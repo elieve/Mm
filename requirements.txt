@@ -48,4 +48,4 @@ aiogram
 assemblyai
 removebg
 numpy
-openvc-python
+#openvc-python
