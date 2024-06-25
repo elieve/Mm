@@ -20,7 +20,7 @@ from pyrogram.errors import *
 from pyrogram.raw.functions import Ping
 from pyrogram.types import *
 from telegraph import upload_file
-
+from pyrogram.helpers import ikb
 from Mix import *
 from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
