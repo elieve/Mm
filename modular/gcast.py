@@ -33,8 +33,50 @@ async def _(c: nlx, m):
     chats = await c.get_chats_dialog(c, "grup")
     msg = None
     for chat in chats:
-            if chat in blacklist or chat in NO_GCAST:
-                continue
+        if chat in blacklist or chat in NO_GCAST:
+            continue
+        try:
+            if m.reply_to_message:
+                await send.copy(chat)
+            else:
+                await c.send_message(chat, send)
+            done += 1
+            updated_content = cgr("gcs_2").format(
+                em.proses, em.sukses, done, em.gagal, failed
+            )
+            if msg is None:
+                msg = await m.reply(updated_content)
+            else:
+                await msg.edit(updated_content)
+            await asyncio.sleep(0.3)
+        except SlowmodeWait:
+            failed += 1
+            updated_content = cgr("gcs_2").format(
+                em.proses, em.sukses, done, em.gagal, failed
+            )
+            continue
+        except ChatWriteForbidden:
+            failed += 1
+            # await c.leave_chat(chat)
+            # await c.send_message(m.chat.id, f"Males gue di mute di {chat}")
+            updated_content = cgr("gcs_2").format(
+                em.proses, em.sukses, done, em.gagal, failed
+            )
+            continue
+        except Exception:
+            failed += 1
+            updated_content = cgr("gcs_2").format(
+                em.proses, em.sukses, done, em.gagal, failed
+            )
+            if msg is None:
+                msg = await m.reply(updated_content)
+            else:
+                await msg.edit(updated_content)
+            await asyncio.sleep(0.3)
+            continue
+        except FloodWait as e:
+            tunggu = e.value
+            await asyncio.sleep(tunggu)
             try:
                 if m.reply_to_message:
                     await send.copy(chat)
@@ -49,20 +91,6 @@ async def _(c: nlx, m):
                 else:
                     await msg.edit(updated_content)
                 await asyncio.sleep(0.3)
-            except SlowmodeWait:
-                failed += 1
-                updated_content = cgr("gcs_2").format(
-                    em.proses, em.sukses, done, em.gagal, failed
-                )
-                continue
-            except ChatWriteForbidden:
-                failed += 1
-                # await c.leave_chat(chat)
-                # await c.send_message(m.chat.id, f"Males gue di mute di {chat}")
-                updated_content = cgr("gcs_2").format(
-                    em.proses, em.sukses, done, em.gagal, failed
-                )
-                continue
             except Exception:
                 failed += 1
                 updated_content = cgr("gcs_2").format(
@@ -72,36 +100,8 @@ async def _(c: nlx, m):
                     msg = await m.reply(updated_content)
                 else:
                     await msg.edit(updated_content)
-                await asyncio.sleep(0.3)
-                continue
-            except FloodWait as e:
-                tunggu = e.value
-                await asyncio.sleep(tunggu)
-                try:
-                    if m.reply_to_message:
-                        await send.copy(chat)
-                    else:
-                        await c.send_message(chat, send)
-                    done += 1
-                    updated_content = cgr("gcs_2").format(
-                        em.proses, em.sukses, done, em.gagal, failed
-                    )
-                    if msg is None:
-                        msg = await m.reply(updated_content)
-                    else:
-                        await msg.edit(updated_content)
-                    await asyncio.sleep(0.3)
-                except Exception:
-                    failed += 1
-                    updated_content = cgr("gcs_2").format(
-                        em.proses, em.sukses, done, em.gagal, failed
-                    )
-                    if msg is None:
-                        msg = await m.reply(updated_content)
-                    else:
-                        await msg.edit(updated_content)
-            except MessageNotModified:
-                continue
+        except MessageNotModified:
+            continue
     updated_content = cgr("gcs_15").format(em.alive, em.sukses, done, em.gagal, failed)
     if msg is None:
         msg = await m.reply(updated_content)
@@ -118,13 +118,41 @@ async def _(c: nlx, m):
         msg = await m.reply(cgr("gcs_1").format(em.gagal))
         return
     chats = await c.get_chats_dialog(c, "user")
-    blacklist = udB.get_chat(c.me.id)
+    udB.get_chat(c.me.id)
     done = 0
     failed = 0
     msg = None
     for chat in chats:
-            if chat in DEVS:
-                continue
+        if chat in DEVS:
+            continue
+        try:
+            if m.reply_to_message:
+                await send.copy(chat)
+            else:
+                await c.send_message(chat, send)
+            done += 1
+            updated_content = cgr("gcs_3").format(
+                em.proses, em.sukses, done, em.gagal, failed
+            )
+            if msg is None:
+                msg = await m.reply(updated_content)
+            else:
+                await msg.edit(updated_content)
+            await asyncio.sleep(0.3)
+        except PeerIdInvalid:
+            continue
+        except Exception:
+            failed += 1
+            updated_content = cgr("gcs_3").format(
+                em.proses, em.sukses, done, em.gagal, failed
+            )
+            if msg is None:
+                msg = await m.reply(updated_content)
+            else:
+                await msg.edit(updated_content)
+            await asyncio.sleep(0.3)
+        except FloodWait as e:
+            await asyncio.sleep(e.value)
             try:
                 if m.reply_to_message:
                     await send.copy(chat)
@@ -139,8 +167,6 @@ async def _(c: nlx, m):
                 else:
                     await msg.edit(updated_content)
                 await asyncio.sleep(0.3)
-            except PeerIdInvalid:
-                continue
             except Exception:
                 failed += 1
                 updated_content = cgr("gcs_3").format(
@@ -151,34 +177,8 @@ async def _(c: nlx, m):
                 else:
                     await msg.edit(updated_content)
                 await asyncio.sleep(0.3)
-            except FloodWait as e:
-                await asyncio.sleep(e.value)
-                try:
-                    if m.reply_to_message:
-                        await send.copy(chat)
-                    else:
-                        await c.send_message(chat, send)
-                    done += 1
-                    updated_content = cgr("gcs_3").format(
-                        em.proses, em.sukses, done, em.gagal, failed
-                    )
-                    if msg is None:
-                        msg = await m.reply(updated_content)
-                    else:
-                        await msg.edit(updated_content)
-                    await asyncio.sleep(0.3)
-                except Exception:
-                    failed += 1
-                    updated_content = cgr("gcs_3").format(
-                        em.proses, em.sukses, done, em.gagal, failed
-                    )
-                    if msg is None:
-                        msg = await m.reply(updated_content)
-                    else:
-                        await msg.edit(updated_content)
-                    await asyncio.sleep(0.3)
-            except MessageNotModified:
-                continue
+        except MessageNotModified:
+            continue
     updated_content = cgr("gcs_16").format(em.alive, em.sukses, done, em.gagal, failed)
     if msg is None:
         msg = await m.reply(updated_content)
