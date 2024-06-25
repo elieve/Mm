@@ -23,7 +23,6 @@ from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
 
 from Mix import *
-from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
 from modular.pmpermit import *
 
@@ -38,8 +37,6 @@ User: {}
 
 def clbk_stasm():
     return okb([[(cgr("ttup"), "cls_hlp")]])
-
-
 
 
 @ky.callback("^pm_")
