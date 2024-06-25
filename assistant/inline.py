@@ -411,7 +411,7 @@ async def _(c, iq):
             button.inline_keyboard.append(row)
     else:
         button = def_keyb
-    tekss = await escape_tag(int(org[1]), pm_text, parse_words)
+    tekss = await escape_tag(int(org[1]), teks, parse_words)
     kiki = None
     if nlx.me.id == gw:
         if int(org[1]) in flood2:
