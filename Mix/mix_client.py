@@ -40,7 +40,7 @@ class Userbot(Client):
             api_hash=api_hash,
             session_string=session,
             device_model="Mix-Userbot",
-            plugins=dict({"root": "modular"})
+            plugins=dict(root="modular"),
             # proxy=self._configure_proxy(),
             ** kwargs,
         )
@@ -294,7 +294,7 @@ class Bot(Client):
             api_id=api_id,
             api_hash=api_hash,
             bot_token=TOKEN_BOT,
-            plugins=dict({"root": "assistant"}),
+            plugins=dict(root="assistant"),
             **kwargs,
         )
 
