@@ -1,7 +1,7 @@
 import asyncio
 
 from pyrogram import idle
-from pyrogram.errors import *
+from pyrogram.errors import SessionExpired, ApiIdInvalid, AccessTokenInvalid, AccessTokenExpired, UserDeactivated
 
 from beban import (autor_all, autor_bot, autor_ch, autor_gc, autor_mention,
                    autor_us)
