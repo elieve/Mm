@@ -14,7 +14,6 @@ import textwrap
 from PIL import Image, ImageDraw, ImageFont
 
 
-
 async def dl_font():
     if os.path.exists("font-module"):
         return

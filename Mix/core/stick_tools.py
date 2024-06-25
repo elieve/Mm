@@ -6,11 +6,8 @@
 """
 ################################################################
 
-import asyncio
-import os
 import re
 
-from PIL import Image
 from pyrogram import emoji
 
 
@@ -26,7 +23,6 @@ def get_emoji_regex():
     # matched first
     pattern_ = f"({'|'.join(e_sort)})"
     return re.compile(pattern_)
-
 
 
 EMOJI_PATTERN = get_emoji_regex()
