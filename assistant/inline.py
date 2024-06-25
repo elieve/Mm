@@ -57,8 +57,9 @@ async def diinline(q):
 async def _(c, iq):
     _id = int(iq.query.split()[1])
     m = [obj for obj in get_objects() if id(obj) == _id][0]
-    rep = nlx.get_text(m)
-    text, keyboard = text_keyb(ikb, rep)
+    text, keyboard = get_msg_button(rep)
+    if keyboard:
+        keyboard = create_tl_btn(keyboard)
     if m.reply_to_message.photo:
         dn = await m.reply_to_message.download()
         photo_tg = upload_file(dn)
@@ -215,18 +216,7 @@ async def _(c, iq):
         ms = "**Daftar Streaming Link Streaming :**"
         q = iq.query.split(None, 1)
         ambilka = await get_streaming_links(q[1], c)
-        batin = InlineKeyboard(row_width=2)
-        batin.add(
-            *[
-                (
-                    Ikb(
-                        f"{link_data['name']}",
-                        url=f"{link_data['url']}",
-                    )
-                )
-                for link_data in ambilka
-            ]
-        )
+        batin = ikb([[(f"{link_data['name']}", f"{link_data['url']}", "url") for link_data in ambilka]])
         await c.answer_inline_query(
             iq.id,
             cache_time=0,
@@ -320,7 +310,7 @@ async def _(c, iq):
         len(ape),
         upnya,
     )
-    bo_ol = ikb({f"{cgr('alv_4')}": "suprot", "Stats": "stats_mix"})
+    bo_ol = ikb([[(f"{cgr('alv_4')}", "suprot"), ("Stats": "stats_mix")]])
     cekpic = udB.get_var(nlx.me.id, "ALIVEPIC")
     if not cekpic:
         duar = [
@@ -363,7 +353,8 @@ async def _(c, iq):
     noteval = udB.get_note(nlx.me.id, notetag)
     if not noteval:
         return
-    note, button = text_keyb(ikb, noteval.get("value"))
+    note, button = get_msg_button(noteval.get("value"))
+    button = create_tl_btn(button)
     if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
         file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
         biji = noteval.get("file")
@@ -417,27 +408,14 @@ async def _(c, iq):
     pm_text = getpm_txt if getpm_txt else DEFAULT_TEXT
     getpm_warns = udB.get_var(gw, "PMLIMIT")
     pm_warns = getpm_warns if getpm_warns else LIMIT
-    teks, button = text_keyb(ikb, pm_text)
+    teks, button = get_msg_button(ikb, pm_text)
+    button = create_tl_btn(button)
+    def_keyb = ikb([[("Setuju", f"pm_ okein {int(org[1])}"), ("Blokir": f"pm_ blokbae {int(org[1])}")]])
     if button:
-        def_keyb = {
-            "Setuju": f"pm_ okein {int(org[1])}",
-            "Blokir": f"pm_ blokbae {int(org[1])}",
-        }
-        for row in button.inline_keyboard:
-            for data in row:
-                add_keyb = (
-                    {data.text: data.url}
-                    if data.url
-                    else {data.text: data.callback_data}
-                )
-                def_keyb.update(add_keyb)
-                keyboard = ikb(def_keyb)
+      for row in def_keyb.inline_keyboard:
+            button.inline_keyboard.append(row)
     else:
-        def_keyb = {
-            "Setuju": f"pm_ okein {int(org[1])}",
-            "Blokir": f"pm_ blokbae {int(org[1])}",
-        }
-        keyboard = ikb(def_keyb)
+        button = def_keyb
     tekss = await escape_tag(int(org[1]), pm_text, parse_words)
     kiki = None
     if nlx.me.id == gw:
@@ -497,7 +475,7 @@ async def _(c, iq):
 @ky.inline("^speed")
 async def _(c, iq):
     msg = "**Seberapa Cepat Kah??\nLo Download Bokep!!**"
-    kb = okb([[("Klik Disini", "gasbalap")]])
+    kb = ikb([[("Klik Disini", "gasbalap")]])
     meki = [
         (
             InlineQueryResultArticle(
