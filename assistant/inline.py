@@ -31,26 +31,6 @@ from modular.pmpermit import *
 from .call_calc import calc_help
 
 
-async def diinline(q):
-    chats = []
-    chat_types = {
-        "group": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "users": [ChatType.PRIVATE],
-        "bot": [ChatType.BOT],
-        "ch": [ChatType.CHANNEL],
-    }
-    try:
-        async for dialog in nlx.get_dialogs():
-            try:
-                if dialog.chat.type in chat_types[q]:
-                    chats.append(dialog.chat.id)
-            except Exception as e:
-                LOGGER.error(f"An error occurred while processing dialog: {e}")
-    except Exception as e:
-        LOGGER.error(f"An error occurred while getting dialogs: {e}")
-
-    return chats
-
 
 # button
 @ky.inline("^buat_button")
