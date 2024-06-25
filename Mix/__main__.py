@@ -15,7 +15,7 @@ event_loop = loop.get_event_loop()
 
 
 async def start_user():
-    LOGGER.info(f"Starting Telegram User Client...")
+    LOGGER.info("Starting Telegram User Client...")
     try:
         await nlx.start()
     except SessionExpired as e:
@@ -51,9 +51,9 @@ async def start_bot():
 
 
 async def starter():
-    LOGGER.info(f"Check Updater...")
+    LOGGER.info("Check Updater...")
     await cek_updater()
-    LOGGER.info(f"Updater Finished...")
+    LOGGER.info("Updater Finished...")
     LOGGER.info(f"Connecting to {ndB.name}...")
     if ndB.ping():
         LOGGER.info(f"Connected to {ndB.name} Successfully!")
