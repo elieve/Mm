@@ -10,21 +10,22 @@
 import os
 import sys
 
-from pyrogram.helpers import ikb
 from pyrogram import *
 from pyrogram.enums import *
+from pyrogram.helpers import ikb
 from pyrogram.types import *
 
 from Mix import *
 
 
-
 def st_lang():
     languages = get_bahasa_()
-    keyboard = ikb([[(f"{lang['natively']}", f"set_{lang['code']}") for lang in languages]])
+    keyboard = ikb(
+        [[(f"{lang['natively']}", f"set_{lang['code']}") for lang in languages]]
+    )
     keb = ikb([[("Back", "clbk.bek"), ("Close", "close_asst")]])
     for row in keb.inline_keyboard:
-      keyboard.inline_keyboard.append(row)
+        keyboard.inline_keyboard.append(row)
     return keyboard
 
 
