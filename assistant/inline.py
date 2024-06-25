@@ -27,7 +27,6 @@ from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
 from modular.copy_con import *
 from modular.pmpermit import *
-
 from .call_calc import calc_help
 
 
@@ -452,7 +451,7 @@ async def _(c, iq):
                     **url_ling,
                     title="PIC Buttons !",
                     caption=kiki,
-                    reply_markup=keyboard,
+                    reply_markup=button,
                 )
             ]
         else:
@@ -461,7 +460,7 @@ async def _(c, iq):
                     InlineQueryResultArticle(
                         title="Tombol PM!",
                         input_message_content=InputTextMessageContent(kiki),
-                        reply_markup=keyboard,
+                        reply_markup=button,
                     )
                 )
             ]
