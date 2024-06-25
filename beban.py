@@ -9,7 +9,7 @@
 import asyncio
 
 from pyrogram.enums import ChatType
-from pyrogram.errors import *
+from pyrogram.errors import ChannelPrivate, UserBannedInChannel, PeerIdInvalid, FloodWait
 from pyrogram.raw.functions.messages import ReadMentions
 from team.nandev.class_log import LOGGER
 from team.nandev.database import udB
@@ -32,7 +32,7 @@ async def dasar_laknat():
                         await asyncio.sleep(e.value)
                         try:
                             await nlx.read_chat_history(bb.chat.id, max_id=0)
-                        except:
+                        except Exception:
                             continue
             except Exception as e:
                 LOGGER.error(f"An error occurred while processing dialog: {e}")
@@ -60,7 +60,7 @@ async def autor_gc():
                             await asyncio.sleep(e.value)
                             try:
                                 await nlx.read_chat_history(bb.chat.id, max_id=0)
-                            except:
+                            except Exception:
                                 continue
                 except Exception as e:
                     LOGGER.error(f"An error occurred while processing dialog: {e}")
@@ -93,7 +93,7 @@ async def autor_mention():
                                         peer=await nlx.resolve_peer(bb.chat.id)
                                     )
                                 )
-                            except:
+                            except Exception:
                                 continue
                 except Exception as e:
                     LOGGER.error(f"An error occurred while processing dialog: {e}")
@@ -120,7 +120,7 @@ async def autor_ch():
                             await asyncio.sleep(e.value)
                             try:
                                 await nlx.read_chat_history(bb.chat.id, max_id=0)
-                            except:
+                            except Exception:
                                 continue
                 except Exception as e:
                     LOGGER.error(f"An error occurred while processing dialog: {e}")
@@ -147,7 +147,7 @@ async def autor_us():
                             await asyncio.sleep(e.value)
                             try:
                                 await nlx.read_chat_history(bb.chat.id, max_id=0)
-                            except:
+                            except Exception:
                                 continue
                 except Exception as e:
                     LOGGER.error(f"An error occurred while processing dialog: {e}")
@@ -174,7 +174,7 @@ async def autor_bot():
                             await asyncio.sleep(e.value)
                             try:
                                 await nlx.read_chat_history(bb.chat.id, max_id=0)
-                            except:
+                            except Exception:
                                 continue
                 except Exception as e:
                     LOGGER.error(f"An error occurred while processing dialog: {e}")
@@ -207,7 +207,7 @@ async def autor_all():
                             await asyncio.sleep(e.value)
                             try:
                                 await nlx.read_chat_history(bb.chat.id, max_id=0)
-                            except:
+                            except Exception:
                                 continue
                 except Exception as e:
                     LOGGER.error(f"An error occurred while processing dialog: {e}")
