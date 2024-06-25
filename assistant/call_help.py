@@ -21,7 +21,7 @@ from pyrogram.enums import *
 from pyrogram.errors import *
 from pyrogram.raw.functions.messages import DeleteHistory
 from pyrogram.types import *
-
+from pyrogram.helpers import ikb
 from Mix import *
 from Mix.core.waktu import get_time, start_time
 from modular.pmpermit import *
