@@ -13,11 +13,9 @@ import shlex
 import subprocess
 from io import BytesIO
 
-from pyrogram import *
-from pyrogram.enums import *
-from pyrogram.errors import *
-from pyrogram.handlers import *
-from pyrogram.types import *
+from pyrogram import Client, filters, enums
+from pyrogram.helpers import ikb
+from pyrogram.handlers import MessageHandler, CallbackQueryHandler
 from team.nandev.class_log import LOGGER
 from team.nandev.class_modules import CMD_HELP
 from team.nandev.database import ndB, udB
@@ -62,6 +60,37 @@ class Userbot(Client):
 
     def set_prefix(self, user_id, prefix):
         self._prefix[user_id] = prefix
+    
+    async def get_chats_dialog(self, c, q):
+        chats = []
+        chat_types = {
+            "grup": [enums.ChatType.GROUP, enums.ChatType.SUPERGROUP],
+            "all": [
+                enums.ChatType.GROUP,
+                enums.ChatType.SUPERGROUP,
+                enums.ChatType.PRIVATE,
+            ],
+            "bot": [enums.ChatType.BOT],
+            "usbot": [enums.ChatType.PRIVATE, enums.ChatType.BOT],
+            "user": [enums.ChatType.PRIVATE],
+            "gban": [
+                enums.ChatType.GROUP,
+                enums.ChatType.SUPERGROUP,
+                enums.ChatType.CHANNEL,
+            ],
+            "ch": [enums.ChatType.CHANNEL],
+        }
+        try:
+            async for dialog in c.get_dialogs():
+                try:
+                    if dialog.chat.type in chat_types[q]:
+                        chats.append(dialog.chat.id)
+                except Exception as e:
+                    print(f"An error occurred while processing dialog: {e}")
+        except Exception as e:
+            print(f"An error occurred while getting dialogs: {e}")
+
+        return chats
 
     async def get_prefix(self, user_id):
         return self._prefix.get(user_id, ["."])
