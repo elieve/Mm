@@ -418,7 +418,7 @@ async def _(c, cq):
 
 @ky.callback("^cls_hlp")
 async def _(_, cq):
-    unPacked = unpackInlineMessage(cq.inline_message_id)
+    unPacked = unpacked2(cq.inline_message_id)
     if cq.from_user.id == nlx.me.id:
         await nlx.delete_messages(unPacked.chat_id, unPacked.message_id)
     else:
