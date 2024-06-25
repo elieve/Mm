@@ -14,16 +14,16 @@ from sys import executable
 from sys import version as pyver
 
 import wget
-from pyrogram import *
+from pyrogram.helpers import ikb
 from pyrogram import __version__ as pyrover
-from pyrogram.errors import *
+from pyrogram.errors import ChannelInvalid, PeerIdInvalid
 from pyrogram.types import ChatPrivileges
 from pytgcalls import __version__ as pytgver
 from team.nandev.class_log import LOGGER
 from team.nandev.class_modules import CMD_HELP
 from team.nandev.database import ndB
 
-from config import *
+from config import log_channel, log_pic
 from Mix import bot, nlx
 
 chat_id = int(log_channel) if log_channel else ndB.get_key("TAG_LOG")
@@ -32,10 +32,9 @@ chat_id = int(log_channel) if log_channel else ndB.get_key("TAG_LOG")
 async def check_logger():
     # if not ndB.get_key("TAG_LOG") and log_channel is None:
     if not chat_id:
-        LOGGER.info(f"Creating Grup Log...")
-        nama = f"Mix-Userbot Logs"
+        LOGGER.info("Creating Grup Log...")
+        nama = "Mix-Userbot Logs"
         des = "Jangan Keluar Dari Grup Log Ini\n\nPowered by: @KynanSupport"
-        log_pic = "https://telegra.ph//file/ee7fc86ab183a0ff90392.jpg"
         gc = await nlx.create_supergroup(nama, des)
         bhan = wget.download(f"{log_pic}")
         gmbr = {"video": bhan} if bhan.endswith(".mp4") else {"photo": bhan}
@@ -56,8 +55,8 @@ async def check_logger():
             ),
         )
         ndB.set_key("TAG_LOG", int(kntl))
-        await nlx.send_message(kntl, f"<b>Group Log Berhasil Dibuat.</b>")
-        LOGGER.info(f"Group Logger Enable...")
+        await nlx.send_message(kntl, "<b>Group Log Berhasil Dibuat.</b>")
+        LOGGER.info("Group Logger Enable...")
         execvp(executable, [executable, "-m", "Mix"])
     else:
         return
