@@ -22,7 +22,6 @@ from team.nandev.class_log import LOGGER
 from team.nandev.class_modules import CMD_HELP
 from team.nandev.database import ndB, udB
 
-from assistant import BOT_PLUGINS
 from config import *
 from modular import USER_MOD
 
@@ -42,8 +41,8 @@ class Userbot(Client):
             session_string=session,
             device_model="Mix-Userbot",
             plugins=dict({"root": "modular"})
-            #proxy=self._configure_proxy(),
-            **kwargs,
+            # proxy=self._configure_proxy(),
+            ** kwargs,
         )
 
     def _configure_proxy(self):
@@ -291,7 +290,12 @@ class Userbot(Client):
 class Bot(Client):
     def __init__(self, **kwargs):
         super().__init__(
-            name="bot", api_id=api_id, api_hash=api_hash, bot_token=TOKEN_BOT, plugins=dict({"root": "assistant"}), **kwargs
+            name="bot",
+            api_id=api_id,
+            api_hash=api_hash,
+            bot_token=TOKEN_BOT,
+            plugins=dict({"root": "assistant"}),
+            **kwargs,
         )
 
     def on_message(self, filters=None, group=-1):
