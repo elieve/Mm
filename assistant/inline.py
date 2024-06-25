@@ -29,7 +29,7 @@ from modular.copy_con import *
 from modular.pmpermit import *
 
 from .call_calc import calc_help
-from .call_markdown import markdown_help
+
 
 
 async def diinline(q):
@@ -108,6 +108,7 @@ async def _(c, iq):
 @ky.inline("^mark_in")
 async def _(c, iq):
     txt = "<b>Untuk melihat format markdown silahkan klik tombol dibawah.</b>"
+    ke = ikb([[("Markdown Format", "markd.butformat"), ("Fillings", "markd.filing")]])
     await c.answer_inline_query(
         iq.id,
         cache_time=0,
@@ -115,7 +116,7 @@ async def _(c, iq):
             (
                 InlineQueryResultArticle(
                     title="Marketing!",
-                    reply_markup=markdown_help(),
+                    reply_markup=ke,
                     input_message_content=InputTextMessageContent(txt),
                 )
             )
