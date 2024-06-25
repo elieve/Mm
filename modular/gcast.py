@@ -33,7 +33,8 @@ async def _(c: nlx, m):
     chats = await c.get_chats_dialog(c, "grup")
     msg = None
     for chat in chats:
-        if chat not in blacklist and chat not in NO_GCAST:
+            if chat in blacklist or chat in NO_GCAST:
+                continue
             try:
                 if m.reply_to_message:
                     await send.copy(chat)
@@ -122,7 +123,8 @@ async def _(c: nlx, m):
     failed = 0
     msg = None
     for chat in chats:
-        if chat not in blacklist and chat not in DEVS:
+            if chat in DEVS:
+                continue
             try:
                 if m.reply_to_message:
                     await send.copy(chat)
