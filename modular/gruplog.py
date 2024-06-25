@@ -62,13 +62,7 @@ async def _(c, m):
         teks = cgr("grplog_6").format(m.chat.title, org, m.caption)
     else:
         teks = cgr("grplog_6").format(m.chat.title, org, m.text)
-    donut = InlineKeyboardMarkup(
-        [
-            [
-                InlineKeyboardButton(cgr("grplog_7"), url=lenk),
-            ],
-        ]
-    )
+    donut = ikb([[(cgr("grplog_7"), f"{lenk}", "url")]])
     try:
         if m.photo:
             media = m.photo.file_id
