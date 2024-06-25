@@ -14,7 +14,6 @@ from sys import executable
 from sys import version as pyver
 
 import wget
-from pyrogram.helpers import ikb
 from pyrogram import __version__ as pyrover
 from pyrogram.errors import ChannelInvalid, PeerIdInvalid
 from pyrogram.types import ChatPrivileges
