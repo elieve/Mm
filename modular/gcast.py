@@ -19,56 +19,6 @@ __modles__ = "Broadcast"
 __help__ = get_cgr("help_gcast")
 
 
-"""
-async def digikes_(q):
-    chats = []
-    chat_types = {
-        "gikes": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "gucast": [ChatType.PRIVATE],
-    }
-    try:
-        async for dialog in nlx.get_dialogs():
-            try:
-                if dialog.chat.type in chat_types[q]:
-                    chats.append(dialog.chat.id)
-            except Exception as e:
-                LOGGER.error(f"An error occurred while processing dialog: {e}")
-    except ChannelPrivate:
-        LOGGER.error(f"Banned di {dialog.chat.id}")
-    except Exception as e:
-        LOGGER.error(f"An error occurred while getting dialogs: {e}")
-
-    return chats
-"""
-
-
-async def digikes_(q):
-    chats = []
-    chat_types = {
-        "gikes": [ChatType.GROUP, ChatType.SUPERGROUP],
-        "gucast": [ChatType.PRIVATE],
-    }
-    dialog = None
-    try:
-        async for dialog in nlx.get_dialogs():
-            try:
-                if dialog.chat.type in chat_types[q]:
-                    chats.append(dialog.chat.id)
-            except ChannelPrivate:
-                LOGGER.error(f"Banned di {dialog.chat.id}")
-                await nlx.leave_chat(dialog.chat.id)
-            except Exception as e:
-                LOGGER.error(f"An error occurred while processing dialog: {e}")
-    except (ChannelPrivate, ChatWriteForbidden):
-        if dialog:
-            await nlx.leave_chat(dialog.chat.id)
-        else:
-            pass
-    except Exception as e:
-        LOGGER.error(f"An error occurred while getting dialogs: {e}")
-
-    return chats
-
 
 @ky.ubot("gcast", sudo=True)
 async def _(c: nlx, m):
@@ -81,7 +31,7 @@ async def _(c: nlx, m):
         msg = await m.reply(cgr("gcs_1").format(em.gagal))
         return
     blacklist = udB.get_chat(c.me.id)
-    chats = await digikes_("gikes")
+    chats = await c.get_chats_dialog(c, "grup")
     msg = None
     for chat in chats:
         if chat not in blacklist and chat not in NO_GCAST:
@@ -167,7 +117,7 @@ async def _(c: nlx, m):
     if not send:
         msg = await m.reply(cgr("gcs_1").format(em.gagal))
         return
-    chats = await digikes_("gucast")
+    chats = await c.get_chats_dialog(c, "user")
     blacklist = udB.get_chat(c.me.id)
     done = 0
     failed = 0
