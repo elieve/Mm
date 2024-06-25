@@ -10,7 +10,7 @@
 import os
 import sys
 
-from pykeyboard import InlineKeyboard
+from pyrogram.helpers import ikb
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.types import *
