@@ -42,7 +42,7 @@ class Userbot(Client):
             device_model="Mix-Userbot",
             plugins=dict(root="modular"),
             # proxy=self._configure_proxy(),
-            ** kwargs,
+            **kwargs,
         )
 
     def _configure_proxy(self):
