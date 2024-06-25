@@ -17,10 +17,11 @@ import requests
 from pyrogram import *
 from pyrogram.enums import *
 from pyrogram.errors import *
+from pyrogram.helpers import ikb
 from pyrogram.raw.functions import Ping
 from pyrogram.types import *
 from telegraph import upload_file
-from pyrogram.helpers import ikb
+
 from Mix import *
 from Mix.core.sender_tools import escape_tag, parse_words
 from Mix.core.waktu import get_time, start_time
@@ -216,7 +217,14 @@ async def _(c, iq):
         ms = "**Daftar Streaming Link Streaming :**"
         q = iq.query.split(None, 1)
         ambilka = await get_streaming_links(q[1], c)
-        batin = ikb([[(f"{link_data['name']}", f"{link_data['url']}", "url") for link_data in ambilka]])
+        batin = ikb(
+            [
+                [
+                    (f"{link_data['name']}", f"{link_data['url']}", "url")
+                    for link_data in ambilka
+                ]
+            ]
+        )
         await c.answer_inline_query(
             iq.id,
             cache_time=0,
@@ -410,9 +418,16 @@ async def _(c, iq):
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = get_msg_button(pm_text)
     button = create_tl_btn(button)
-    def_keyb = ikb([[("Setuju", f"pm_ okein {int(org[1])}"), ("Blokir", f"pm_ blokbae {int(org[1])}")]])
+    def_keyb = ikb(
+        [
+            [
+                ("Setuju", f"pm_ okein {int(org[1])}"),
+                ("Blokir", f"pm_ blokbae {int(org[1])}"),
+            ]
+        ]
+    )
     if button:
-      for row in def_keyb.inline_keyboard:
+        for row in def_keyb.inline_keyboard:
             button.inline_keyboard.append(row)
     else:
         button = def_keyb
