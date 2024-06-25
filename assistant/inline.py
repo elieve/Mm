@@ -410,7 +410,7 @@ async def _(c, iq):
     pm_warns = getpm_warns if getpm_warns else LIMIT
     teks, button = get_msg_button(pm_text)
     button = create_tl_btn(button)
-    def_keyb = ikb([[("Setuju", f"pm_ okein {int(org[1])}"), ("Blokir": f"pm_ blokbae {int(org[1])}")]])
+    def_keyb = ikb([[("Setuju", f"pm_ okein {int(org[1])}"), ("Blokir", f"pm_ blokbae {int(org[1])}")]])
     if button:
       for row in def_keyb.inline_keyboard:
             button.inline_keyboard.append(row)
