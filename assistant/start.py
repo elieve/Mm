@@ -35,7 +35,7 @@ async def _(c, m):
                 [(cgr("ttup"), "close_asst")],
             ]
         )
-        await m.reply(ts_1, reply_markup=button)
+        return await m.reply(ts_1, reply_markup=button)
     else:
         tt = ikb([[(cgr("ttup"), "close_asst")]])
-        await m.reply(ts_2, reply_markup=tt)
+        return await m.reply(ts_2, reply_markup=tt)
