@@ -9,7 +9,8 @@
 import asyncio
 
 from pyrogram.enums import ChatType
-from pyrogram.errors import ChannelPrivate, UserBannedInChannel, PeerIdInvalid, FloodWait
+from pyrogram.errors import (ChannelPrivate, FloodWait, PeerIdInvalid,
+                             UserBannedInChannel)
 from pyrogram.raw.functions.messages import ReadMentions
 from team.nandev.class_log import LOGGER
 from team.nandev.database import udB
