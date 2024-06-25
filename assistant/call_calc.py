@@ -38,7 +38,7 @@ hitung = []
 
 
 def calc_help():
-    return okb(
+    return ikb(
         [
             [
                 ("(", "calc_("),
