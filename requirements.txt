@@ -49,3 +49,4 @@ assemblyai
 removebg
 numpy
 opencv-python
+pykeyboard
