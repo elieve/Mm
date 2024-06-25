@@ -14,24 +14,10 @@ from pyrogram.types import *
 from Mix import *
 
 
-def markdown_help():
-
-    return okb(
-        [
-            [
-                ("Markdown Format", "markd.butformat"),
-                ("Fillings", "markd.filing"),
-            ],
-        ],
-        True,
-        "help_back",
-    )
-
-
 @ky.callback("markd.")
 async def _(c, cq):
     cmd = cq.data.split(".")[1]
-    kb = ikb({"Kembali": "bace.markd"})
+    kb = ikb([[("Kembali": "bace.markd")]])
     if cmd == "butformat":
         nan = cgr("mark_1")
         await cq.edit_message_text(text=nan, reply_markup=kb, parse_mode=ParseMode.HTML)
@@ -47,4 +33,5 @@ async def _(c, cq):
 @ky.callback("bace")
 async def _(c, cq):
     txt = cgr("mark_3")
-    await cq.edit_message_text(text=txt, reply_markup=markdown_help())
+    ke = ikb([[("Markdown Format", "markd.butformat"), ("Fillings", "markd.filing")]])
+    await cq.edit_message_text(text=txt, reply_markup=ke)
