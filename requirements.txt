@@ -39,7 +39,6 @@ pyyaml
 lyricsgenius==3.0.1
 SafoneApi
 pytgcalls==3.0.0.dev22
-pyrofork
 PySocks
 pexpect
 proxybroker
@@ -49,4 +48,4 @@ assemblyai
 removebg
 numpy
 opencv-python
-pykeyboard
+git+https://github.com/naya1503/pyrofork
