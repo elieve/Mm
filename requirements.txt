@@ -38,7 +38,7 @@ pytz
 pyyaml
 lyricsgenius==3.0.1
 SafoneApi
-pytgcalls==3.0.0.dev22
+pytgcalls==3.0.0.dev24
 PySocks
 pexpect
 proxybroker
