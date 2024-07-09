@@ -193,7 +193,7 @@ async def download_tiktok(c, m, url, em):
         await m.reply(cgr("down_4").format(em.gagal, video_response.status_code))
 
 
-@ky.ubot("dtik", sudo=False)
+@ky.ubot("dtik")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
