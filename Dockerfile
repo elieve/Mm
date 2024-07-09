@@ -24,6 +24,6 @@ COPY . /app/
 WORKDIR /app/
 
 RUN pip3 install -U pip && \
-    pip3 install --no-cache-dir -r req.txt
+    pip3 install --no-cache-dir -r requirements.txt
 
 CMD ["bash", "start"]
