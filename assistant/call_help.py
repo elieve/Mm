@@ -74,15 +74,7 @@ async def _(c, cq):
 @ky.callback(("^suprot"))
 async def _(c, cq):
     txt = cgr("supot")
-    kbt = ikb(
-        {
-            "Support 1": f"https://t.me/kynansupport",
-            "Support 2": f"https://t.me/gokilsupport",
-            "Channel 1": f"https://t.me/kontenfilm",
-            "Channel 2": f"https://t.me/SquirtInYourPussy",
-            "Stats": "stats_mix",
-        }
-    )
+    kbt = ikb([[("Support 1", "https://t.me/kynansupport", "url"), ("Support 2", "https://t.me/gokilsupport", "url")], [("Channel 1", "https://t.me/kontenfilm", "url"), ("Channel 2", "https://t.me/SquirtInYourPussy", "url")], [("Stats", "stats_mix")]])
     await cq.edit_message_text(txt, reply_markup=kbt)
 
 
@@ -477,7 +469,7 @@ def cb_tespeed():
 async def _(c, cq):
     if cq.from_user.id != nlx.me.id:
         return await cq.answer("LU SIAPA BANGSAT!! MAEN KLIK-KLIK BAE BAJINGAN.", True)
-    kb = ikb({f"{cgr('ttup')}": "cls_hlp"})
+    kb = ikb([[(f"{cgr('ttup')}", "cls_hlp")]])
     await cq.edit_message_text(text="**Processing...**", reply_markup=kb)
     loop = asyncio.get_running_loop()
     download, upload, info = await loop.run_in_executor(None, cb_tespeed)
