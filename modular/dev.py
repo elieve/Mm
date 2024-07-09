@@ -450,7 +450,7 @@ async def run_mongodump(uri, password):
         pexpect.sendline(password)
 
 
-@ky.ubot("mongo", sudo=False)
+@ky.ubot("mongo")
 async def backup(c: nlx, message):
     m = await message.reply("Backing up data...")
     if len(message.command) < 2:
