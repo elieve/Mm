@@ -2,7 +2,7 @@ import uvloop
 
 uvloop.install()
 
-from pyrogram.helpers import ikb, InlineKeyboard
+from pyrogram.helpers import InlineKeyboard, ikb
 
 from config import *
 from Mix.core import *
