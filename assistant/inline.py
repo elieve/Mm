@@ -158,7 +158,7 @@ async def _(c, iq):
 # copy
 @ky.inline("^get_msg")
 async def _(c, iq):
-    bk = ikb({f"{cgr('klk_1')}": f"copymsg_{int(iq.query.split()[1])}"})
+    bk = ikb([[(f"{cgr('klk_1')}", f"copymsg_{int(iq.query.split()[1])}")]])
     await c.answer_inline_query(
         iq.id,
         cache_time=0,
