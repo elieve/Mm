@@ -74,7 +74,19 @@ async def _(c, cq):
 @ky.callback(("^suprot"))
 async def _(c, cq):
     txt = cgr("supot")
-    kbt = ikb([[("Support 1", "https://t.me/kynansupport", "url"), ("Support 2", "https://t.me/gokilsupport", "url")], [("Channel 1", "https://t.me/kontenfilm", "url"), ("Channel 2", "https://t.me/SquirtInYourPussy", "url")], [("Stats", "stats_mix")]])
+    kbt = ikb(
+        [
+            [
+                ("Support 1", "https://t.me/kynansupport", "url"),
+                ("Support 2", "https://t.me/gokilsupport", "url"),
+            ],
+            [
+                ("Channel 1", "https://t.me/kontenfilm", "url"),
+                ("Channel 2", "https://t.me/SquirtInYourPussy", "url"),
+            ],
+            [("Stats", "stats_mix")],
+        ]
+    )
     await cq.edit_message_text(txt, reply_markup=kbt)
 
 
