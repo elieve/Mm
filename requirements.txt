@@ -49,3 +49,4 @@ removebg
 numpy
 opencv-python
 git+https://github.com/naya1503/mypyrogram
+tornado
