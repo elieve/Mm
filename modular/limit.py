@@ -8,7 +8,7 @@ __modles__ = "Spambot"
 __help__ = get_cgr("help_limt")
 
 
-@ky.ubot("limit", sudo=True)
+@ky.ubot("limit")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

@@ -18,7 +18,7 @@ __modles__ = "Translate"
 __help__ = get_cgr("help_transmart")
 
 
-@ky.ubot("tts", sudo=True)
+@ky.ubot("tts")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -51,7 +51,7 @@ async def _(c: nlx, m):
         pass
 
 
-@ky.ubot("tr", sudo=True)
+@ky.ubot("tr")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -82,7 +82,7 @@ async def _(c: nlx, m):
         await pros.edit(cgr("err").format(em.gagal, str(e)))
 
 
-@ky.ubot("lang", sudo=True)
+@ky.ubot("lang")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -97,7 +97,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("setlang", sudo=True)
+@ky.ubot("setlang")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

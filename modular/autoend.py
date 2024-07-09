@@ -37,7 +37,7 @@ async def diend_chat(q):
     return chats
 
 
-@ky.ubot("clearchat|endchat|clchat", sudo=True)
+@ky.ubot("clearchat|endchat|clchat")
 async def _(_, m):
     em = Emojik()
     em.initialize()

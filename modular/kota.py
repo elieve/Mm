@@ -137,7 +137,7 @@ def kontri(kont):
     return None
 
 
-@ky.ubot("negara|country", sudo=True)
+@ky.ubot("negara|country")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

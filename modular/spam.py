@@ -20,7 +20,7 @@ __modles__ = "Spam"
 __help__ = get_cgr("help_spam")
 
 
-@ky.ubot("spam", sudo=True)
+@ky.ubot("spam")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -62,7 +62,7 @@ async def _(c: nlx, m):
     await m.delete()
 
 
-@ky.ubot("dspam", sudo=True)
+@ky.ubot("dspam")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -110,7 +110,7 @@ async def _(c: nlx, m):
     await m.delete()
 
 
-@ky.ubot("cspam", sudo=True)
+@ky.ubot("cspam")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -122,7 +122,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("dspamfw", sudo=True)
+@ky.ubot("dspamfw")
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()

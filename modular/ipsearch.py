@@ -56,7 +56,7 @@ def format_ip_info(ip_info):
     return formatted_info
 
 
-@ky.ubot("ipinfo", sudo=True)
+@ky.ubot("ipinfo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

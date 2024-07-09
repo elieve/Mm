@@ -26,7 +26,7 @@ __modles__ = "Global"
 __help__ = get_cgr("help_global")
 
 
-@ky.ubot("gban", sudo=True)
+@ky.ubot("gban")
 @ky.devs("cgban")
 async def _(c: nlx, m):
     em = Emojik()
@@ -80,7 +80,7 @@ async def _(c: nlx, m):
     await xx.delete()
 
 
-@ky.ubot("ungban", sudo=True)
+@ky.ubot("ungban")
 @ky.devs("cungban")
 async def _(c: nlx, m):
     em = Emojik()
@@ -116,7 +116,7 @@ async def _(c: nlx, m):
     await xx.delete()
 
 
-@ky.ubot("gmute", sudo=True)
+@ky.ubot("gmute")
 @ky.devs("cgmute")
 async def _(c: nlx, m):
     em = Emojik()
@@ -163,7 +163,7 @@ async def _(c: nlx, m):
     await xx.delete()
 
 
-@ky.ubot("ungmute", sudo=True)
+@ky.ubot("ungmute")
 @ky.devs("cungmute")
 async def _(c: nlx, m):
     em = Emojik()
@@ -200,7 +200,7 @@ async def _(c: nlx, m):
     await xx.delete()
 
 
-@ky.ubot("gbanlist|listgban", sudo=True)
+@ky.ubot("gbanlist|listgban")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -226,7 +226,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("gmutelist|listgmute", sudo=True)
+@ky.ubot("gmutelist|listgmute")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

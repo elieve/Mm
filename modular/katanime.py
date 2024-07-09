@@ -104,7 +104,7 @@ def animelist():
         print(f"error {res.status_code} {res.text}")
 
 
-@ky.ubot("kata", sudo=True)
+@ky.ubot("kata")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -123,7 +123,7 @@ async def _(c: nlx, m):
     await mek.delete()
 
 
-@ky.ubot("katanime|katanimelist", sudo=True)
+@ky.ubot("katanime|katanimelist")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

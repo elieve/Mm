@@ -18,7 +18,7 @@ __modles__ = "Animasi"
 __help__ = "Animasi"
 
 
-@ky.ubot("love", sudo=True)
+@ky.ubot("love")
 async def _(c: nlx, m):
     if m.forward_from:
         return
@@ -46,14 +46,14 @@ async def _(c: nlx, m):
         await m.edit(animation_chars[i % 14])
 
 
-@ky.ubot("loveyou", sudo=True)
+@ky.ubot("loveyou")
 async def _(c: nlx, m):
     noble = random.randint(1, len(NOBLE) - 2)
     reply_text = NOBLE[noble]
     await m.reply(reply_text, reply_to_message_id=ReplyCheck(m))
 
 
-@ky.ubot("wink", sudo=True)
+@ky.ubot("wink")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -65,7 +65,7 @@ async def _(c: nlx, m):
     await proses.delete()
 
 
-@ky.ubot("hug", sudo=True)
+@ky.ubot("hug")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -77,7 +77,7 @@ async def _(c: nlx, m):
     await proses.delete()
 
 
-@ky.ubot("pat", sudo=True)
+@ky.ubot("pat")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -93,7 +93,7 @@ async def _(c: nlx, m):
         await c.send_message(m.chat.id, "Failed to fetch pat animation.")
 
 
-@ky.ubot("pikachu", sudo=True)
+@ky.ubot("pikachu")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -113,7 +113,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("hmm", sudo=True)
+@ky.ubot("hmm")
 async def _(c: nlx, m):
     mg = await m.reply(
         "┈┈╱▔▔▔▔▔╲┈┈┈HM┈HM\n┈╱┈┈╱▔╲╲╲▏┈┈┈HMMM\n╱┈┈╱━╱▔▔▔▔▔╲━╮┈┈\n▏┈▕┃▕╱▔╲╱▔╲▕╮┃┈┈\n▏┈▕╰━▏▊▕▕▋▕▕━╯┈┈\n╲┈┈╲╱▔╭╮▔▔┳╲╲┈┈┈\n┈╲┈┈▏╭━━━━╯▕▕┈┈┈\n┈┈╲┈╲▂▂▂▂▂▂╱╱┈┈┈\n┈┈┈┈▏┊┈┈┈┈┊┈┈┈╲\n┈┈┈┈▏┊┈┈┈┈┊▕╲┈┈╲\n┈╱▔╲▏┊┈┈┈┈┊▕╱▔╲▕\n┈▏┈┈┈╰┈┈┈┈╯┈┈┈▕▕\n┈╲┈┈┈╲┈┈┈┈╱┈┈┈╱┈╲\n┈┈╲┈┈▕▔▔▔▔▏┈┈╱╲╲╲▏\n┈╱▔┈┈▕┈┈┈┈▏┈┈▔╲▔▔\n┈╲▂▂▂╱┈┈┈┈╲▂▂▂╱┈ ",
@@ -121,7 +121,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("ahh", sudo=True)
+@ky.ubot("ahh")
 async def hello_world(c: nlx, m):
     mg = await m.reply("ahh", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(0.2)
@@ -140,7 +140,7 @@ async def hello_world(c: nlx, m):
     await mg.edit("aaahhhhhhhh")
 
 
-@ky.ubot("brain", sudo=True)
+@ky.ubot("brain")
 async def _(c: nlx, m):
     if m.forward_from:
         return
@@ -168,7 +168,7 @@ async def _(c: nlx, m):
         await m.edit(animation_chars[i % 14])
 
 
-@ky.ubot("bomb", sudo=True)
+@ky.ubot("bomb")
 async def _(c: nlx, m):
     if m.forward_from:
         return
@@ -194,7 +194,7 @@ async def _(c: nlx, m):
     await asyncio.sleep(2)
 
 
-@ky.ubot("call", sudo=True)
+@ky.ubot("call")
 async def _(c: nlx, m):
     if m.forward_from:
         return
@@ -228,7 +228,7 @@ async def _(c: nlx, m):
         await xu.edit(animation_chars[i % 18])
 
 
-@ky.ubot("kill", sudo=True)
+@ky.ubot("kill")
 async def _(c: nlx, m):
     if m.forward_from:
         return
@@ -254,7 +254,7 @@ async def _(c: nlx, m):
         await xi.edit(animation_chars[i % 12])
 
 
-@ky.ubot("wtf", sudo=True)
+@ky.ubot("wtf")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -277,7 +277,7 @@ async def _(c: nlx, m):
         await proses.delete()
 
 
-@ky.ubot("ding", sudo=True)
+@ky.ubot("ding")
 async def _(c: nlx, m):
     animation_interval = 0.3
     animation_ttl = range(0, 30)
@@ -302,7 +302,7 @@ async def _(c: nlx, m):
         await m.edit(animation_chars[i % 10])
 
 
-@ky.ubot("hypo", sudo=True)
+@ky.ubot("hypo")
 async def _(c: nlx, m):
     if m.forward_from:
         return
@@ -331,7 +331,7 @@ async def _(c: nlx, m):
         await m.edit(animation_chars[i % 15])
 
 
-@ky.ubot("gang", sudo=True)
+@ky.ubot("gang")
 async def _(c: nlx, m):
     await m.edit("EVERyBOdy")
     await asyncio.sleep(0.3)
@@ -350,7 +350,7 @@ async def _(c: nlx, m):
     await m.edit("EVERyBOdy iZ GangSTur UNtIL I ArRivE 🔥🔥🔥")
 
 
-@ky.ubot("char", sudo=True)
+@ky.ubot("char")
 async def _(c: nlx, m):
     txt = (
         m.text[10:]
@@ -369,7 +369,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("kocok", sudo=True)
+@ky.ubot("kocok")
 async def _(c: nlx, m):
     e = await m.reply("8✊===D", reply_to_message_id=ReplyCheck(m))
     await e.edit("8=✊==D")
@@ -403,7 +403,7 @@ async def _(c: nlx, m):
     await e.edit("😭😭😭😭")
 
 
-@ky.ubot("hack", sudo=True)
+@ky.ubot("hack")
 async def _(c: nlx, m):
     re = await m.reply(
         "Looking for WhatsApp databases in targeted person...",
@@ -463,7 +463,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("kntl|kontol", sudo=True)
+@ky.ubot("kntl|kontol")
 async def _(c: nlx, m):
     emoji = c.get_text(m)
     kontol = MEMES.GAMBAR_KONTOL
@@ -472,7 +472,7 @@ async def _(c: nlx, m):
     await m.reply(kontol, reply_to_message_id=ReplyCheck(m))
 
 
-@ky.ubot("titit|titid", sudo=True)
+@ky.ubot("titit|titid")
 async def _(c: nlx, m):
     emoji = c.get_text(m)
     titid = MEMES.GAMBAR_TITIT
@@ -481,7 +481,7 @@ async def _(c: nlx, m):
     await m.reply(titid, reply_to_message_id=ReplyCheck(m))
 
 
-@ky.ubot("dino", sudo=True)
+@ky.ubot("dino")
 async def _(c: nlx, m):
     typew = await m.reply("`DIN DINNN.....`", reply_to_message_id=ReplyCheck(m))
     await asyncio.sleep(1)
@@ -538,7 +538,7 @@ async def _(c: nlx, m):
     await typew.edit("`-TAMAT-`")
 
 
-@ky.ubot("syg|sayang|seng", sudo=True)
+@ky.ubot("syg|sayang|seng")
 async def _(c: nlx, m):
     e = await m.reply("I LOVEE YOUUU 💕", reply_to_message_id=ReplyCheck(m))
     await e.edit("💝💘💓💗")
@@ -588,7 +588,7 @@ async def _(c: nlx, m):
     await e.edit("SAYANG KAMU💞")
 
 
-@ky.ubot("gabut|gbt", sudo=True)
+@ky.ubot("gabut|gbt")
 async def _(c: nlx, m):
     e = await m.reply(
         "`PERNAAHHHHH KAHHH KAUUU MENGIRA`", reply_to_message_id=ReplyCheck(m)
@@ -793,7 +793,7 @@ async def _(c: nlx, m):
     await e.edit("`GABUT`")
 
 
-@ky.ubot("heli|helikopter", sudo=True)
+@ky.ubot("heli|helikopter")
 async def _(c: nlx, m):
     await m.reply(
         "▬▬▬.◙.▬▬▬ \n"
@@ -815,14 +815,14 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("tembak", sudo=True)
+@ky.ubot("tembak")
 async def _(c: nlx, m):
     await m.reply(
         "_/﹋\\_\n" "(҂`_´)\n" "<,︻╦╤─ ҉\n" r"_/﹋\_" "\n<b>Mau Jadi Pacarku Gak?!</b>",
     )
 
 
-@ky.ubot("bundir", sudo=True)
+@ky.ubot("bundir")
 async def _(c: nlx, m):
     await m.reply(
         "`Dadah Semuanya...`          \n　　　　　|"
@@ -842,7 +842,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("awk|awok", sudo=True)
+@ky.ubot("awk|awok")
 async def _(c: nlx, m):
     await m.reply(
         "────██──────▀▀▀██\n"
@@ -853,7 +853,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("y|oke", sudo=True)
+@ky.ubot("y|oke")
 async def _(c: nlx, m):
     await m.reply(
         "‡‡‡‡‡‡‡‡‡‡‡‡▄▄▄▄\n"
@@ -873,7 +873,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("tank", sudo=True)
+@ky.ubot("tank")
 async def _(c: nlx, m):
     await m.reply(
         "█۞███████]▄▄▄▄▄▄▄▄▄▄▃ \n"
@@ -883,7 +883,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("babi", sudo=True)
+@ky.ubot("babi")
 async def _(c: nlx, m):
     await m.reply(
         "┈┈┏━╮╭━┓┈╭━━━━╮\n"
@@ -897,7 +897,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("ajg", sudo=True)
+@ky.ubot("ajg")
 async def _(c: nlx, m):
     await m.reply(
         "╥━━━━━━━━╭━━╮━━┳\n"
@@ -909,14 +909,14 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("nah", sudo=True)
+@ky.ubot("nah")
 async def _(c: nlx, m):
     typew = await m.reply("`\n(\\_/)`" "`\n(●_●)`" "`\n />💖 *Ini Buat Kamu`")
     await asyncio.sleep(2)
     await typew.edit("`\n(\\_/)`" "`\n(●_●)`" "`\n💖<\\  *Tapi Bo'ong`")
 
 
-@ky.ubot("santet", sudo=True)
+@ky.ubot("santet")
 async def _(c: nlx, m):
     typew = await m.reply("`Mengaktifkan Perintah Santet Online....`")
     await asyncio.sleep(2)

@@ -48,7 +48,7 @@ async def buat_bon(code, bgne, theme, language):
     return image
 
 
-@ky.ubot("carbon|carbonara", sudo=True)
+@ky.ubot("carbon|carbonara")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -138,7 +138,7 @@ async def _(c, m):
             meg.close()
 
 
-@ky.ubot("bglist", sudo=True)
+@ky.ubot("bglist")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -155,7 +155,7 @@ async def _(c: nlx, m):
         await pros.edit(jadi)
 
 
-@ky.ubot("temlist", sudo=True)
+@ky.ubot("temlist")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

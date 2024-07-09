@@ -50,7 +50,7 @@ async def rbg_link(link):
         return None
 
 
-@ky.ubot("rmbg|rbg", sudo=True)
+@ky.ubot("rmbg|rbg")
 async def _(c: Client, m):
     em = Emojik()
     em.initialize()

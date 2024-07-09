@@ -17,7 +17,7 @@ __modles__ = "Pantun"
 __help__ = get_cgr("help_cakep")
 
 
-@ky.ubot("sepat", sudo=True)
+@ky.ubot("sepat")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -31,7 +31,7 @@ async def _(c: nlx, m):
     await putt.edit("**Mukaa lu kek kontolll.**😆")
 
 
-@ky.ubot("ngangkang", sudo=True)
+@ky.ubot("ngangkang")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -45,7 +45,7 @@ async def _(c: nlx, m):
     await putt.edit("**Hobby nya ngangkang** 😆🤪")
 
 
-@ky.ubot("hancur", sudo=True)
+@ky.ubot("hancur")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -59,7 +59,7 @@ async def _(c: nlx, m):
     await putt.edit("**Muka kamu hancur, Kok pakai banget.🤪**")
 
 
-@ky.ubot("kenalan", sudo=True)
+@ky.ubot("kenalan")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -73,7 +73,7 @@ async def _(c: nlx, m):
     await putt.edit("**Haii cantikk, kenalan donggg. 😋**")
 
 
-@ky.ubot("soms", sudo=True)
+@ky.ubot("soms")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -87,7 +87,7 @@ async def _(c: nlx, m):
     await putt.edit("**Gapapa jelekk yang penting sombong. 😋**")
 
 
-@ky.ubot("sirik", sudo=True)
+@ky.ubot("sirik")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -103,7 +103,7 @@ async def _(c: nlx, m):
     await putt.edit("**Kalo sirikk bilang bosss..**🖕")
 
 
-@ky.ubot("imut", sudo=True)
+@ky.ubot("imut")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")

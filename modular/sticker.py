@@ -25,7 +25,7 @@ __help__ = get_cgr("help_stick")
 LOG_ME = ndB.get_key("TAG_LOG")
 
 
-@ky.ubot("gstik|getstiker|getsticker", sudo=True)
+@ky.ubot("gstik|getstiker|getsticker")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

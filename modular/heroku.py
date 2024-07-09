@@ -42,7 +42,7 @@ __modles__ = "Heroku"
 __help__ = get_cgr("help_heroku")
 
 
-@ky.ubot("getlog", sudo=True)
+@ky.ubot("getlog")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -74,7 +74,7 @@ async def _(c: nlx, m):
         await m.reply_text(cgr("hero_1").format(em.gagal))
 
 
-@ky.ubot("getvar", sudo=True)
+@ky.ubot("getvar")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -106,7 +106,7 @@ async def _(c: nlx, m):
             )
 
 
-@ky.ubot("delvar", sudo=True)
+@ky.ubot("delvar")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -136,7 +136,7 @@ async def _(c: nlx, m):
             os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
-@ky.ubot("setvar", sudo=True)
+@ky.ubot("setvar")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -167,7 +167,7 @@ async def _(c: nlx, m):
         os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
-@ky.ubot("usage", sudo=True)
+@ky.ubot("usage")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -229,7 +229,7 @@ async def _(c: nlx, m):
     return await dyno.edit(text)
 
 
-@ky.ubot("update", sudo=True)
+@ky.ubot("update")
 @ky.devs("diupdate")
 async def _(c: nlx, m):
     em = Emojik()
@@ -287,7 +287,7 @@ async def _(c: nlx, m):
         os.execl(sys.executable, sys.executable, "-m", "Mix")
 
 
-@ky.ubot("reboot", sudo=True)
+@ky.ubot("reboot")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -309,7 +309,7 @@ async def reload_user():
         LOGGER.error(f"{er}")
 
 
-@ky.ubot("restart", sudo=True)
+@ky.ubot("restart")
 async def _(c: nlx, m):
     try:
         await reload_user()

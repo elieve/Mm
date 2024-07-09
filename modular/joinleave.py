@@ -10,7 +10,7 @@ __modles__ = "Join"
 __help__ = get_cgr("help_join")
 
 
-@ky.ubot("join", sudo=True)
+@ky.ubot("join")
 @ky.devs("Cjoin")
 async def _(c, m):
     em = Emojik()
@@ -31,7 +31,7 @@ async def _(c, m):
         return
 
 
-@ky.ubot("leave|kickme", sudo=True)
+@ky.ubot("leave|kickme")
 @ky.devs("Cleave")
 async def _(c, m):
     em = Emojik()
@@ -104,7 +104,7 @@ async def _(c, m):
         await ceger.edit(cgr("err").format(em.gagal, e))
 
 
-@ky.ubot("leaveallch|kickmeallch", sudo=True)
+@ky.ubot("leaveallch|kickmeallch")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -150,7 +150,7 @@ async def _(c: nlx, m):
     await xenn.edit_text(cgr("join_6").format(em.sukses, luci, em.gagal, nan))
 
 
-@ky.ubot("leaveallgc|kickmeallgc", sudo=True)
+@ky.ubot("leaveallgc|kickmeallgc")
 async def _(c, m):
     em = Emojik()
     em.initialize()

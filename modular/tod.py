@@ -118,7 +118,7 @@ dare_challenges = [
 ]
 
 
-@ky.ubot("truth", sudo=True)
+@ky.ubot("truth")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -141,7 +141,7 @@ async def _(c: nlx, m):
         )
 
 
-@ky.ubot("dare", sudo=True)
+@ky.ubot("dare")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

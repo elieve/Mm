@@ -8,7 +8,7 @@ __modles__ = "Adzan"
 __help__ = get_cgr("help_ajan")
 
 
-@ky.ubot("adzan", sudo=True)
+@ky.ubot("adzan")
 async def adzan_handler(c: nlx, m):
     em = Emojik()
     em.initialize()

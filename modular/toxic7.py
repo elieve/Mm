@@ -15,12 +15,12 @@ from pyrogram import *
 from Mix import *
 
 
-@ky.ubot("ywc", sudo=True)
+@ky.ubot("ywc")
 async def _(c: nlx, m):
     await m.reply("**Oke Sama-sama**", reply_to_message_id=ReplyCheck(m))
 
 
-@ky.ubot("jamet", sudo=True)
+@ky.ubot("jamet")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -48,7 +48,7 @@ async def _(c: nlx, m):
     await uputt.edit("**LEMBEK NGENTOT🔥**")
 
 
-@ky.ubot("pp", sudo=True)
+@ky.ubot("pp")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -59,7 +59,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("dp", sudo=True)
+@ky.ubot("dp")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -70,7 +70,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("so", sudo=True)
+@ky.ubot("so")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -81,7 +81,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("met", sudo=True)
+@ky.ubot("met")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -92,7 +92,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("war", sudo=True)
+@ky.ubot("war")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -103,7 +103,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("wartai", sudo=True)
+@ky.ubot("wartai")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -114,7 +114,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("kismin", sudo=True)
+@ky.ubot("kismin")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -125,7 +125,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("ded", sudo=True)
+@ky.ubot("ded")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -136,7 +136,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("sokab", sudo=True)
+@ky.ubot("sokab")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -147,7 +147,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("gembel", sudo=True)
+@ky.ubot("gembel")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -158,7 +158,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("cuih", sudo=True)
+@ky.ubot("cuih")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -169,7 +169,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("dih", sudo=True)
+@ky.ubot("dih")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -180,7 +180,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("skb", sudo=True)
+@ky.ubot("skb")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -191,7 +191,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("virtual", sudo=True)
+@ky.ubot("virtual")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")

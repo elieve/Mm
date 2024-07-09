@@ -24,7 +24,7 @@ __help__ = """
 """
 
 
-@ky.ubot("tiny", sudo=True)
+@ky.ubot("tiny")
 async def memify(c: nlx, m):
     em = Emojik()
     em.initialize()

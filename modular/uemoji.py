@@ -14,7 +14,7 @@ __modles__ = "Emoji"
 __help__ = get_cgr("help_emo")
 
 
-@ky.ubot("setemo", sudo=True)
+@ky.ubot("setemo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -50,7 +50,7 @@ async def _(c: nlx, m):
 
 
 """
-@ky.ubot("setemo", sudo=True)
+@ky.ubot("setemo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -77,7 +77,7 @@ async def _(c: nlx, m):
 """
 
 
-@ky.ubot("emoid", sudo=True)
+@ky.ubot("emoid")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -94,7 +94,7 @@ async def _(c: nlx, m):
                 return
 
 
-@ky.ubot("emoji", sudo=True)
+@ky.ubot("emoji")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -244,7 +244,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("getemo", sudo=True)
+@ky.ubot("getemo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

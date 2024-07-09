@@ -24,7 +24,7 @@ __modles__ = "Download"
 __help__ = get_cgr("help_download")
 
 
-@ky.ubot("vtube", sudo=True)
+@ky.ubot("vtube")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -93,7 +93,7 @@ async def _(c, m):
             pass
 
 
-@ky.ubot("stube", sudo=True)
+@ky.ubot("stube")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -209,7 +209,7 @@ async def _(c: nlx, m):
 
 
 """
-@ky.ubot("vtube", sudo=True)
+@ky.ubot("vtube")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -267,7 +267,7 @@ async def _(c, m):
             os.remove(files)
 
 
-@ky.ubot("stube", sudo=True)
+@ky.ubot("stube")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -378,7 +378,7 @@ async def download_and_send_file(nlx, chat_id, url, content_type):
         return
 
 
-@ky.ubot("twit|twitt", sudo=True)
+@ky.ubot("twit|twitt")
 async def twit(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -444,7 +444,7 @@ async def twit(c: nlx, m):
         await pros.edit(cgr("down_11").formar(em.gagal))
 
 
-@ky.ubot("insta", sudo=True)
+@ky.ubot("insta")
 async def insta_handler(c: nlx, m):
     em = Emojik()
     em.initialize()

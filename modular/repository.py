@@ -14,7 +14,7 @@ __modles__ = "Repository"
 __help__ = get_cgr("help_repo")
 
 
-@ky.ubot("repo|repository", sudo=True)
+@ky.ubot("repo|repository")
 async def repo(c, m):
     link = await get("https://api.github.com/repos/naya1503/Mix-Userbot/contributors")
     orgnya = "".join(

@@ -13,7 +13,7 @@ __modles__ = "Prefixes"
 __help__ = get_cgr("help_pref")
 
 
-@ky.ubot("setprefix", sudo=True)
+@ky.ubot("setprefix")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

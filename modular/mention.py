@@ -22,7 +22,7 @@ def random_emoji():
     return random.choice(emojis)
 
 
-@ky.ubot("tagall|mention", sudo=True)
+@ky.ubot("tagall|mention")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

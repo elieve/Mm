@@ -7,7 +7,7 @@ from pyrogram import *
 from Mix import *
 
 
-@ky.ubot("ceking", sudo=True)
+@ky.ubot("ceking")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -33,7 +33,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("hina", sudo=True)
+@ky.ubot("hina")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -59,7 +59,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("ngaca", sudo=True)
+@ky.ubot("ngaca")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")

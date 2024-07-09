@@ -10,7 +10,7 @@ __modles__ = "Fake Action"
 __help__ = get_cgr("help_pek")
 
 
-@ky.ubot("giben|gben", sudo=True)
+@ky.ubot("giben|gben")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -47,7 +47,7 @@ async def _(c: nlx, m):
         await pros.edit(f"{em.gagal} Gagal membuat laporan Global Banned: {str(e)}")
 
 
-@ky.ubot("gimute|gmut", sudo=True)
+@ky.ubot("gimute|gmut")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -84,7 +84,7 @@ async def _(c: nlx, m):
         await pros.edit(f"{em.gagal} Gagal membuat laporan Global Mute: {str(e)}")
 
 
-@ky.ubot("gikick|gkik", sudo=True)
+@ky.ubot("gikick|gkik")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -123,7 +123,7 @@ async def _(c: nlx, m):
         await pros.edit(f"{em.gagal} Gagal membuat laporan Global Kick: {str(e)}")
 
 
-@ky.ubot("teep|tf", sudo=True)
+@ky.ubot("teep|tf")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

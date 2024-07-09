@@ -32,7 +32,7 @@ l_t = """
 - `url` = Lock links"""
 
 
-@ky.ubot("locktypes", sudo=True)
+@ky.ubot("locktypes")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -40,7 +40,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("lock", sudo=True)
+@ky.ubot("lock")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -182,7 +182,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("unlock", sudo=True)
+@ky.ubot("unlock")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -345,7 +345,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("locks", sudo=True)
+@ky.ubot("locks")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

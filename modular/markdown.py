@@ -15,7 +15,7 @@ __modles__ = "Markdown"
 __help__ = get_cgr("help_markd")
 
 
-@ky.ubot("markdown", sudo=True)
+@ky.ubot("markdown")
 async def _(c: nlx, m):
     try:
         xi = await c.get_inline_bot_results(bot.me.username, "mark_in")

@@ -10,7 +10,7 @@ __modles__ = "Profile"
 __help__ = get_cgr("help_prof")
 
 
-@ky.ubot("unblock", sudo=True)
+@ky.ubot("unblock")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -27,7 +27,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("block", sudo=True)
+@ky.ubot("block")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -42,7 +42,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("setname", sudo=True)
+@ky.ubot("setname")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -69,7 +69,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("setbio", sudo=True)
+@ky.ubot("setbio")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -88,7 +88,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("meadmin", sudo=True)
+@ky.ubot("meadmin")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -142,7 +142,7 @@ async def _(c: nlx, m):
         print(f"An error occurred while fetching dialogs: {e}")
 
 
-@ky.ubot("setpp", sudo=True)
+@ky.ubot("setpp")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -163,7 +163,7 @@ async def _(c: nlx, m):
         return await m.reply(cgr("err").format(em.gagal, e))
 
 
-@ky.ubot("purgeme", sudo=True)
+@ky.ubot("purgeme")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

@@ -15,7 +15,7 @@ __modles__ = "ShowID"
 __help__ = get_cgr("help_sid")
 
 
-@ky.ubot("id", sudo=True)
+@ky.ubot("id")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -51,7 +51,7 @@ async def _(c, m):
     )
 
 
-@ky.ubot("gifid", sudo=True)
+@ky.ubot("gifid")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

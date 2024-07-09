@@ -226,7 +226,7 @@ async def chat_info(c: nlx, chat, already=False):
     return caption, photo_id
 
 
-@ky.ubot("info|whois", sudo=True)
+@ky.ubot("info|whois")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -273,7 +273,7 @@ async def _(c, m):
     return
 
 
-@ky.ubot("cinfo|chatinfo", sudo=True)
+@ky.ubot("cinfo|chatinfo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -333,7 +333,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("userstats|me", sudo=True)
+@ky.ubot("userstats|me")
 @ky.devs("userstats")
 async def _(c, m):
     em = Emojik()
@@ -413,7 +413,7 @@ Saya mengalami masalah dengan chat ini:
 
 
 """
-@ky.ubot("me|userstats", sudo=True)
+@ky.ubot("me|userstats")
 @ky.devs("userstats")
 async def _(c, m):
     em = Emojik()
@@ -491,7 +491,7 @@ I've trouble with this chat :
 """
 
 
-@ky.ubot("staff", sudo=True)
+@ky.ubot("staff")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

@@ -73,7 +73,7 @@ async def convert_m3u8_to_mp4(m3u8_input_path, mp4_output_path):
         print("Error:", stderr.decode())
 
 
-@ky.ubot("pint", sudo=True)
+@ky.ubot("pint")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

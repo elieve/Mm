@@ -44,7 +44,7 @@ def find_matching_anime(anime_name):
     return None
 
 
-@ky.ubot("streaming", sudo=True)
+@ky.ubot("streaming")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -82,7 +82,7 @@ async def _(c: nlx, m):
     await pros.delete()
 
 
-@ky.ubot("anime_list", sudo=True)
+@ky.ubot("anime_list")
 async def _(c: nlx, m):
     anime_list_text = "\n".join(
         [f"**{i}) `{name}`" for i, name in enumerate(ANIME_LIST.keys(), start=1)]
@@ -90,7 +90,7 @@ async def _(c: nlx, m):
     await m.reply(f"**List of available anime:**\n{anime_list_text}")
 
 
-@ky.ubot("add_anime", sudo=True)
+@ky.ubot("add_anime")
 async def _(c: nlx, m):
     if len(m.command) < 3:
         await m.reply(
@@ -107,7 +107,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("remove_anime", sudo=True)
+@ky.ubot("remove_anime")
 async def _(c: nlx, m):
     if len(m.command) < 2:
         await m.reply(f"**Cara menghapus dari list :** `{m.text} [nama_anime]`")

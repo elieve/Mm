@@ -90,7 +90,7 @@ def text_to_speech(c, text, filename):
     gts.save(filename)
 
 
-@ky.ubot("emorse", sudo=True)
+@ky.ubot("emorse")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -113,7 +113,7 @@ async def _(c: nlx, m):
     os.remove(audio_filename)
 
 
-@ky.ubot("dmorse", sudo=True)
+@ky.ubot("dmorse")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

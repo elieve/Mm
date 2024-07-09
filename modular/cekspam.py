@@ -45,7 +45,7 @@ def check_spam(message):
     return False
 
 
-@ky.ubot("cekspam", sudo=True)
+@ky.ubot("cekspam")
 async def cek_spam(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -127,7 +127,7 @@ async def cek_spam(c: nlx, m):
         )
 
 
-@ky.ubot("checkspam", sudo=True)
+@ky.ubot("checkspam")
 async def _(c: nlx, m):
     global filter_active
     em = Emojik()

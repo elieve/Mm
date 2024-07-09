@@ -15,7 +15,7 @@ from pyrogram import *
 from Mix import *
 
 
-@ky.ubot("cacad", sudo=True)
+@ky.ubot("cacad")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -29,7 +29,7 @@ async def _(c: nlx, m):
     await uputt.edit("**Canda Akun Cacad 😂🤣**")
 
 
-@ky.ubot("hayo", sudo=True)
+@ky.ubot("hayo")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")

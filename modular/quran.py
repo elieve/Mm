@@ -47,7 +47,7 @@ def ambil_daftar_surah():
     return surah_list
 
 
-@ky.ubot("list-surah|daftar-surah", sudo=True)
+@ky.ubot("list-surah|daftar-surah")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -60,7 +60,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("surat|surah|qs", sudo=True)
+@ky.ubot("surat|surah|qs")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

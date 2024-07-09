@@ -19,7 +19,7 @@ __modles__ = "Gruplog"
 __help__ = get_cgr("help_gruplog")
 
 
-@ky.ubot("gruplog", sudo=True)
+@ky.ubot("gruplog")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

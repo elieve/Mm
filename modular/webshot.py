@@ -39,7 +39,7 @@ async def ss(url, full: bool = False):
     return file
 
 
-@ky.ubot("webss|webshot|ss", sudo=True)
+@ky.ubot("webss|webshot|ss")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

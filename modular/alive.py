@@ -13,7 +13,7 @@ __modles__ = "Alive"
 __help__ = get_cgr("help_alive")
 
 
-@ky.ubot("alive", sudo=True)
+@ky.ubot("alive")
 async def _(c: nlx, m):
     if not udB.get_var(c.me.id, "gc"):
         gc = await c.get_chats_dialog(c, "grup")

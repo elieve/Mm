@@ -8,7 +8,7 @@ __modles__ = "Asupan"
 __help__ = get_cgr("help_asupan")
 
 
-@ky.ubot("asupan", sudo=True)
+@ky.ubot("asupan")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -31,7 +31,7 @@ async def _(c: nlx, m):
         await y.edit(cgr("err").format(em.gagal, error))
 
 
-@ky.ubot("cewek|cewe", sudo=True)
+@ky.ubot("cewek|cewe")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -49,7 +49,7 @@ async def _(c: nlx, m):
         await y.edit(cgr("err").format(em.gagal, error))
 
 
-@ky.ubot("cowok|cowo", sudo=True)
+@ky.ubot("cowok|cowo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -67,7 +67,7 @@ async def _(c: nlx, m):
         await y.edit(cgr("err").format(em.gagal, error))
 
 
-@ky.ubot("anime", sudo=True)
+@ky.ubot("anime")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -86,7 +86,7 @@ async def _(c: nlx, m):
         await y.edit(cgr("err").format(em.gagal, error))
 
 
-@ky.ubot("bokep", sudo=True)
+@ky.ubot("bokep")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

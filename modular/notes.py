@@ -25,7 +25,7 @@ def kontol_siapa(xi, tipe):
     return f"Mix/{xi}.{tipe}"
 
 
-@ky.ubot("save", sudo=True)
+@ky.ubot("save")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -60,7 +60,7 @@ async def _(c: nlx, m):
     await xx.edit(cgr("nts_3").format(em.sukses, note_name))
 
 
-@ky.ubot("get", sudo=True)
+@ky.ubot("get")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -195,7 +195,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("notes", sudo=True)
+@ky.ubot("notes")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -214,7 +214,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("clear", sudo=True)
+@ky.ubot("clear")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

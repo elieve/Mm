@@ -15,7 +15,7 @@ __modles__ = "Github"
 __help__ = get_cgr("help_gitup")
 
 
-@ky.ubot("github", sudo=True)
+@ky.ubot("github")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

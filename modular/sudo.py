@@ -12,7 +12,7 @@ __modles__ = "Sudo"
 __help__ = get_cgr("help_sudo")
 
 
-@ky.ubot("addsudo", sudo=True)
+@ky.ubot("addsudo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -36,7 +36,7 @@ async def _(c: nlx, m):
         return await msg.edit(error)
 
 
-@ky.ubot("delsudo", sudo=True)
+@ky.ubot("delsudo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -64,7 +64,7 @@ async def _(c: nlx, m):
         return await msg.edit(cgr("err").format(em.gagal, error))
 
 
-@ky.ubot("sudolist", sudo=True)
+@ky.ubot("sudolist")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

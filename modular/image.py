@@ -56,7 +56,7 @@ async def search_images(query, m, max_results, pros=None):
             await pros.delete()
 
 
-@ky.ubot("image|img", sudo=True)
+@ky.ubot("image|img")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

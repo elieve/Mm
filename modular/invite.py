@@ -9,7 +9,7 @@ __modles__ = "Invite"
 __help__ = get_cgr("help_inv")
 
 
-@ky.ubot("invite|undang", sudo=True)
+@ky.ubot("invite|undang")
 @ky.devs("sinijoin")
 async def _(c, m):
     em = Emojik()
@@ -37,7 +37,7 @@ async def _(c, m):
     await mg.edit(cgr("inv_3").format(em.sukses, mention, m.chat.title))
 
 
-@ky.ubot("getlink|invitelink", sudo=True)
+@ky.ubot("getlink|invitelink")
 @ky.devs("getling")
 async def _(c, m):
     em = Emojik()

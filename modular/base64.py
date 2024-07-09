@@ -30,7 +30,7 @@ async def process_message(c: nlx, m, text, decode=False):
         await m.reply(cgr("enc_5").format(em.gagal))
 
 
-@ky.ubot("encode", sudo=True)
+@ky.ubot("encode")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -43,7 +43,7 @@ async def _(c: nlx, m):
     await pros.delete()
 
 
-@ky.ubot("decode", sudo=True)
+@ky.ubot("decode")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

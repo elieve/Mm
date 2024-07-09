@@ -45,7 +45,7 @@ def google_search(query, limit=10):
         return []
 
 
-@ky.ubot("google", sudo=True)
+@ky.ubot("google")
 async def google_command(c: nlx, m: Message):
     em = Emojik()
     em.initialize()

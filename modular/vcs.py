@@ -54,7 +54,7 @@ async def get_group_call(c: nlx, m, err_msg: str = "") -> Optional[InputGroupCal
     return False
 
 
-@ky.ubot("startvc", sudo=True)
+@ky.ubot("startvc")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -79,7 +79,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("stopvc", sudo=True)
+@ky.ubot("stopvc")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -96,7 +96,7 @@ Ini Gw Bikin Dewek Ya Anj, Kalo Masih Dikata Copas Coba Cari Jing. ANAK KONTOL E
 """
 
 
-@ky.ubot("vctitle", sudo=True)
+@ky.ubot("vctitle")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -116,7 +116,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("joinvc", sudo=True)
+@ky.ubot("joinvc")
 @ky.devs("Jvcs")
 async def _(c: nlx, m):
     em = Emojik()
@@ -138,7 +138,7 @@ async def _(c: nlx, m):
             return await ky.edit(cgr("err").format(em.gagal, e))
 
 
-@ky.ubot("leavevc", sudo=True)
+@ky.ubot("leavevc")
 @ky.devs("Lvcs")
 async def _(c: nlx, m):
     em = Emojik()

@@ -41,7 +41,7 @@ async def consu(dok):
         raise
 
 
-@ky.ubot("qcolor", sudo=True)
+@ky.ubot("qcolor")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -56,7 +56,7 @@ async def _(c: nlx, m):
         await m.reply(jadi + iymek)
 
 
-@ky.ubot("q", sudo=True)
+@ky.ubot("q")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -157,7 +157,7 @@ async def consu(dok):
         raise
 
 
-@ky.ubot("qcolor", sudo=True)
+@ky.ubot("qcolor")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -172,7 +172,7 @@ async def _(c: nlx, m):
         await m.reply(jadi + iymek)
 
 
-@ky.ubot("q", sudo=True)
+@ky.ubot("q")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

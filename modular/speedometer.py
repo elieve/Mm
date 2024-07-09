@@ -13,7 +13,7 @@ __modles__ = "SpeedTest"
 __help__ = "Speedometer"
 
 
-@ky.ubot("speedtest|speed", sudo=True)
+@ky.ubot("speedtest|speed")
 async def _(c: nlx, m):
     try:
         x = await c.get_inline_bot_results(bot.me.username, "speed")

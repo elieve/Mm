@@ -74,7 +74,7 @@ async def member_permissions(chat: int, org: int):
     return perms
 
 
-@ky.ubot("purge", sudo=True)
+@ky.ubot("purge")
 async def _(c: nlx, m):
     await m.delete()
     if not m.reply_to_message:
@@ -101,7 +101,7 @@ async def _(c: nlx, m):
         )
 
 
-@ky.ubot("kick|delkick", sudo=True)
+@ky.ubot("kick|delkick")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -134,7 +134,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("ban|delban", sudo=True)
+@ky.ubot("ban|delban")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -169,7 +169,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("unban", sudo=True)
+@ky.ubot("unban")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -194,7 +194,7 @@ async def delete_reply(c, message):
         await message.delete()
 
 
-@ky.ubot("del", sudo=True)
+@ky.ubot("del")
 async def _(c: nlx, m):
     if m.reply_to_message:
         await delete_reply(c, m.reply_to_message)
@@ -203,7 +203,7 @@ async def _(c: nlx, m):
         await m.delete()
 
 
-@ky.ubot("pin|unpin", sudo=True)
+@ky.ubot("pin|unpin")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -219,7 +219,7 @@ async def _(c: nlx, m):
     await m.reply(cgr("res_9").format(em.sukses, r.link), disable_web_page_preview=True)
 
 
-@ky.ubot("mute|delmute", sudo=True)
+@ky.ubot("mute|delmute")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -258,7 +258,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("unmute", sudo=True)
+@ky.ubot("unmute")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -282,7 +282,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("zombies", sudo=True)
+@ky.ubot("zombies")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -308,7 +308,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("getlink|invitelink", sudo=True)
+@ky.ubot("getlink|invitelink")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -323,7 +323,7 @@ async def _(c: nlx, m):
             await m.reply_text(text, disable_web_page_preview=True)
 
 
-@ky.ubot("report", sudo=True)
+@ky.ubot("report")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -364,7 +364,7 @@ async def _(c: nlx, m):
     await m.reply_to_message.reply_text(text)
 
 
-@ky.ubot("fullpromote", sudo=True)
+@ky.ubot("fullpromote")
 @ky.devs("mfullpromote")
 async def _(c: nlx, m):
     em = Emojik()
@@ -409,7 +409,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("promote", sudo=True)
+@ky.ubot("promote")
 @ky.devs("mpromote")
 async def _(c: nlx, m):
     em = Emojik()
@@ -462,7 +462,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("demote", sudo=True)
+@ky.ubot("demote")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -510,7 +510,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("gctitle", sudo=True)
+@ky.ubot("gctitle")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -528,7 +528,7 @@ async def _(c: nlx, m):
     return await m.reply_text(cgr("res_28").format(em.sukses, m.chat.title, gtit))
 
 
-@ky.ubot("gcdes", sudo=True)
+@ky.ubot("gcdes")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -546,7 +546,7 @@ async def _(c: nlx, m):
     return await m.reply_text(cgr("res_29").format(em.sukses, m.chat.description, desp))
 
 
-@ky.ubot("title", sudo=True)
+@ky.ubot("title")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -579,7 +579,7 @@ async def _(c: nlx, m):
     return await m.reply_text(cgr("res_32").format(em.sukses, from_user.mention, title))
 
 
-@ky.ubot("gcpic", sudo=True)
+@ky.ubot("gcpic")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -606,7 +606,7 @@ async def _(c: nlx, m):
         return await m.reply_text(cgr("res_33").format(em.gagal))
 
 
-@ky.ubot("hantu", sudo=True)
+@ky.ubot("hantu")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

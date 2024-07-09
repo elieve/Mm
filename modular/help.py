@@ -12,7 +12,7 @@ from pyrogram.types import *
 from Mix import *
 
 
-@ky.ubot("help", sudo=True)
+@ky.ubot("help")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

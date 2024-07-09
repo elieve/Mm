@@ -49,7 +49,7 @@ async def scrape_memes():
         return None
 
 
-@ky.ubot("meme", sudo=True)
+@ky.ubot("meme")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

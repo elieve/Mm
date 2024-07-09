@@ -58,7 +58,7 @@ def write_on_image(text, filename="output.jpg", line_spacing=50, enter_spacing=9
     template.save(filename)
 
 
-@ky.ubot("nulis", sudo=True)
+@ky.ubot("nulis")
 async def _(c: nlx, m):
     if m.reply_to_message:
         text = m.reply_to_message.text or m.reply_to_message.caption

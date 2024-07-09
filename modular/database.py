@@ -17,7 +17,7 @@ __modles__ = "Settings"
 __help__ = get_cgr("help_dtbs")
 
 
-@ky.ubot("setdb", sudo=True)
+@ky.ubot("setdb")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -53,7 +53,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("getdb", sudo=True)
+@ky.ubot("getdb")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -113,7 +113,7 @@ async def _(c, iq):
     await c.answer_inline_query(iq.id, cache_time=0, results=duar)
 
 
-@ky.ubot("deldb", sudo=True)
+@ky.ubot("deldb")
 async def _(c, m):
     em = Emojik()
     em.initialize()

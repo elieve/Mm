@@ -37,7 +37,7 @@ async def search_lyrics(penyanyi, judul):
         return None
 
 
-@ky.ubot("lyrics", sudo=True)
+@ky.ubot("lyrics")
 async def _(c, m):
     em = Emojik()
     em.initialize()

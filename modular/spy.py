@@ -15,7 +15,7 @@ __modles__ = "Curi"
 __help__ = get_cgr("help_spy")
 
 
-@ky.ubot("curi|spy", sudo=True)
+@ky.ubot("curi|spy")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

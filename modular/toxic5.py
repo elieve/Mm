@@ -10,7 +10,7 @@ from pyrogram import *
 from Mix import *
 
 
-@ky.ubot("lipkol", sudo=True)
+@ky.ubot("lipkol")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -25,7 +25,7 @@ async def _(c: nlx, m):
 # Create by myself @localheart
 
 
-@ky.ubot("nakal", sudo=True)
+@ky.ubot("nakal")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -39,7 +39,7 @@ async def _(c: nlx, m):
     await uputt.edit("**Pokoknya Aku Gak Like Ih** 😠")
 
 
-@ky.ubot("favboy", sudo=True)
+@ky.ubot("favboy")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -57,7 +57,7 @@ async def _(c: nlx, m):
     await uputt.edit("**Gak Boleh Ada Yang Lain** 😠")
 
 
-@ky.ubot("favgirl", sudo=True)
+@ky.ubot("favgirl")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -75,7 +75,7 @@ async def _(c: nlx, m):
     await uputt.edit("**Gak Boleh Ada Yang Lain** 😠")
 
 
-@ky.ubot("canlay", sudo=True)
+@ky.ubot("canlay")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -93,7 +93,7 @@ async def _(c: nlx, m):
     await uputt.edit("**Pantes Norak Xixixi**")
 
 
-@ky.ubot("ganlay", sudo=True)
+@ky.ubot("ganlay")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -111,7 +111,7 @@ async def _(c: nlx, m):
     await uputt.edit("**Pantes Norak Xixixi**")
 
 
-@ky.ubot("ange", sudo=True)
+@ky.ubot("ange")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")

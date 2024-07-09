@@ -21,7 +21,7 @@ __modles__ = "Pastebin"
 __help__ = get_cgr("help_paste")
 
 
-@ky.ubot("paste", sudo=True)
+@ky.ubot("paste")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

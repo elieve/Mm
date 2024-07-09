@@ -31,7 +31,7 @@ PM_WARN = cgr("pmper_2")
 LIMIT = 5
 
 
-@ky.ubot("ok|setuju", sudo=True)
+@ky.ubot("ok|setuju")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -65,7 +65,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("no|tolak", sudo=True)
+@ky.ubot("no|tolak")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -85,7 +85,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("setmsg", sudo=True)
+@ky.ubot("setmsg")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -108,7 +108,7 @@ async def _(c: nlx, m):
     return
 
 
-@ky.ubot("setlimit", sudo=True)
+@ky.ubot("setlimit")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

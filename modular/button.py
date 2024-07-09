@@ -16,7 +16,7 @@ __modles__ = "Button"
 __help__ = get_cgr("help_butt")
 
 
-@ky.ubot("button", sudo=True)
+@ky.ubot("button")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

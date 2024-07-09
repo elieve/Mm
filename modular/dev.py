@@ -68,7 +68,7 @@ async def _(c: nlx, m):
     return await m.reply(f"{em.sukses} {nlx.me.id} expired telah dihapus")
 
 
-@ky.ubot("sh", sudo=True)
+@ky.ubot("sh")
 @ky.bots("sh")
 async def _(c, m):
     if len(m.command) < 2:
@@ -112,7 +112,7 @@ async def _(c, m):
     cmd_obj.kill()
 
 
-@ky.ubot("trash", sudo=True)
+@ky.ubot("trash")
 async def _(c: nlx, m):
     if m.reply_to_message:
         try:
@@ -132,7 +132,7 @@ async def _(c: nlx, m):
         return await m.reply("noob")
 
 
-@ky.ubot("eval|ev", sudo=True)
+@ky.ubot("eval|ev")
 @ky.cegers("ceval")
 @ky.bots("eval|ev")
 async def _(c, m):
@@ -187,7 +187,7 @@ def get_size(bytes, suffix="B"):
         bytes /= factor
 
 
-@ky.ubot("host", sudo=True)
+@ky.ubot("host")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -280,7 +280,7 @@ async def generate_sysinfo(workdir):
     return "\n" + "\n".join([f"{x:<{max_len}} {y}" for x, y in info.items()]) + ""
 
 
-@ky.ubot("stats", sudo=True)
+@ky.ubot("stats")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

@@ -13,7 +13,7 @@ __modles__ = "Logo"
 __help__ = get_cgr("help_logo")
 
 
-@ky.ubot("logo", sudo=True)
+@ky.ubot("logo")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

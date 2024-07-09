@@ -79,7 +79,7 @@ async def download_and_send_image(c: nlx, m, image_url, image_content):
         os.remove(filepath)
 
 
-@ky.ubot("loly", sudo=True)
+@ky.ubot("loly")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -110,7 +110,7 @@ async def _(c: nlx, m):
         return await pros.edit(cgr("waif_3").format(em.gagal))
 
 
-@ky.ubot("neko", sudo=True)
+@ky.ubot("neko")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -161,7 +161,7 @@ TAGS = [
 ]
 
 
-@ky.ubot("waifu", sudo=True)
+@ky.ubot("waifu")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

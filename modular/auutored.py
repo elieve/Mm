@@ -16,7 +16,7 @@ __modles__ = "AutoRead"
 __help__ = get_cgr("help_autoread")
 
 
-@ky.ubot("autoread", sudo=True)
+@ky.ubot("autoread")
 @ky.devs("otored")
 async def _(c: nlx, m):
     em = Emojik()

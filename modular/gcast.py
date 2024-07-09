@@ -19,7 +19,7 @@ __modles__ = "Broadcast"
 __help__ = get_cgr("help_gcast")
 
 
-@ky.ubot("gcast", sudo=True)
+@ky.ubot("gcast")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -109,7 +109,7 @@ async def _(c: nlx, m):
         await msg.edit(updated_content)
 
 
-@ky.ubot("gucast", sudo=True)
+@ky.ubot("gucast")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -186,7 +186,7 @@ async def _(c: nlx, m):
         await msg.edit(updated_content)
 
 
-@ky.ubot("addbl", sudo=True)
+@ky.ubot("addbl")
 @ky.devs("Etbeel")
 async def _(c: nlx, m):
     em = Emojik()
@@ -205,7 +205,7 @@ async def _(c: nlx, m):
         return
 
 
-@ky.ubot("delbl", sudo=True)
+@ky.ubot("delbl")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -229,7 +229,7 @@ async def _(c: nlx, m):
         await pp.edit(str(error))
 
 
-@ky.ubot("listbl", sudo=True)
+@ky.ubot("listbl")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -246,7 +246,7 @@ async def _(c: nlx, m):
     await m.reply(msg)
 
 
-@ky.ubot("rmall", sudo=True)
+@ky.ubot("rmall")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -259,7 +259,7 @@ async def _(c: nlx, m):
     await msg.edit(cgr("gcs_14").format(em.sukses))
 
 
-@ky.ubot("send", sudo=True)
+@ky.ubot("send")
 async def _(c: nlx, m):
     if m.reply_to_message:
         chat_id = m.chat.id if len(m.command) < 2 else m.text.split()[1]

@@ -33,7 +33,7 @@ async def format_temp_gmail(temp_gmail_info):
         raise ValueError(cgr("mail_err"))
 
 
-@ky.ubot("genmail", sudo=True)
+@ky.ubot("genmail")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -90,7 +90,7 @@ async def format_messages(messages):
         raise ValueError(cgr("mail_err1"))
 
 
-@ky.ubot("getmail", sudo=True)
+@ky.ubot("getmail")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -149,7 +149,7 @@ async def format_temp_mail(temp_mail):
         raise ValueError(cgr("mail_err"))
 
 
-@ky.ubot("tempmail", sudo=True)
+@ky.ubot("tempmail")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -203,7 +203,7 @@ async def format_temp_messages(messages):
     return formatted_messages
 
 
-@ky.ubot("gettemp", sudo=True)
+@ky.ubot("gettemp")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

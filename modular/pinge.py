@@ -17,7 +17,7 @@ __modles__ = "Ping"
 __help__ = get_cgr("help_ping")
 
 
-@ky.ubot("ping", sudo=True)
+@ky.ubot("ping")
 @ky.devs("mping")
 async def _(c: nlx, m):
     em = Emojik()

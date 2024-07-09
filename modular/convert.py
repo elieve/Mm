@@ -8,7 +8,7 @@ __modles__ = "Convert"
 __help__ = get_cgr("help_konpert")
 
 
-@ky.ubot("toimg", sudo=True)
+@ky.ubot("toimg")
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
@@ -32,7 +32,7 @@ async def _(c: nlx, message):
         )
 
 
-@ky.ubot("tosticker|tostick", sudo=True)
+@ky.ubot("tosticker|tostick")
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
@@ -49,7 +49,7 @@ async def _(c: nlx, message):
         await message.reply(cgr("err").format(em.gagal, e))
 
 
-@ky.ubot("togif", sudo=True)
+@ky.ubot("togif")
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
@@ -71,7 +71,7 @@ async def _(c: nlx, message):
         return
 
 
-@ky.ubot("toaudio", sudo=True)
+@ky.ubot("toaudio")
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
@@ -218,7 +218,7 @@ list_efek_deskripsi = {
 }
 
 
-@ky.ubot("list-efek|efeks|list-effects", sudo=True)
+@ky.ubot("list-efek|efeks|list-effects")
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
@@ -233,7 +233,7 @@ async def _(c: nlx, message):
     await message.reply(cgr("konpert_10").format(em.sukses, daftar_efek))
 
 
-@ky.ubot("efek|effect|voifek", sudo=True)
+@ky.ubot("efek|effect|voifek")
 async def _(c: nlx, message):
     em = Emojik()
     em.initialize()
@@ -292,7 +292,7 @@ async def stt_cmd(c, m, upload_url, pros):
         os.remove(upload_url)
 
 
-@ky.ubot("stt", sudo=True)
+@ky.ubot("stt")
 async def transcribe_audio(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -362,7 +362,7 @@ async def send_photo_and_get_anime(photo_path, c, m):
         return None
 
 
-@ky.ubot("toanime", sudo=True)
+@ky.ubot("toanime")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

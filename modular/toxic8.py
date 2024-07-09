@@ -15,7 +15,7 @@ from pyrogram import *
 from Mix import *
 
 
-@ky.ubot("ganteng", sudo=True)
+@ky.ubot("ganteng")
 async def _(c: nlx, m):
     uputt = await m.reply(
         "`Lu Mau Tau Sebuah Fakta?`", reply_to_message_id=ReplyCheck(m)
@@ -26,7 +26,7 @@ async def _(c: nlx, m):
     await uputt.edit("**GUA GANTENG FIX NO DEBAT😏**")
 
 
-@ky.ubot("wibu", sudo=True)
+@ky.ubot("wibu")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -63,7 +63,7 @@ async def _(c: nlx, m):
 # create by ayiin
 
 
-@ky.ubot("ssenggol", sudo=True)
+@ky.ubot("ssenggol")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")

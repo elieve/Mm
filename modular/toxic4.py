@@ -15,7 +15,7 @@ from pyrogram import *
 from Mix import *
 
 
-@ky.ubot("sadboy", sudo=True)
+@ky.ubot("sadboy")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -30,7 +30,7 @@ async def _(c: nlx, m):
 # Create by myself @localheart
 
 
-@ky.ubot("lah", sudo=True)
+@ky.ubot("lah")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -44,7 +44,7 @@ async def _(c: nlx, m):
     await uputt.edit("**Gua ga ketrigger sama bocah baru nyemplung!**")
 
 
-@ky.ubot("sok", sudo=True)
+@ky.ubot("sok")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -60,7 +60,7 @@ async def _(c: nlx, m):
     await uputt.edit("**GA KEREN LO BEGITU NGENTOT**")
 
 
-@ky.ubot("wah", sudo=True)
+@ky.ubot("wah")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -86,7 +86,7 @@ async def _(c: nlx, m):
     )
 
 
-@ky.ubot("alay", sudo=True)
+@ky.ubot("alay")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -102,7 +102,7 @@ async def _(c: nlx, m):
     await uputt.edit("**pantes NORAK**")
 
 
-@ky.ubot("erpe", sudo=True)
+@ky.ubot("erpe")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -126,7 +126,7 @@ async def _(c: nlx, m):
     await uputt.edit("Lari Ada Plastik KePanasan")
 
 
-@ky.ubot("tittle", sudo=True)
+@ky.ubot("tittle")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")

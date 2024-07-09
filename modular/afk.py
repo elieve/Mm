@@ -15,7 +15,7 @@ __modles__ = "Afk"
 __help__ = get_cgr("help_afk")
 
 
-@ky.ubot("afk", sudo=True)
+@ky.ubot("afk")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
@@ -150,7 +150,7 @@ async def _(c: nlx, m):
     await put_cleanmode(m.chat.id, send.id)
 
 
-@ky.ubot("unafk", sudo=True)
+@ky.ubot("unafk")
 async def _(c, m):
     em = Emojik()
     em.initialize()
@@ -334,7 +334,7 @@ async def _(c, m):
         pass
 
 
-@ky.ubot("afkdel", sudo=True)
+@ky.ubot("afkdel")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()

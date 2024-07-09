@@ -15,7 +15,7 @@ from pyrogram import *
 from Mix import *
 
 
-@ky.ubot("mix", sudo=True)
+@ky.ubot("mix")
 async def _(c: nlx, m):
     uputt = await m.reply("**Hai... Perkenalkan Saya Adalah Mix-Userbot**")
     asyncio.sleep(3)
@@ -31,7 +31,7 @@ async def _(c: nlx, m):
 # Create by myself @AyiinXd
 
 
-@ky.ubot("sayang", sudo=True)
+@ky.ubot("sayang")
 async def _(c: nlx, m):
     xx = await m.reply("**Aku Cuma Mau Bilang...**", reply_to_message_id=ReplyCheck(m))
     asyncio.sleep(3)
@@ -41,7 +41,7 @@ async def _(c: nlx, m):
 # Create by myself @AyiinXd
 
 
-@ky.ubot("semangat", sudo=True)
+@ky.ubot("semangat")
 async def _(c: nlx, m):
     uputt = await m.reply(
         "**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m)
@@ -55,7 +55,7 @@ async def _(c: nlx, m):
 # Create by myself @AyiinXd
 
 
-@ky.ubot("mengeluh", sudo=True)
+@ky.ubot("mengeluh")
 async def _(c: nlx, m):
     uputt = await m.reply(
         "**Apapun Yang Terjadi...**", reply_to_message_id=ReplyCheck(m)

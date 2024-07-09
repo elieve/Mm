@@ -5,7 +5,7 @@ from pyrogram import *
 from Mix import *
 
 
-@ky.ubot("ngentot", sudo=True)
+@ky.ubot("ngentot")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -34,7 +34,7 @@ async def _(c: nlx, m):
 # Create by myself @localheart
 
 
-@ky.ubot("goblok", sudo=True)
+@ky.ubot("goblok")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -63,7 +63,7 @@ async def _(c: nlx, m):
 # Create by myself @localheart
 
 
-@ky.ubot("ngatain", sudo=True)
+@ky.ubot("ngatain")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -92,7 +92,7 @@ async def _(c: nlx, m):
 # Create by myself @localheart
 
 
-@ky.ubot("yatim", sudo=True)
+@ky.ubot("yatim")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")
@@ -120,7 +120,7 @@ async def _(c: nlx, m):
     await mek.edit("`Tapi Bo'ong Hiyahiyahiya`")
 
 
-@ky.ubot("kont", sudo=True)
+@ky.ubot("kont")
 async def _(c: nlx, m):
     if m.reply_to_message and m.reply_to_message.from_user.id in DEVS:
         await m.reply("**AKUN LO MO ILANG BANGSAT??**")

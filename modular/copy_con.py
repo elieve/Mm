@@ -151,7 +151,7 @@ async def gas_download(g, c: nlx, inf, m):
         os.remove(thumbnail)
 
 
-@ky.ubot("copy", sudo=True)
+@ky.ubot("copy")
 async def _(c: nlx, m):
     global nyolong_jalan
     em = Emojik()
@@ -203,7 +203,7 @@ async def _(c: nlx, m):
         await inf.edit(cgr("cpy_2").format(em.sukses))
 
 
-@ky.ubot("cancel_copy", sudo=True)
+@ky.ubot("cancel_copy")
 async def _(c, m):
     global nyolong_jalan
 

@@ -15,7 +15,7 @@ __modles__ = "Calculator"
 __help__ = "Calculator"
 
 
-@ky.ubot("calc|kalku", sudo=True)
+@ky.ubot("calc|kalku")
 async def _(c: nlx, m):
     try:
         xi = await c.get_inline_bot_results(bot.me.username, "kalku_in")

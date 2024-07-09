@@ -16,7 +16,7 @@ __modles__ = "Telegraph"
 __help__ = get_cgr("help_graph")
 
 
-@ky.ubot("tg", sudo=True)
+@ky.ubot("tg")
 async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
