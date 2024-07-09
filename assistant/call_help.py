@@ -74,19 +74,7 @@ async def _(c, cq):
 @ky.callback(("^suprot"))
 async def _(c, cq):
     txt = cgr("supot")
-    kbt = ikb(
-        [
-            [
-                ("Support 1", "https://t.me/kynansupport", "url"),
-                ("Support 2", "https://t.me/gokilsupport", "url"),
-            ],
-            [
-                ("Channel 1", "https://t.me/kontenfilm", "url"),
-                ("Channel 2", "https://t.me/SquirtInYourPussy", "url"),
-            ],
-            [("Stats", "stats_mix")],
-        ]
-    )
+    kbt = ikb([[("Support 1", "https://t.me/kynansupport", "url"), ("Support 2", "https://t.me/gokilsupport", "url")], [("Channel 1", "https://t.me/kontenfilm", "url"), ("Channel 2", "https://t.me/SquirtInYourPussy", "url")], [("Stats", "stats_mix")]])
     await cq.edit_message_text(txt, reply_markup=kbt)
 
 
@@ -509,21 +497,24 @@ async def _(c, cq):
             if noteval["type"] in [Types.PHOTO, Types.VIDEO]:
                 file_type = "jpg" if noteval["type"] == Types.PHOTO else "mp4"
                 if noteval["type"] == Types.PHOTO:
-                    note, button = text_keyb(ikb, noteval.get("value"))
+                    note, button = get_msg_button( noteval.get("value"))
+                    button = create_tl_btn(button)
                     try:
                         await cq.edit_message_caption(caption=note, reply_markup=button)
                     except FloodWait as e:
                         await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
                         return
                 elif noteval["type"] == Types.VIDEO:
-                    note, button = text_keyb(ikb, noteval.get("value"))
+                    note, button = get_msg_button( noteval.get("value"))
+                    button = create_tl_btn(button)
                     try:
                         await cq.edit_message_caption(caption=note, reply_markup=button)
                     except FloodWait as e:
                         await cq.answer(f"FloodWait {e}, Please Waiting!!", True)
                         return
             elif noteval["type"] == Types.TEXT:
-                note, button = text_keyb(ikb, noteval.get("value"))
+                note, button = get_msg_button( noteval.get("value"))
+                button = create_tl_btn(button)
                 try:
                     await cq.edit_message_text(text=note, reply_markup=button)
                 except FloodWait as e:
