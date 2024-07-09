@@ -1,7 +1,9 @@
 import asyncio
+import signal
 
-import uvloop
-from pyrogram import idle
+import tornado.ioloop
+import tornado.platform.asyncio
+
 from pyrogram.errors import (AccessTokenExpired, AccessTokenInvalid,
                              ApiIdInvalid, SessionExpired, UserDeactivated)
 
@@ -11,10 +13,15 @@ from Mix import *
 from Mix.core.gclog import check_logger, getFinish
 from Mix.core.waktu import auto_clean
 
-# loop = asyncio.get_event_loop_policy()
-# event_loop = loop.get_event_loop()
+async def shutdown(signal, loop):
+    print(f"Received exit signal {signal.name}...")
+    tasks = [t for t in asyncio.all_tasks() if t is not asyncio.current_task()]
 
-loop = asyncio.get_event_loop_policy().get_event_loop()
+    [task.cancel() for task in tasks]
+
+    print("Cancelling outstanding tasks")
+    await asyncio.gather(*tasks, return_exceptions=True)
+    loop.stop()
 
 
 async def start_user():
@@ -86,12 +93,20 @@ async def main():
         task_bot,
         task_all,
         isFinish(),
-        idle(),
     )
+    stop_event = asyncio.Event()
+    loop = asyncio.get_running_loop()
+    for s in (signal.SIGINT, signal.SIGTERM):
+        loop.add_signal_handler(s, lambda: asyncio.create_task(shutdown(s, loop)))
+    try:
+        await stop_event.wait()
+    except asyncio.CancelledError:
+        pass
+    finally:
+        await bot.stop()
 
 
 if __name__ == "__main__":
-    # asyncio.set_event_loop(event_loop)
-    # event_loop.run_until_complete(main())
-    uvloop.install()
+    tornado.platform.asyncio.AsyncIOMainLoop().install()
+    loop = tornado.ioloop.IOLoop.current().asyncio_loop
     loop.run_until_complete(main())
