@@ -1,4 +1,8 @@
-from pyrogram.helpers import ikb
+import uvloop
+
+uvloop.install()
+
+from pyrogram.helpers import ikb, InlineKeyboard
 
 from config import *
 from Mix.core import *
