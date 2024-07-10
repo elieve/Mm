@@ -59,7 +59,7 @@ async def _(c: nlx, m):
     os.remove(pat)
 
 
-@ky.ubot("unkang", sudo=False)
+@ky.ubot("unkang")
 async def _(self: nlx, m):
     em = Emojik()
     em.initialize()
@@ -83,7 +83,7 @@ async def _(self: nlx, m):
         await m.reply(cgr("st_6").format(em.gagal))
 
 
-@ky.ubot("kang", sudo=False)
+@ky.ubot("kang")
 async def _(self: nlx, m):
     em = Emojik()
     em.initialize()
