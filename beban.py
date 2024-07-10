@@ -45,7 +45,7 @@ async def dasar_laknat():
 
 
 async def autor_gc():
-    if not udB.get_var(nlx.me.id, "read_gc"):
+    if not udB.get_var(nlx.me.id, "https://t.me/tes123el"):
         return
     while not await asyncio.sleep(3600):
         LOGGER.info("Running Autoread For Group...")
