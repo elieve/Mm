@@ -187,7 +187,7 @@ async def _(c: nlx, m):
         "Chrome/80.0.3987.149 Mobile Safari/537.36"
     )
     headers = {
-        "User-Agent": nlxagent,
+        "User-Agent": useragent,
         "Authorization": f"Bearer {heroku_api}",
         "Accept": "application/vnd.heroku+json; version=3.account-quotas",
     }
