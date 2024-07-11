@@ -1,6 +1,6 @@
-thegokil==1.0.0.dev1
+git+https://github.com/elieve/thegokil
 av==12.2.0
-maling==2.4.6
+git+https://github.com/elieve/maling
 aiofiles
 aiohttp
 beautifulsoup4
