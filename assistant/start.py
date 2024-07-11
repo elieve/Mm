@@ -33,7 +33,7 @@ async def _(c, m):
             [
                 [(cgr("asst_3"), "clbk.bhsa"), (cgr("asst_6"), "clbk.rebot")],
                 [("Repo", "https://github.com/elieve/mm", "url"), ("Buat Bot", "t.me/ccavolo", "url")],
-                [(cgr("ttup"), "clbk.hlp")],
+                [(cgr("ttup"), "help_(.*?)")],
             ]
         )
         return await m.reply(ts_1, reply_markup=button)
