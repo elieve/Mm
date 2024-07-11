@@ -32,7 +32,7 @@ async def _(c, m):
         button = ikb(
             [
                 [(cgr("asst_3"), "clbk.bhsa"), (cgr("asst_6"), "clbk.rebot")],
-                [(cgr("ttup"), "close_asst")],
+                [(cgr("ttup"), "close_asst"), (cgr("Buat Bot"), "@ccavolo")],
             ]
         )
         return await m.reply(ts_1, reply_markup=button)
