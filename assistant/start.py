@@ -30,7 +30,7 @@ async def _(c, m):
     ts_2 = cgr("asst_2").format(user_name, user2)
     if m.from_user.id == owner_nih:
         button = ikb(
-            
+            [
                 [(cgr("asst_3"), "clbk.bhsa"), (cgr("asst_6"), "clbk.rebot")],
                 [("Repo", "https://github.com/elieve/mm", "url"), ("Buat Bot"), "t.me/ccavolo", "url")],
                 [(cgr("ttup"), "close_asst")],
