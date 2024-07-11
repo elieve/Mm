@@ -32,7 +32,7 @@ async def _(c, m):
         button = ikb(
             [
                 [(cgr("asst_3"), "clbk.bhsa"), (cgr("asst_6"), "clbk.rebot")],
-                [("Repo", "https://github.com/elieve/mm", "url"), ("Buat Bot"), "t.me/ccavolo", "url")],
+                [("Repo", "https://github.com/elieve/mm", "url"), ("Buat Bot", "t.me/ccavolo", "url")],
                 [(cgr("ttup"), "close_asst")],
             ]
         )
