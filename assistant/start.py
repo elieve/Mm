@@ -19,7 +19,8 @@ from pyrogram.types import *
 
 from Mix import *
 
-help = async def _(c: nlx, m):
+help =
+async def _(c: nlx, m):
     em = Emojik()
     em.initialize()
     if not c.get_arg(m):
