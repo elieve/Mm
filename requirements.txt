@@ -49,5 +49,5 @@ assemblyai
 removebg
 numpy
 opencv-python
-git+https://github.com/naya1503/pyrogram
+git+https://github.com/naya1503/mypyrogram
 tornado
