@@ -18,7 +18,6 @@ from pyrogram.raw.types import *
 from pyrogram.types import *
 
 from Mix import *
-from assistant import *
 
 
 @ky.bots("start", human.pv)
